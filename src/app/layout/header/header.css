@@ -1,0 +1,44 @@
+header {
+	display: flex;
+	width: 100vw;
+	height: 10vh;
+	color: white;
+	justify-content: space-between;
+	background-color: var(--color-primary);
+}
+
+.header-item {
+	display: flex;
+	min-width: 2%;
+	align-items: center;
+	justify-content: center;
+	padding: 0 0.5vw;
+	transition: ease 0.1s;
+}
+
+.header-item:hover {
+	cursor: pointer;
+}
+
+.header-item.button > * {
+	width: 80%;
+	height: 80%;
+}
+
+.header-item.button:hover {
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+	height: 60%;
+	margin-right: 0.5vw;
+}
+
+.logo-text {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.profile {
+	padding: 0 3vw;
+}

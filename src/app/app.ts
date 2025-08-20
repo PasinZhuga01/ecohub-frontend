@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 import { SvgIcons } from './services/svg-icons/svg-icons';
+import { Header } from './layout/header/header';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule],
+	imports: [MatIconModule, Header],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
