@@ -3,10 +3,11 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { SvgIcons } from './services/svg-icons/svg-icons';
 import { Header } from './layout/header/header';
+import { Main } from './layout/main/main';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header],
+	imports: [MatIconModule, Header, Main],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
