@@ -1,4 +1,5 @@
 .main-container {
+	position: relative;
 	display: flex;
 	width: 99.8%;
 	min-height: 60vh;
