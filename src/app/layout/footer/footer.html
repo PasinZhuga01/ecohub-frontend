@@ -1,0 +1,25 @@
+<footer>
+	<div class="footer-item about">
+		<div class="logo-container">
+			<img src="images/favicon.png" />
+			EcoHub
+		</div>
+		<div>Бесплатный сервис для организации вашей собственной системы экономики.</div>
+	</div>
+	<div class="footer-item contacts">
+		<h1>Контакты</h1>
+
+		<a class="contact" [href]="`mailto:${contacts.email}`">
+			<mat-icon svgIcon="email" class="contact-icon"></mat-icon>
+			{{contacts.email}}
+		</a>
+		<a class="contact" [href]="`https://t.me/${contacts.telegram}`">
+			<mat-icon svgIcon="telegram" class="contact-icon"></mat-icon>
+			{{contacts.telegram}}
+		</a>
+		<div class="contact">
+			<mat-icon svgIcon="phone" class="contact-icon"></mat-icon>
+			{{contacts.phone}}
+		</div>
+	</div>
+</footer>
