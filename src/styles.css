@@ -14,10 +14,13 @@
 
 * {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 1rem;
 }
 
 body {
 	margin: 0;
 	background-color: var(--color-background);
+}
+
+input {
+	font-size: 0.5rem;
 }
