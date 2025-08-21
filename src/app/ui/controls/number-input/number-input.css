@@ -1,7 +1,7 @@
 .input-container {
 	display: flex;
 	width: 10vw;
-	height: 4vh;
+	height: 4.8vh;
 	font-size: 0.75rem;
 }
 
@@ -35,9 +35,10 @@
 
 .input-container input[type='number'] {
 	width: 60%;
+	height: 100%;
 	flex-grow: 1;
 	font-size: 1em;
-	padding: 1vh 0.8vw;
+	padding: 0 0.8vw;
 	text-align: center;
 	border: 1px solid var(--color-secondary-alt);
 	border-width: 1px 0px;
