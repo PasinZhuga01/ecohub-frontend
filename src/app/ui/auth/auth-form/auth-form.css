@@ -1,0 +1,25 @@
+form {
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	padding: 0 1vw;
+}
+
+form h1 {
+	margin: 0;
+	font-size: 1.6rem;
+}
+
+form.has-divider {
+	border-right: 2px solid var(--color-secondary-alt);
+}
+
+.description {
+	margin-bottom: 6vh;
+	margin-top: 2vh;
+}
+
+.input-wrapper {
+	width: 80%;
+	margin-bottom: 1.6vh;
+}

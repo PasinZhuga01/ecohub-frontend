@@ -1,0 +1,14 @@
+<form [action]="url" method="POST" [class]="dividerClass">
+	<h1>{{header}}</h1>
+	<div class="description">{{description}}</div>
+
+	@for (item of items; track item.name){
+	<div class="input-wrapper">
+		<app-text-input [name]="item.name" [placeholder]="item.placeholder"></app-text-input>
+	</div>
+	}
+
+	<div class="input-wrapper">
+		<app-button-input type="submit" [value]="submitText" className="pasin"></app-button-input>
+	</div>
+</form>
