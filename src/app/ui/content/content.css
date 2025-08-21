@@ -1,0 +1,11 @@
+:host {
+	flex-grow: 1;
+}
+
+.content-box {
+	width: calc(100% - 2.5vw);
+	height: calc(100% - 4vh);
+	padding-left: 2.5vw;
+	padding-top: 4vh;
+	color: var(--color-primary);
+}

@@ -6,10 +6,11 @@ import { Header } from './ui/header/header';
 import { Main } from './ui/main/main';
 import { Footer } from './ui/footer/footer';
 import { Sidebar } from './ui/sidebar/sidebar';
+import { Content } from './ui/content/content';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header, Main, Footer, Sidebar],
+	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
