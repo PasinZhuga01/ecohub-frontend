@@ -1,0 +1,21 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({
+	selector: 'app-text-input',
+	imports: [],
+	templateUrl: './text-input.html',
+	styleUrl: './text-input.css'
+})
+export class TextInput {
+	@Input() public name: string = '';
+	@Input() public placeholder: string = '';
+
+	@Output() public valueChanged = new EventEmitter<string>();
+
+	protected onValueChange(event: Event) {
+		const input = event.target as HTMLInputElement;
+		const value = input.value;
+
+		this.valueChanged.emit(value);
+	}
+}

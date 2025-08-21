@@ -1,0 +1,15 @@
+input {
+	height: 2.8vh;
+	font-size: 0.75rem;
+	padding: 1vh 0.8vw;
+	border: 1px solid var(--color-secondary-alt);
+	border-radius: 6px;
+}
+
+input::placeholder {
+	color: var(--color-placeholder);
+}
+
+input:focus {
+	outline: none;
+}
