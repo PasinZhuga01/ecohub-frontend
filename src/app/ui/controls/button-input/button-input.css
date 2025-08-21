@@ -1,0 +1,20 @@
+input {
+	height: 4.8vh;
+	font-size: 0.75rem;
+	font-weight: bold;
+	padding: 0 0.8vw;
+	color: var(--color-primary-alt);
+	border-radius: 6px;
+	border: 1px solid var(--color-secondary);
+	background-color: var(--color-primary);
+	transition: ease 0.1s;
+}
+
+input:hover {
+	cursor: pointer;
+	filter: brightness(120%);
+}
+
+input:focus {
+	outline: none;
+}
