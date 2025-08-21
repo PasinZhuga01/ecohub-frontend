@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 
+import { BaseInput } from '../base-input/base-input';
+
 @Component({
 	selector: 'app-number-input',
 	imports: [],
 	templateUrl: './number-input.html',
 	styleUrl: './number-input.css'
 })
-export class NumberInput {
-	@Input() public name: string = '';
+export class NumberInput extends BaseInput {
 	@Input() public isStepperable: boolean = false;
 
 	@Output() public valueChanged = new EventEmitter<number>();

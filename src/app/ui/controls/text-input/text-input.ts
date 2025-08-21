@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { BaseInput } from '../base-input/base-input';
+
 @Component({
 	selector: 'app-text-input',
 	imports: [],
 	templateUrl: './text-input.html',
 	styleUrl: './text-input.css'
 })
-export class TextInput {
-	@Input() public name: string = '';
+export class TextInput extends BaseInput {
 	@Input() public placeholder: string = '';
 
 	@Output() public valueChanged = new EventEmitter<string>();
