@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
-import { SvgIcons } from './services/svg-icons/svg-icons';
-import { Header } from './layout/header/header';
-import { Main } from './layout/main/main';
-import { Footer } from './layout/footer/footer';
-import { Sidebar } from './layout/sidebar/sidebar';
+import { SvgIcons } from './core/svg-icons/svg-icons';
+import { Header } from './ui/header/header';
+import { Main } from './ui/main/main';
+import { Footer } from './ui/footer/footer';
+import { Sidebar } from './ui/sidebar/sidebar';
 
 @Component({
 	selector: 'app-root',
