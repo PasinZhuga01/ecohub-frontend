@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { BaseInput } from '../base-input/base-input';
 
@@ -8,10 +8,8 @@ import { BaseInput } from '../base-input/base-input';
 	templateUrl: './text-input.html',
 	styleUrl: './text-input.css'
 })
-export class TextInput extends BaseInput {
+export class TextInput extends BaseInput<string> {
 	@Input() public placeholder: string = '';
-
-	@Output() public valueChanged = new EventEmitter<string>();
 
 	protected onValueChange(event: Event) {
 		const input = event.target as HTMLInputElement;
