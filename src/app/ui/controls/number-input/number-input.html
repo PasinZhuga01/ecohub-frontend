@@ -1,0 +1,11 @@
+<div [class]="`input-container ${stepperableClass}`">
+	@if (isStepperable){
+	<input type="button" class="substract" value="-" (click)="shiftValue(-1)" />
+	}
+
+	<input type="number" [name]="name" [min]="_min()" [max]="_max()" [value]="_value()" [step]="_step()" (input)="onValueChange($event)" />
+
+	@if (isStepperable){
+	<input type="button" class="add" value="+" (click)="shiftValue(1)" />
+	}
+</div>

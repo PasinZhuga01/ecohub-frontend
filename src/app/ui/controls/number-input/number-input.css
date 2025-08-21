@@ -1,0 +1,58 @@
+.input-container {
+	display: flex;
+	width: 10vw;
+	height: 4vh;
+	font-size: 0.75rem;
+}
+
+.input-container input[type='button'] {
+	width: 20%;
+	font-weight: bold;
+	color: var(--color-primary-alt);
+	background-color: var(--color-primary);
+	border: 1px solid var(--color-secondary-alt);
+	transition: ease 0.1s;
+}
+
+.input-container input[type='button']:hover {
+	cursor: pointer;
+	filter: brightness(120%);
+}
+
+.input-container input[type='button']:focus {
+	outline: none;
+}
+
+.input-container input[type='button'].substract {
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.input-container input[type='button'].add {
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.input-container input[type='number'] {
+	width: 60%;
+	flex-grow: 1;
+	font-size: 1em;
+	padding: 1vh 0.8vw;
+	text-align: center;
+	border: 1px solid var(--color-secondary-alt);
+	border-width: 1px 0px;
+}
+
+.input-container.not-stepperable input[type='number'] {
+	border-radius: 6px;
+	border-width: 1px 1px;
+	text-align: left;
+}
+
+.input-container input[type='number']::placeholder {
+	color: var(--color-placeholder);
+}
+
+.input-container input[type='number']:focus {
+	outline: none;
+}
