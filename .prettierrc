@@ -4,5 +4,7 @@
 	"useTabs": true,
 	"trailingComma": "none",
 	"tabWidth": 4,
-	"printWidth": 140
+	"printWidth": 140,
+	"htmlWhitespaceSensitivity": "ignore",
+	"bracketSameLine": true
 }

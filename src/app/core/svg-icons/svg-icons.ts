@@ -6,7 +6,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 	providedIn: 'root'
 })
 export class SvgIcons {
-	public constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {}
+	public constructor(
+		private matIconRegistry: MatIconRegistry,
+		private domSanitizer: DomSanitizer
+	) {}
 
 	public registerIcons(sources: { [name: string]: string }) {
 		for (const name in sources) {
