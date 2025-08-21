@@ -5,10 +5,11 @@ import { SvgIcons } from './services/svg-icons/svg-icons';
 import { Header } from './layout/header/header';
 import { Main } from './layout/main/main';
 import { Footer } from './layout/footer/footer';
+import { Sidebar } from './layout/sidebar/sidebar';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header, Main, Footer],
+	imports: [MatIconModule, Header, Main, Footer, Sidebar],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })

@@ -1,0 +1,16 @@
+nav {
+	width: 20vw;
+	min-height: 1vh;
+	background-color: var(--color-primary-alt);
+	border: 2px solid var(--color-secondary-alt);
+}
+
+nav.absolute {
+	position: fixed;
+	z-index: 5;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}

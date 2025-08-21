@@ -1,0 +1,66 @@
+li {
+	display: flex;
+	width: 100%;
+	height: 7.5vh;
+	align-items: center;
+	justify-content: flex-start;
+	border: 1px solid var(--color-secondary-alt);
+}
+
+.item .icon {
+	width: 2.5vw;
+	height: 60%;
+	padding-left: 4%;
+	padding-right: 2%;
+	flex-shrink: 0;
+}
+
+.item .text {
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	padding-left: 2%;
+	align-items: center;
+	overflow: hidden;
+}
+
+.item .text span {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.item .expand {
+	display: flex;
+	width: 3vw;
+	height: 100%;
+	padding: 0 3%;
+	align-items: center;
+	justify-content: center;
+	margin-left: auto;
+	flex-shrink: 0;
+}
+
+.item .button {
+	transition: ease 0.1s;
+}
+
+.item .button:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.item.special .text {
+	font-size: 0.8rem;
+	font-style: italic;
+	text-align: center;
+}
+
+.item-level-1 {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.item-level-2 {
+	background-color: rgba(0, 0, 0, 0.2);
+}
