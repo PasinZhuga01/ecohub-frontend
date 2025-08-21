@@ -9,7 +9,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonInput {
 	@Input() public type: 'button' | 'submit' = 'button';
 	@Input() public value: string = '';
-	@Input() public className: string = '';
 
 	@Output() public clicked = new EventEmitter<void>();
 }

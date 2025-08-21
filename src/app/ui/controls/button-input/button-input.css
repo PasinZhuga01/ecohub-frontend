@@ -1,4 +1,5 @@
 input {
+	width: 100%;
 	height: 4.8vh;
 	font-size: 0.75rem;
 	font-weight: bold;

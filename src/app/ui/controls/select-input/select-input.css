@@ -1,4 +1,5 @@
 select {
+	width: calc(100% - 0.8vw * 2);
 	height: 4.8vh;
 	font-size: 0.75rem;
 	padding: 0 0.8vw;

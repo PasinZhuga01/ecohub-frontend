@@ -1,4 +1,5 @@
 input {
+	width: calc(100% - 0.8vw * 2);
 	height: 2.8vh;
 	font-size: 0.75rem;
 	padding: 1vh 0.8vw;
