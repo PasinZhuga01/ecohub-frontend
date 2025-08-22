@@ -1,0 +1,32 @@
+<!-- prettier-ignore -->
+
+<td>
+	@for (key of itemsKeys(); track $index){
+        @let item = getItem(key);
+
+        @switch (item.type) {
+            @case ('icon') {
+                <img [src]="item.iconSrc" />
+            }
+            @case ('number'){
+                @if ('isEditing' in item){
+                    <app-number-input [isStepperable]="true" [value]="item.number" [config]="item.config" (valueChanged)="item.number = $event"></app-number-input>
+                }
+                @else {
+                    <span>{{ item.number }}</span>
+                }
+            }
+            @case ('text'){
+                @if ('isEditing' in item){
+                    <app-text-input [value]="item.text" [config]="item.config" (valueChanged)="item.text = $event"></app-text-input>
+                }
+                @else {
+                    <span>{{ item.text }}</span>
+                }
+            }
+            @case ('button'){
+                <span class="button" (click)="buttonClicked.emit(key)">{{ item.text }}</span>
+            }
+        }
+    }
+</td>

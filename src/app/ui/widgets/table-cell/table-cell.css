@@ -1,0 +1,28 @@
+:host {
+	display: contents;
+}
+
+td {
+	color: var(--color-text);
+	padding: 1vh 0.6vw;
+	vertical-align: middle;
+}
+
+img {
+	width: 2vw;
+	height: 4vh;
+}
+
+span {
+	margin: 0 2vw;
+}
+
+.button {
+	color: var(--color-primary);
+	transition: ease 0.1s;
+}
+
+.button:hover {
+	cursor: pointer;
+	color: var(--color-placeholder);
+}

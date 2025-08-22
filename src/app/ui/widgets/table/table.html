@@ -1,0 +1,14 @@
+<!-- prettier-ignore  -->
+
+<table>
+	<tr>
+		@for (key of headersKeys(); track $index){
+			<th>{{ getHeader(key) }}</th>
+
+		}
+	</tr>
+
+	@for (row of config.rows; track row.id){
+		<app-table-row [id]="row.id" [items]="row.cells" (buttonClicked)="buttonClicked.emit({row, cell: $event.cell, name: $event.name})"></app-table-row>
+	}
+</table>
