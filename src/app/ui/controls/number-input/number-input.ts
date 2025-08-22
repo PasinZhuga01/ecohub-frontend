@@ -1,6 +1,15 @@
 import { Component, Input, signal } from '@angular/core';
 
-import { BaseInput } from '../base-input/base-input';
+import { BaseInput, IBaseInput } from '../base-input/base-input';
+
+export interface INumberInput extends IBaseInput {
+	isStepperable: boolean;
+	step: number;
+	scale: number;
+	min: number;
+	max: number;
+	value: number;
+}
 
 @Component({
 	selector: 'app-number-input',
@@ -8,7 +17,7 @@ import { BaseInput } from '../base-input/base-input';
 	templateUrl: './number-input.html',
 	styleUrl: './number-input.css'
 })
-export class NumberInput extends BaseInput<number> {
+export class NumberInput extends BaseInput<number, INumberInput> implements INumberInput {
 	@Input() public isStepperable: boolean = false;
 
 	protected _step = signal(1);
@@ -43,6 +52,29 @@ export class NumberInput extends BaseInput<number> {
 
 	@Input() public set value(value: number) {
 		this._value.set(this.validateValue(value));
+	}
+
+	@Input() public override set config(value: Partial<INumberInput>) {
+		super.config = value;
+
+		if (value.isStepperable !== undefined) {
+			this.isStepperable = value.isStepperable;
+		}
+		if (value.step !== undefined) {
+			this.step = value.step;
+		}
+		if (value.scale !== undefined) {
+			this.scale = value.scale;
+		}
+		if (value.min !== undefined) {
+			this.min = value.min;
+		}
+		if (value.max !== undefined) {
+			this.max = value.max;
+		}
+		if (value.value !== undefined) {
+			this.value = value.value;
+		}
 	}
 
 	protected get stepperableClass(): string {

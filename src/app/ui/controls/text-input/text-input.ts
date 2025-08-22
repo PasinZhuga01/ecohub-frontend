@@ -1,6 +1,12 @@
 import { Component, Input, signal } from '@angular/core';
 
-import { BaseInput } from '../base-input/base-input';
+import { BaseInput, IBaseInput } from '../base-input/base-input';
+
+export interface ITextInput extends IBaseInput {
+	limit: number;
+	value: string;
+	placeholder: string;
+}
 
 @Component({
 	selector: 'app-text-input',
@@ -8,11 +14,11 @@ import { BaseInput } from '../base-input/base-input';
 	templateUrl: './text-input.html',
 	styleUrl: './text-input.css'
 })
-export class TextInput extends BaseInput<string> {
+export class TextInput extends BaseInput<string, ITextInput> implements ITextInput {
 	@Input() public placeholder: string = '';
 
-	protected _limit = signal<number>(1000000);
-	protected _value = signal<string>('');
+	protected _limit = signal(1000000);
+	protected _value = signal('');
 
 	@Input() public set limit(value: number) {
 		if (isFinite(value) && value >= 0) {
@@ -23,6 +29,20 @@ export class TextInput extends BaseInput<string> {
 	@Input() public set value(value: string) {
 		if (value.length <= this._limit()) {
 			this._value.set(value);
+		}
+	}
+
+	@Input() public override set config(value: Partial<ITextInput>) {
+		super.config = value;
+
+		if (value.limit !== undefined) {
+			this.limit = value.limit;
+		}
+		if (value.value !== undefined) {
+			this.value = value.value;
+		}
+		if (value.placeholder !== undefined) {
+			this.placeholder = value.placeholder;
 		}
 	}
 

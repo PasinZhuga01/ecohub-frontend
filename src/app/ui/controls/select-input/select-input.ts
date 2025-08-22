@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { BaseInput } from '../base-input/base-input';
+import { BaseInput, IBaseInput } from '../base-input/base-input';
 
 type SelectItem = { id: number; text: string };
 
@@ -10,7 +10,7 @@ type SelectItem = { id: number; text: string };
 	templateUrl: './select-input.html',
 	styleUrl: './select-input.css'
 })
-export class SelectInput extends BaseInput<SelectItem> {
+export class SelectInput extends BaseInput<SelectItem, IBaseInput> implements IBaseInput {
 	@Input({ required: true }) public items: SelectItem[] = [];
 
 	protected onValueChange(event: Event) {
