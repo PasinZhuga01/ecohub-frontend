@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SidebarItem, SidebarItemConfig, SidebarItemIdentifier } from '../sidebar-item/sidebar-item';
+import { SidebarItem, SidebarItemConfig } from '../sidebar-item/sidebar-item';
 
 @Component({
 	selector: 'app-sidebar',
@@ -13,8 +13,8 @@ export class Sidebar {
 	@Input({ required: true }) public items: SidebarItemConfig[] = [];
 	@Input() public absolutePositionConfig: Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null = null;
 
-	@Output() public itemClicked = new EventEmitter<SidebarItemIdentifier>();
-	@Output() public itemExpanded = new EventEmitter<SidebarItemIdentifier>();
+	@Output() public itemClicked = new EventEmitter<number>();
+	@Output() public itemExpanded = new EventEmitter<number>();
 
 	protected get classes(): string {
 		return this.absolutePositionConfig !== null ? 'absolute' : '';

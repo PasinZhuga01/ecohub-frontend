@@ -2,7 +2,7 @@
 	<h1>{{header}}</h1>
 	<div class="description">{{description}}</div>
 
-	@for (item of items; track item.name){
+	@for (item of items; track $index){
 	<div class="input-wrapper">
 		<app-text-input [name]="item.name" [placeholder]="item.placeholder"></app-text-input>
 	</div>

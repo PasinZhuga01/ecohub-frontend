@@ -1,10 +1,10 @@
 <nav [class]="classes" [ngStyle]="absolutePositionConfig">
 	<ul>
-		@for (itemConfig of items; track itemConfig.identifier){
+		@for (item of items; track $index){
 		<app-sidebar-item
-			[config]="itemConfig"
-			(clicked)="itemClicked.emit(itemConfig.identifier)"
-			(expanded)="itemExpanded.emit(itemConfig.identifier)"></app-sidebar-item>
+			[config]="item"
+			(clicked)="itemClicked.emit(item.identifier)"
+			(expanded)="itemExpanded.emit(item.identifier)"></app-sidebar-item>
 		}
 	</ul>
 </nav>
