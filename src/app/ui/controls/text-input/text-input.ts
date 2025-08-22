@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 
 import { BaseInput } from '../base-input/base-input';
 
@@ -10,6 +10,21 @@ import { BaseInput } from '../base-input/base-input';
 })
 export class TextInput extends BaseInput<string> {
 	@Input() public placeholder: string = '';
+
+	protected _limit = signal<number>(1000000);
+	protected _value = signal<string>('');
+
+	@Input() public set limit(value: number) {
+		if (isFinite(value) && value >= 0) {
+			this._limit.set(value);
+		}
+	}
+
+	@Input() public set value(value: string) {
+		if (value.length <= this._limit()) {
+			this._value.set(value);
+		}
+	}
 
 	protected onValueChange(event: Event) {
 		const input = event.target as HTMLInputElement;

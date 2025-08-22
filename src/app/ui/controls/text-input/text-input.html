@@ -1,1 +1,1 @@
-<input type="text" [name]="name" [placeholder]="placeholder" (input)="onValueChange($event)" />
+<input type="text" [name]="name" [maxLength]="_limit()" [value]="_value()" [placeholder]="placeholder" (input)="onValueChange($event)" />
