@@ -90,6 +90,7 @@ export class NumberInput extends BaseInput<number, INumberInput> implements INum
 
 	protected shiftValue(side: -1 | 1) {
 		this._value.update((value) => this.validateValue(value + this._step() * side));
+		this.valueChanged.emit(this._value());
 	}
 
 	private validateValue(value: number): number {
