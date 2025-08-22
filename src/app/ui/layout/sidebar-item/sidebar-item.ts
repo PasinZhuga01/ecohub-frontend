@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
-type SidebarItemBaseConfig = { level: 0 | 1 | 2; text: string; identifier: number };
+type SidebarItemBaseConfig = { id: number; level: 0 | 1 | 2; text: string };
 
 type SidebarItemDefaultConfig = SidebarItemBaseConfig & { isSpecial: false; isExpandable: boolean; iconName: string };
 type SidebarItemSpecialConfig = SidebarItemBaseConfig & { isSpecial: true };
@@ -15,7 +15,7 @@ export type SidebarItemConfig = SidebarItemDefaultConfig | SidebarItemSpecialCon
 	styleUrl: './sidebar-item.css'
 })
 export class SidebarItem {
-	@Input({ required: true }) public config: SidebarItemConfig = { isSpecial: true, level: 0, text: '', identifier: -1 };
+	@Input({ required: true }) public config: SidebarItemConfig = { id: -1, isSpecial: true, level: 0, text: '' };
 
 	@Output() public clicked = new EventEmitter<void>();
 	@Output() public expanded = new EventEmitter<void>();
