@@ -1,6 +1,7 @@
 <!-- prettier-ignore -->
 
 <td>
+    <div class="container">
 	@for (key of itemsKeys(); track $index){
         @let item = getItem(key);
 
@@ -29,4 +30,5 @@
             }
         }
     }
+    </div>
 </td>

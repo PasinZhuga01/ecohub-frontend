@@ -1,9 +1,9 @@
 <!-- prettier-ignore  -->
 
-<table>
+<table [ngStyle]="{fontSize}">
 	<tr>
 		@for (key of headersKeys(); track $index){
-			<th>{{ getHeader(key) }}</th>
+			<th [ngStyle]="{fontSize}">{{ getHeader(key) }}</th>
 
 		}
 	</tr>
