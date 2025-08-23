@@ -19,3 +19,16 @@ input:hover {
 input:focus {
 	outline: none;
 }
+
+input.not-accented {
+	font-weight: normal;
+	color: var(--color-text);
+	border-color: var(--color-secondary-alt);
+	background-color: var(--color-primary-alt);
+}
+
+input.not-accented:hover {
+	filter: none;
+	color: var(--color-primary-alt);
+	background-color: var(--color-primary);
+}
