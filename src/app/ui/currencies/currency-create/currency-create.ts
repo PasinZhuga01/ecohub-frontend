@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 import { TextInput } from '../../controls/text-input/text-input';
 import { ButtonInput } from '../../controls/button-input/button-input';
@@ -6,12 +7,13 @@ import { NumberInput } from '../../controls/number-input/number-input';
 
 @Component({
 	selector: 'app-currency-create',
-	imports: [TextInput, ButtonInput, NumberInput],
+	imports: [TextInput, ButtonInput, NumberInput, NgStyle],
 	templateUrl: './currency-create.html',
 	styleUrl: './currency-create.css'
 })
 export class CurrencyCreate {
 	@Input() public iconSrc: string = '';
+	@Input() public widths: Partial<{ icon: string; input: string; button: string }> = {};
 
 	@Output() public failed = new EventEmitter<string>();
 	@Output() public iconUploaded = new EventEmitter<void>();

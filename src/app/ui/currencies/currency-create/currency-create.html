@@ -1,15 +1,15 @@
 <div class="container">
-	<img [src]="iconSrc" />
-	<div class="input-wrapper">
+	<img [src]="iconSrc" [ngStyle]="{width: widths.icon}" />
+	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
 		<app-button-input value="Загрузить значок" (clicked)="iconUploaded.emit()"></app-button-input>
 	</div>
-	<div class="input-wrapper">
+	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
 		<app-text-input placeholder="Название" [limit]="80" (valueChanged)="name = $event"></app-text-input>
 	</div>
-	<div class="input-wrapper">
+	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
 		<app-number-input title="Курс" [min]="1" (valueChanged)="rate = $event"></app-number-input>
 	</div>
-	<div class="input-wrapper">
+	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
 		<app-button-input value="Создать валюту" (clicked)="onCurrencyCreate()"></app-button-input>
 	</div>
 </div>

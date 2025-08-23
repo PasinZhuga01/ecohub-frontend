@@ -1,16 +1,18 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgStyle } from '@angular/common';
 
 import { TextInput } from '../../controls/text-input/text-input';
 import { ButtonInput } from '../../controls/button-input/button-input';
 
 @Component({
-	selector: 'app-entity-create',
-	imports: [TextInput, ButtonInput],
+	selector: 'app-entity-name-form',
+	imports: [TextInput, ButtonInput, NgStyle],
 	templateUrl: './entity-name-form.html',
 	styleUrl: './entity-name-form.css'
 })
 export class EntityNameForm {
 	@Input({ required: true }) public submitText: string = '';
+	@Input() public widths: Partial<{ input: string; submit: string }> = {};
 
 	@Output() public failed = new EventEmitter<string>();
 	@Output() public submited = new EventEmitter<string>();
