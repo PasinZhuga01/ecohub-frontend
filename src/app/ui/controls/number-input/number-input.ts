@@ -28,18 +28,21 @@ export class NumberInput extends BaseInput<number, INumberInput> implements INum
 	@Input() public set scale(value: number) {
 		if (value >= 0 && value <= 100) {
 			this._scale.set(value);
+			this._value.update((value) => this.validateValue(value));
 		}
 	}
 
 	@Input() public set min(value: number) {
 		if (value < this._max()) {
 			this._min.set(value);
+			this._value.update((value) => this.validateValue(value));
 		}
 	}
 
 	@Input() public set max(value: number) {
 		if (value > this._min()) {
 			this._max.set(value);
+			this._value.update((value) => this.validateValue(value));
 		}
 	}
 
