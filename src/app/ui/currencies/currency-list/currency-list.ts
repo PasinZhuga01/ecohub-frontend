@@ -1,0 +1,33 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { CurrencyListSchema } from './currency-list.types';
+
+import { Table } from '../../widgets/table/table';
+import { TableConfig, TableButtonClickEvent, TableSchema } from '../../widgets/table/table.types';
+import { TableRowConfig } from '../../widgets/table-row/table-row.types';
+
+@Component({
+	selector: 'app-currency-list',
+	imports: [Table],
+	templateUrl: './currency-list.html',
+	styleUrl: './currency-list.css'
+})
+export class CurrencyList {
+	@Output() public executed = new EventEmitter<{ id: number; row: TableRowConfig<CurrencyListSchema>; action: 'modify' | 'remove' }>();
+
+	protected readonly config: TableConfig<CurrencyListSchema> = {
+		headers: { a: 'Значок', b: 'Название', c: 'Курс', d: 'Действия' },
+		rows: []
+	};
+
+	@Input({ required: true }) public set items(value: TableRowConfig<CurrencyListSchema>[]) {
+		this.config.rows = value;
+	}
+
+	protected onClick(event: TableButtonClickEvent<TableSchema>) {
+		const id = event.row.id;
+		const action = event.name === 'remove' ? 'remove' : 'modify';
+
+		this.executed.emit({ id, action, row: event.row as TableRowConfig<CurrencyListSchema> });
+	}
+}
