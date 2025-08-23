@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+	width: 100%;
+}
+
+.name-control {
+	width: 60%;
+	margin-right: 2%;
+}
+
+.submit-control {
+	width: 38%;
+}
