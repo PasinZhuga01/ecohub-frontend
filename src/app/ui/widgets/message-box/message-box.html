@@ -2,11 +2,11 @@
 	<div class="message-box">
 		<h1>{{ header }}</h1>
 		<div class="description">{{ description }}</div>
-		<div class="controls">
-			<div class="control">
+		<div class="inputs">
+			<div class="input-wrapper">
 				<app-button-input value="Ок" (clicked)="clicked.emit(true)"></app-button-input>
 			</div>
-			<div class="control">
+			<div class="input-wrapper">
 				<app-button-input [isAccented]="false" value="Отмена" (clicked)="clicked.emit(false)"></app-button-input>
 			</div>
 		</div>

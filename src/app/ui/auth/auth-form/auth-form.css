@@ -23,3 +23,10 @@ form.has-divider {
 	width: 80%;
 	margin-bottom: 1.6vh;
 }
+
+.error-output {
+	width: 80%;
+	color: red;
+	font-size: 0.7rem;
+	text-align: center;
+}

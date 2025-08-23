@@ -36,14 +36,14 @@ h1 {
 	overflow: hidden;
 }
 
-.controls {
+.inputs {
 	display: flex;
 	width: 100%;
 	align-items: center;
 	justify-content: center;
 }
 
-.control {
+.input-wrapper {
 	width: 30%;
 	margin: 0 10%;
 }

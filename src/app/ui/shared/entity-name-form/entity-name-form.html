@@ -3,6 +3,6 @@
 		<app-text-input [limit]="80" placeholder="Название" (valueChanged)="value = $event"></app-text-input>
 	</div>
 	<div class="submit-control">
-		<app-button-input [value]="submitText" (clicked)="submited.emit(value)"></app-button-input>
+		<app-button-input [value]="submitText" (clicked)="onSubmit()"></app-button-input>
 	</div>
 </div>

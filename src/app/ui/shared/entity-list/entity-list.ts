@@ -13,12 +13,9 @@ import { TableRowConfig } from '../../widgets/table-row/table-row.types';
 	styleUrl: './entity-list.css'
 })
 export class EntityList {
-	@Output() public clicked = new EventEmitter<{ id: number; action: 'open' | 'remove' }>();
+	@Output() public executed = new EventEmitter<{ id: number; action: 'open' | 'remove' }>();
 
-	protected readonly config: TableConfig<EntityListSchema> = {
-		headers: { a: 'Название', b: 'Дата', c: 'Действия' },
-		rows: []
-	};
+	protected readonly config: TableConfig<EntityListSchema> = { headers: { a: 'Название', b: 'Дата', c: 'Действия' }, rows: [] };
 
 	@Input({ required: true }) public set items(value: TableRowConfig<EntityListSchema>[]) {
 		this.config.rows = value;
@@ -28,6 +25,6 @@ export class EntityList {
 		const id = event.row.id;
 		const action = event.name === 'remove' ? 'remove' : 'open';
 
-		this.clicked.emit({ id, action });
+		this.executed.emit({ id, action });
 	}
 }

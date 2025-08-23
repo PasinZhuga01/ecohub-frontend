@@ -1,14 +1,16 @@
-<form [action]="url" method="POST" [class]="dividerClass">
+<form [action]="url" method="POST" [class]="dividerClass" (submit)="onSubmit($event)">
 	<h1>{{header}}</h1>
 	<div class="description">{{description}}</div>
 
 	@for (item of items; track $index){
 	<div class="input-wrapper">
-		<app-text-input [name]="item.name" [placeholder]="item.placeholder"></app-text-input>
+		<app-text-input [name]="item.name" [limit]="item.limit" [placeholder]="item.placeholder"></app-text-input>
 	</div>
 	}
 
 	<div class="input-wrapper">
-		<app-button-input type="submit" [value]="submitText" className="pasin"></app-button-input>
+		<app-button-input type="submit" [value]="submitText"></app-button-input>
 	</div>
+
+	<div class="error-output">{{ errorText }}</div>
 </form>
