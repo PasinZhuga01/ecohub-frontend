@@ -1,0 +1,40 @@
+<!-- prettier-ignore -->
+
+<div class="container">
+	<div class="section-vertical">
+		<div class="section-horizont">
+			<span class="description">С валюты</span>
+			<div class="input-wrapper">
+				<app-select-input [items]="items" (valueChanged)="selectedItems.from = $event.id"></app-select-input>
+			</div>
+		</div>
+		<div class="section-horizont">
+			<span class="description">В валюту</span>
+			<div class="input-wrapper">
+				<app-select-input [items]="items" (valueChanged)="selectedItems.to = $event.id"></app-select-input>
+			</div>
+		</div>
+		<div class="section-horizont">
+			<span class="description">Сумма</span>
+			<div class="input-wrapper">
+				<app-number-input [min]="1" (valueChanged)="count = $event"></app-number-input>
+			</div>
+		</div>
+	</div>
+	<div class="section-vertical">
+		<div class="result-sum">
+			@if (result !== null){
+				<span class="input-sum">{{ result.from.count }}</span>
+				<img [src]="result.from.iconSrc" />
+				<span class="equal">=</span>
+				<span class="output-sum">{{ result.to.count }}</span>
+				<img [src]="result.to.iconSrc" />
+			}
+		</div>
+		<div class="section-horizont">
+			<div class="input-wrapper">
+				<app-button-input value="Рассчитать курс" (clicked)="executed.emit({from: selectedItems.from, to: selectedItems.to, count})"></app-button-input>
+			</div>
+		</div>
+	</div>
+</div>
