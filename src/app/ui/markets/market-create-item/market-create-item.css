@@ -1,0 +1,14 @@
+.container {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.section {
+	width: 24%;
+	text-align: center;
+}
+
+.hidden {
+	visibility: hidden;
+}

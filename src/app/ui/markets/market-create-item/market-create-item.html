@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="section">
+		<div class="input-wrapper">
+			<span class="hidden">Название</span>
+			<app-text-input placeholder="Название" (valueChanged)="name = $event"></app-text-input>
+		</div>
+	</div>
+	<div class="section">
+		<div class="input-wrapper">
+			<span>Количество</span>
+			<app-number-input [min]="1" title="Количество" (valueChanged)="count = $event"></app-number-input>
+		</div>
+	</div>
+	<div class="section">
+		<div class="input-wrapper">
+			<span>Цена</span>
+			<app-number-input [min]="1" title="Цена" (valueChanged)="price = $event"></app-number-input>
+		</div>
+	</div>
+	<div class="section">
+		<span class="hidden">Добавить</span>
+		<div class="input-wrapper">
+			<app-button-input value="Добавить товар" (clicked)="onItemCreate()"></app-button-input>
+		</div>
+	</div>
+</div>
