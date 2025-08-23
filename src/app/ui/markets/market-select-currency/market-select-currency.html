@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="section">
+		<div class="currency-wrapper" [ngStyle]="{width: widths.input}">
+			<app-select-input [items]="items" (valueChanged)="selectedItem = $event.id"></app-select-input>
+		</div>
+		<div class="submit-wrapper" [ngStyle]="{width: widths.submit}">
+			<app-button-input value="Выбрать валюту для рассчётов" (clicked)="submit.emit(selectedItem)"></app-button-input>
+		</div>
+	</div>
+	<div class="section description">
+		<span>Для рассчётов используется:</span>
+		<img [src]="current.iconSrc" />
+		<span>{{ current.name }}</span>
+	</div>
+</div>
