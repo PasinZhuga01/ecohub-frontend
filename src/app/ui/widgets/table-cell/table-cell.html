@@ -11,7 +11,7 @@
             }
             @case ('number'){
                 @if ('isEditing' in item){
-                    <app-number-input [isStepperable]="true" [value]="item.number" [config]="item.config" (valueChanged)="item.number = $event"></app-number-input>
+                    <app-number-input [isStepperable]="true" [value]="item.number" [config]="item.config" (valueChanged)="onNumberValueChange(item, $event)"></app-number-input>
                 }
                 @else {
                     <span>{{ item.number }}</span>
@@ -19,10 +19,15 @@
             }
             @case ('text'){
                 @if ('isEditing' in item){
-                    <app-text-input [value]="item.text" [config]="item.config" (valueChanged)="item.text = $event"></app-text-input>
+                    <app-text-input [value]="item.text" [config]="item.config" (valueChanged)="onTextValueChange(item, $event)"></app-text-input>
                 }
                 @else {
-                    <span>{{ item.text }}</span>
+                    @if ('isSpecial' in item){
+                        <span class="special">{{ item.text }}</span>
+                    }
+                    @else {
+                        <span>{{ item.text }}</span>
+                    }
                 }
             }
             @case ('button'){

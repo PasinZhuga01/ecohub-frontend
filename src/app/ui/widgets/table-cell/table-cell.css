@@ -33,3 +33,7 @@ span {
 	cursor: pointer;
 	color: var(--color-placeholder);
 }
+
+.special {
+	font-style: italic;
+}

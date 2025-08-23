@@ -1,3 +1,7 @@
 :host {
 	display: contents;
 }
+
+tr {
+	border-bottom: 1px solid var(--color-secondary-alt);
+}
