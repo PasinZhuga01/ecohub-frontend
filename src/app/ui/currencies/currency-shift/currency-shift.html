@@ -1,0 +1,8 @@
+<div class="container">
+	<div class="input-wrapper" [ngStyle]="{width: widths.input, margin: `0 ${margin}`}">
+		<app-number-input [min]="1" (valueChanged)="value = $event"></app-number-input>
+	</div>
+	<div class="input-wrapper" [ngStyle]="{width: widths.button, margin: `0 ${margin}`}">
+		<app-button-input value="Сдвинуть курсы" (clicked)="shifted.emit(value)"></app-button-input>
+	</div>
+</div>
