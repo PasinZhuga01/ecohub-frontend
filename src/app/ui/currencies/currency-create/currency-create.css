@@ -1,0 +1,15 @@
+.container {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+}
+
+img {
+	width: 12%;
+	height: 6vh;
+}
+
+.control {
+	width: 20%;
+}
