@@ -15,6 +15,8 @@ import { Content } from './ui/layout/content/content';
 	styleUrl: './app.css'
 })
 export class App {
+	private _name: string = 'vasyala';
+
 	public constructor(svgIcons: SvgIcons) {
 		svgIcons.registerIcons({
 			change: 'change.svg',
@@ -29,5 +31,14 @@ export class App {
 			telegram: 'telegram.svg',
 			user: 'user.svg'
 		});
+	}
+
+	public get name(): string {
+		return this._name;
+	}
+
+	public update() {
+		console.log('!');
+		this._name = 'hello';
 	}
 }

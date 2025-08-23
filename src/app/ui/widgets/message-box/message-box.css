@@ -1,0 +1,49 @@
+.overlay {
+	position: fixed;
+	display: flex;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.message-box {
+	display: flex;
+	width: 26%;
+	height: 32%;
+	padding: 1.2%;
+	flex-direction: column;
+	color: var(--color-primary);
+	border-radius: 6px;
+	border: 1px solid var(--color-secondary-alt);
+	background-color: var(--color-primary-alt);
+}
+
+h1 {
+	margin: 0;
+	margin-bottom: 5%;
+	font-size: 1.4rem;
+	text-align: center;
+}
+
+.description {
+	flex-grow: 1;
+	margin-bottom: 5%;
+	text-align: center;
+	overflow: hidden;
+}
+
+.controls {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.control {
+	width: 30%;
+	margin: 0 10%;
+}
