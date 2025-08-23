@@ -1,8 +1,6 @@
 import { Directive, Input, Output, EventEmitter } from '@angular/core';
 
-export interface IBaseInput {
-	name: string;
-}
+import { IBaseInput } from './base-input.types';
 
 @Directive()
 export abstract class BaseInput<T, I extends IBaseInput> implements IBaseInput {

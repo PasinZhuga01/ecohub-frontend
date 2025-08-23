@@ -1,12 +1,8 @@
 import { Component, Input, signal } from '@angular/core';
 
-import { BaseInput, IBaseInput } from '../base-input/base-input';
+import { ITextInput } from './text-input.types';
 
-export interface ITextInput extends IBaseInput {
-	limit: number;
-	value: string;
-	placeholder: string;
-}
+import { BaseInput } from '../base-input/base-input';
 
 @Component({
 	selector: 'app-text-input',

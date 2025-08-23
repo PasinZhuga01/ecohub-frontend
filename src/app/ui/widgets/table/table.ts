@@ -1,12 +1,8 @@
 import { Component, EventEmitter, Input, Output, computed } from '@angular/core';
 
-import { TableRow, TableRowButtonClickEvent, TableRowConfig } from '../table-row/table-row';
-import { TableCellConfig } from '../table-cell/table-cell';
+import { TableConfig, TableSchema, TableButtonClickEvent } from './table.types';
 
-export type TableSchema = { [header: string]: TableCellConfig<string> };
-
-export type TableConfig<T extends TableSchema> = { headers: Record<keyof T, string>; rows: TableRowConfig<T, keyof T>[] };
-export type TableButtonClickEvent<T extends TableSchema> = TableRowButtonClickEvent<keyof T> & { row: TableRowConfig<T, keyof T> };
+import { TableRow } from '../table-row/table-row';
 
 @Component({
 	selector: 'app-table',

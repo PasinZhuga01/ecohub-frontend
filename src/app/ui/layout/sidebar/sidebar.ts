@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SidebarItem, SidebarItemConfig } from '../sidebar-item/sidebar-item';
+import { SidebarItem } from '../sidebar-item/sidebar-item';
+import { SidebarItemConfig } from '../sidebar-item/sidebar-item.types';
 
 @Component({
 	selector: 'app-sidebar',

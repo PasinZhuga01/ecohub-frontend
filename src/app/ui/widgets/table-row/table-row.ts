@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 
-import { TableCell, TableCellConfig } from '../table-cell/table-cell';
-import { BaseTableItem } from '../base-table-item/base-table-item';
-import { TableSchema } from '../table/table';
+import { TableRowButtonClickEvent } from './table-row.types';
 
-export type TableRowConfig<T extends TableSchema, K extends keyof T> = { id: number; cells: Record<K, T[K]> };
-export type TableRowButtonClickEvent<K extends string | number | symbol> = { cell: TableCellConfig<K>; name: string };
+import { TableCell } from '../table-cell/table-cell';
+import { TableCellConfig } from '../table-cell/table-cell.types';
+import { BaseTableItem } from '../base-table-item/base-table-item';
 
 @Component({
 	selector: 'app-table-row',

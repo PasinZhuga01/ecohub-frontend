@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
 
-import { BaseInput, IBaseInput } from '../base-input/base-input';
+import { SelectItem } from './select-input.types';
 
-type SelectItem = { id: number; text: string };
+import { BaseInput } from '../base-input/base-input';
+import { IBaseInput } from '../base-input/base-input.types';
 
 @Component({
 	selector: 'app-select-input',

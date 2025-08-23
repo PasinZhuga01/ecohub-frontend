@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-export interface IButtonInput {
-	isAccented: boolean;
-	type: 'button' | 'submit';
-	value: string;
-}
+import { IButtonInput } from './button-input.types';
 
 @Component({
 	selector: 'app-button-input',

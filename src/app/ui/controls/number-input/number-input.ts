@@ -1,15 +1,8 @@
 import { Component, Input, signal } from '@angular/core';
 
-import { BaseInput, IBaseInput } from '../base-input/base-input';
+import { INumberInput } from './number-input.types';
 
-export interface INumberInput extends IBaseInput {
-	isStepperable: boolean;
-	step: number;
-	scale: number;
-	min: number;
-	max: number;
-	value: number;
-}
+import { BaseInput } from '../base-input/base-input';
 
 @Component({
 	selector: 'app-number-input',

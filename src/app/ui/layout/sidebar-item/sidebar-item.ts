@@ -1,12 +1,7 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
-type SidebarItemBaseConfig = { id: number; level: 0 | 1 | 2; text: string };
-
-type SidebarItemDefaultConfig = SidebarItemBaseConfig & { isSpecial: false; isExpandable: boolean; iconName: string };
-type SidebarItemSpecialConfig = SidebarItemBaseConfig & { isSpecial: true };
-
-export type SidebarItemConfig = SidebarItemDefaultConfig | SidebarItemSpecialConfig;
+import { SidebarItemConfig } from './sidebar-item.types';
 
 @Component({
 	selector: 'app-sidebar-item',
