@@ -12,7 +12,7 @@ export type TableCellItem =
 	| { type: 'text'; text: string; config: Partial<ITextInput>; isEditing?: true }
 	| { type: 'button'; text: string };
 
-export type TableCellConfig = Record<string, TableCellItem>;
+export type TableCellConfig<T extends string | symbol | number> = Record<T, TableCellItem>;
 
 @Component({
 	selector: 'app-table-cell',
@@ -21,5 +21,5 @@ export type TableCellConfig = Record<string, TableCellItem>;
 	styleUrl: './table-cell.css'
 })
 export class TableCell extends BaseTableItem<string, TableCellItem> {
-	@Input({ required: true }) public items: TableCellConfig = {};
+	@Input({ required: true }) public items: TableCellConfig<string> = {};
 }

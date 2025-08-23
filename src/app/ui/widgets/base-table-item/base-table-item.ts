@@ -5,7 +5,7 @@ export abstract class BaseTableItem<E, T> {
 	@Output() public buttonClicked = new EventEmitter<E>();
 
 	protected abstract items: Record<string, T>;
-	protected itemsKeys = computed(() => Object.keys(this.items));
+	protected itemsKeys = computed(() => Object.keys(this.items).sort());
 
 	protected getItem(key: string): T {
 		const item = this.items[key];

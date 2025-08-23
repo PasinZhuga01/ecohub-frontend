@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output, computed } from '@angular/core';
 
 import { TableRow, TableRowButtonClickEvent, TableRowConfig } from '../table-row/table-row';
+import { TableCellConfig } from '../table-cell/table-cell';
 
-export type TableConfig<T extends string> = { headers: Record<T, string>; rows: TableRowConfig<T>[] };
-export type TableButtonClickEvent<T extends string> = TableRowButtonClickEvent & { row: TableRowConfig<T> };
+export type TableSchema = { [header: string]: TableCellConfig<string> };
+
+export type TableConfig<T extends TableSchema> = { headers: Record<keyof T, string>; rows: TableRowConfig<T, keyof T>[] };
+export type TableButtonClickEvent<T extends TableSchema> = TableRowButtonClickEvent<keyof T> & { row: TableRowConfig<T, keyof T> };
 
 @Component({
 	selector: 'app-table',
@@ -12,11 +15,11 @@ export type TableButtonClickEvent<T extends string> = TableRowButtonClickEvent &
 	styleUrl: './table.css'
 })
 export class Table {
-	@Input({ required: true }) public config: TableConfig<string> = { headers: {}, rows: [] };
+	@Input({ required: true }) public config: TableConfig<TableSchema> = { headers: {}, rows: [] };
 
-	@Output() public buttonClicked = new EventEmitter<TableButtonClickEvent<string>>();
+	@Output() public buttonClicked = new EventEmitter<TableButtonClickEvent<TableSchema>>();
 
-	protected headersKeys = computed(() => Object.keys(this.config.headers));
+	protected headersKeys = computed(() => Object.keys(this.config.headers).sort());
 
 	protected getHeader(key: string): string {
 		const header = this.config.headers[key];
