@@ -5,9 +5,12 @@ th {
 	font-weight: normal;
 	table-layout: fixed;
 	text-align: center;
+	background-color: var(--color-primary-alt);
+}
+
+table {
 	border-collapse: collapse;
 	border: 1px solid var(--color-secondary-alt);
-	background-color: var(--color-primary-alt);
 }
 
 th {
