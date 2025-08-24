@@ -1,0 +1,44 @@
+h1 {
+	font-size: var(--h1-font-size);
+}
+
+.card {
+	display: flex;
+	width: 80%;
+	height: 15vh;
+	border-radius: 6px;
+	padding: 2vh 1vw;
+	margin-bottom: 2vh;
+	border: 1px solid var(--color-secondary-alt);
+	background-color: var(--color-primary-alt);
+	transition: ease 0.1s;
+}
+
+.card:hover {
+	cursor: pointer;
+	background-color: var(--color-background);
+}
+
+.icon {
+	width: 20%;
+	height: 100%;
+}
+
+.text-container {
+	display: flex;
+	width: 70%;
+	height: 100%;
+	flex-direction: column;
+}
+
+.text-container h2 {
+	font-size: calc(var(--h1-font-size) - 0.3rem);
+	margin: 0;
+	height: 30%;
+}
+
+.text {
+	height: 68%;
+	margin-top: 2%;
+	overflow: hidden;
+}
