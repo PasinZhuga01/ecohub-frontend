@@ -18,14 +18,9 @@ export class AuthForm {
 	@Input({ required: true }) public submitText: string = '';
 
 	@Input() public errorText: string = '';
-	@Input() public hasDivider: boolean = false;
 
 	@Output() public failed = new EventEmitter<string>();
 	@Output() public submited = new EventEmitter<Record<string, string>>();
-
-	protected get dividerClass(): string {
-		return this.hasDivider ? 'has-divider' : '';
-	}
 
 	protected onSubmit(event: SubmitEvent) {
 		event.preventDefault();

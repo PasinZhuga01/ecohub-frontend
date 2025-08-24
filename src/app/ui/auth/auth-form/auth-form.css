@@ -10,10 +10,6 @@ form h1 {
 	font-size: var(--h1-font-size);
 }
 
-form.has-divider {
-	border-right: 2px solid var(--color-secondary-alt);
-}
-
 .description {
 	margin-bottom: 6vh;
 	margin-top: 2vh;
