@@ -10,3 +10,5 @@ export type EntityListSchema = {
 		remove: { type: 'button'; text: 'Удалить' };
 	};
 };
+
+export type EntityListExecuteEvent = { id: number; action: 'open' | 'remove' };

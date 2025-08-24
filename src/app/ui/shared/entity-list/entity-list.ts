@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { EntityListSchema } from './entity-list.types';
+import { EntityListSchema, EntityListExecuteEvent } from './entity-list.types';
 
 import { Table } from '../../widgets/table/table';
 import { TableConfig, TableButtonClickEvent, TableSchema } from '../../widgets/table/table.types';
@@ -13,7 +13,7 @@ import { TableRowConfig } from '../../widgets/table-row/table-row.types';
 	styleUrl: './entity-list.css'
 })
 export class EntityList {
-	@Output() public executed = new EventEmitter<{ id: number; action: 'open' | 'remove' }>();
+	@Output() public executed = new EventEmitter<EntityListExecuteEvent>();
 
 	protected readonly config: TableConfig<EntityListSchema> = { headers: { a: 'Название', b: 'Дата', c: 'Действия' }, rows: [] };
 
