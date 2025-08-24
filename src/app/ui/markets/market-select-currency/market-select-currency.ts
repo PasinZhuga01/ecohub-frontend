@@ -13,7 +13,7 @@ import { ButtonInput } from '../../controls/button-input/button-input';
 })
 export class MarketSelectCurrency {
 	@Input({ required: true }) public items: SelectItem[] = [];
-	@Input({ required: true }) public current: { name: string; iconSrc: string } = { name: 'Валюта', iconSrc: '' };
+	@Input() public current: { name: string; iconSrc: string } | null = null;
 	@Input() public widths: Partial<{ input: string; submit: string }> = {};
 
 	@Output() public submit = new EventEmitter<number>();
