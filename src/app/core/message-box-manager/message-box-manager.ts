@@ -23,9 +23,7 @@ export class MessageBoxManager<T extends string> {
 	}
 
 	public onClick(isOk: boolean) {
-		if (isOk) {
-			this.message()?.onConfirm?.();
-		}
+		isOk ? this.message()?.onConfirm?.() : this.message()?.onCancel?.();
 
 		this.message.set(null);
 	}
