@@ -1,0 +1,15 @@
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+
+import { StorageService } from '../storage-service/storage-service';
+
+export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
+	const storage = inject(StorageService);
+	const token = storage.getNullableItem('token');
+
+	if (token !== null) {
+		return next(req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }));
+	}
+
+	return next(req);
+};
