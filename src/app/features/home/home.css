@@ -1,0 +1,9 @@
+h1 {
+	font-size: var(--h1-font-size);
+}
+
+.input-wrapper {
+	width: 30%;
+	padding: 0 35%;
+	margin-top: 5vh;
+}

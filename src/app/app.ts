@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterOutlet } from '@angular/router';
 
 import { SvgIcons } from './core/svg-icons/svg-icons';
 import { Header } from './ui/layout/header/header';
@@ -10,7 +11,7 @@ import { Content } from './ui/layout/content/content';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content],
+	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content, RouterOutlet],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
