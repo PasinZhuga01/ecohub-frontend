@@ -1,4 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ProjectsService } from './projects.service';
 
@@ -20,7 +21,11 @@ export class Projects implements OnInit {
 	protected items = signal<TableRowConfig<EntityListSchema>[]>([]);
 	protected name = signal<string>('');
 
-	public constructor(private service: ProjectsService, protected messageBox: MessageBoxManager<'Внимание' | 'Ошибка'>) {}
+	public constructor(
+		private service: ProjectsService,
+		private router: Router,
+		protected messageBox: MessageBoxManager<'Внимание' | 'Ошибка'>
+	) {}
 
 	public async ngOnInit() {
 		this.items.set(await this.service.getList());
@@ -32,7 +37,7 @@ export class Projects implements OnInit {
 
 	protected onListExecute(event: EntityListExecuteEvent) {
 		if (event.action === 'open') {
-			return console.log('open');
+			return this.open(event.id);
 		}
 		if (event.action === 'remove') {
 			return this.remove(event);
@@ -47,6 +52,10 @@ export class Projects implements OnInit {
 		}
 
 		this.items.update((items) => [result, ...items]);
+	}
+
+	protected open(id: number) {
+		this.router.navigate(['/project', id]);
 	}
 
 	protected async remove(event: EntityListExecuteEvent) {
