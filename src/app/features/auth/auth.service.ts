@@ -38,7 +38,7 @@ export class AuthService {
 			throw new Error(`Received unknown response code = "${response.response.code}"`);
 		}
 
-		this.storage.set('token', response.response.token);
+		this.storage.setItem('token', response.response.token);
 		this.router.navigate(['/projects']);
 
 		return { success: true };

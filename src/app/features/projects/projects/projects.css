@@ -1,0 +1,8 @@
+h1 {
+	font-size: var(--h1-font-size);
+}
+
+.create-wrapper {
+	margin-top: 2vh;
+	margin-bottom: 5vh;
+}
