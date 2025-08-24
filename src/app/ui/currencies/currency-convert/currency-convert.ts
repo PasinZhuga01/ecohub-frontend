@@ -14,11 +14,18 @@ import { SelectItem } from '../../controls/select-input/select-input.types';
 	styleUrl: './currency-convert.css'
 })
 export class CurrencyConvert {
-	@Input({ required: true }) public items: SelectItem[] = [];
 	@Input() public result: Record<CurrencyType, { count: number; iconSrc: string }> | null = null;
 
 	@Output() public executed = new EventEmitter<Record<CurrencyType, number> & { count: number }>();
 
 	protected selectedItems: Record<CurrencyType, number> = { from: 0, to: 0 };
 	protected count: number = 1;
+
+	protected _items: SelectItem[] = [];
+
+	@Input({ required: true }) public set items(value: SelectItem[]) {
+		this._items = value;
+
+		this.selectedItems = { from: value[0]!.id, to: value[0]!.id };
+	}
 }

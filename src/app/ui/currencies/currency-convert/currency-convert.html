@@ -5,13 +5,13 @@
 		<div class="section-horizont">
 			<span class="description">С валюты</span>
 			<div class="input-wrapper">
-				<app-select-input [items]="items" (valueChanged)="selectedItems.from = $event.id"></app-select-input>
+				<app-select-input [items]="_items" (valueChanged)="selectedItems.from = $event.id"></app-select-input>
 			</div>
 		</div>
 		<div class="section-horizont">
 			<span class="description">В валюту</span>
 			<div class="input-wrapper">
-				<app-select-input [items]="items" (valueChanged)="selectedItems.to = $event.id"></app-select-input>
+				<app-select-input [items]="_items" (valueChanged)="selectedItems.to = $event.id"></app-select-input>
 			</div>
 		</div>
 		<div class="section-horizont">
