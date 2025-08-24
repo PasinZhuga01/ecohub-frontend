@@ -39,7 +39,7 @@ export class AuthService {
 		}
 
 		this.storage.set('token', response.response.token);
-		this.router.navigate(['/']);
+		this.router.navigate(['/projects']);
 
 		return { success: true };
 	}
