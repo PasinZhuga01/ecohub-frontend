@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="form-wrapper login-form">
+		<app-auth-form
+			[items]="[{name: 'login', limit: 80, placeholder: 'Логин'}, {name: 'password', limit: 255, placeholder: 'Пароль'}]"
+			[url]="'/'"
+			header="Вход"
+			description="Введите логин и пароль"
+			submitText="Войти"
+			[errorText]="errorTexts().login"
+			(failed)="setErrorText('login', $event)"
+			(submited)="auth('login', $event)"></app-auth-form>
+	</div>
+
+	<div class="divider"></div>
+
+	<div class="form-wrapper">
+		<app-auth-form
+			[items]="[{name: 'login', limit: 80, placeholder: 'Логин'}, {name: 'password', limit: 255, placeholder: 'Пароль'}, {name: 'repeatPassword', limit: 255, placeholder: 'Повтор пароля'}]"
+			[url]="'/'"
+			header="Регистрация"
+			description="Для создания аккаунта придумайте логин и пароль"
+			submitText="Зарегистрироваться"
+			[errorText]="errorTexts().register"
+			(failed)="setErrorText('register', $event)"
+			(submited)="auth('register', $event)"></app-auth-form>
+	</div>
+</div>
