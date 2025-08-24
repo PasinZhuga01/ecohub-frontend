@@ -6,6 +6,15 @@ import { StorageItems } from './storage-service.types';
 	providedIn: 'root'
 })
 export class StorageService {
+	public constructor() {
+		this.initializeItems({
+			token: '',
+			isNavigationVisible: false,
+			expandedNavigationItemIndexes: [],
+			marketsCurrenciesIndex: []
+		});
+	}
+
 	public getItem<K extends keyof StorageItems>(name: K): StorageItems[K] {
 		return this.getNullableItemOrThrow(name, true)!;
 	}
@@ -24,5 +33,13 @@ export class StorageService {
 		}
 
 		return JSON.parse(localStorage.getItem(name)!);
+	}
+
+	private initializeItems(values: StorageItems) {
+		for (const [name, value] of Object.entries(values)) {
+			if (this.getNullableItem(name as keyof StorageItems) === null) {
+				localStorage.setItem(name, JSON.stringify(value));
+			}
+		}
 	}
 }
