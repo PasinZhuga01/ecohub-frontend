@@ -6,5 +6,6 @@ export const routes: Routes = [
 	{ path: 'projects', loadComponent: () => import('./features/projects/projects/projects').then((c) => c.Projects) },
 	{ path: 'project/:id', loadComponent: () => import('./features/projects/project/project').then((c) => c.Project) },
 	{ path: 'project/:id/edit', loadComponent: () => import('./features/projects/project-edit/project-edit').then((c) => c.ProjectEdit) },
-	{ path: 'project/:id/currencies', loadComponent: () => import('./features/projects/currencies/currencies').then((c) => c.Currencies) }
+	{ path: 'project/:id/currencies', loadComponent: () => import('./features/projects/currencies/currencies').then((c) => c.Currencies) },
+	{ path: 'project/:id/markets', loadComponent: () => import('./features/projects/markets/markets/markets').then((c) => c.Markets) }
 ];
