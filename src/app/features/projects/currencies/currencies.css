@@ -1,0 +1,14 @@
+h1 {
+	font-size: var(--h1-font-size);
+}
+
+.wrapper {
+	margin-bottom: 2.5vh;
+}
+
+.divider {
+	width: 100%;
+	height: 2px;
+	margin: 2.5vh 0;
+	background-color: var(--color-secondary-alt);
+}

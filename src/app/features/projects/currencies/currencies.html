@@ -1,0 +1,26 @@
+<h1>Валюты</h1>
+<div class="wrapper">
+	<app-currency-create
+		[iconSrc]="createdIconSrc()"
+		(failed)="onCreateError($event)"
+		(iconUploaded)="uploadCreatedIcon()"
+		(currecyCreated)="create($event)"></app-currency-create>
+</div>
+<div class="wrapper">
+	<app-currency-shift (shifted)="shiftRates($event)"></app-currency-shift>
+</div>
+<div class="divider"></div>
+<div class="wrapper">
+	<app-currency-convert [result]="convertResult()" [items]="selectItems()" (executed)="convert($event)"></app-currency-convert>
+</div>
+<div class="divider"></div>
+<div class="wrapper">
+	<app-currency-list [items]="listItems()" (executed)="onListExecute($event)"></app-currency-list>
+</div>
+
+@if (messageBox.isActive){
+<app-message-box
+	[header]="messageBox.header"
+	[description]="messageBox.description"
+	(clicked)="messageBox.onClick($event)"></app-message-box>
+}

@@ -26,6 +26,6 @@ export class CurrencyConvert {
 	@Input({ required: true }) public set items(value: SelectItem[]) {
 		this._items = value;
 
-		this.selectedItems = { from: value[0]!.id, to: value[0]!.id };
+		this.selectedItems = { from: value[0]?.id ?? 0, to: value[0]?.id ?? 0 };
 	}
 }

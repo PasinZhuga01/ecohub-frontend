@@ -5,5 +5,6 @@ export const routes: Routes = [
 	{ path: 'auth', loadComponent: () => import('./features/auth/auth').then((c) => c.Auth) },
 	{ path: 'projects', loadComponent: () => import('./features/projects/projects/projects').then((c) => c.Projects) },
 	{ path: 'project/:id', loadComponent: () => import('./features/projects/project/project').then((c) => c.Project) },
-	{ path: 'project/:id/edit', loadComponent: () => import('./features/projects/project-edit/project-edit').then((c) => c.ProjectEdit) }
+	{ path: 'project/:id/edit', loadComponent: () => import('./features/projects/project-edit/project-edit').then((c) => c.ProjectEdit) },
+	{ path: 'project/:id/currencies', loadComponent: () => import('./features/projects/currencies/currencies').then((c) => c.Currencies) }
 ];
