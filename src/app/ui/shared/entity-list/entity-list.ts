@@ -23,8 +23,9 @@ export class EntityList {
 
 	protected onExecute(event: TableButtonClickEvent<TableSchema>) {
 		const id = event.row.id;
+		const row = event.row as TableRowConfig<EntityListSchema>;
 		const action = event.name === 'remove' ? 'remove' : 'open';
 
-		this.executed.emit({ id, action });
+		this.executed.emit({ id, row, action });
 	}
 }

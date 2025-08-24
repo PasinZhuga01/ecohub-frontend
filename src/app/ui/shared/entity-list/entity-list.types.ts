@@ -1,3 +1,5 @@
+import { TableRowConfig } from '../../widgets/table-row/table-row.types';
+
 export type EntityListSchema = {
 	a: {
 		index: { type: 'text'; text: string };
@@ -11,4 +13,4 @@ export type EntityListSchema = {
 	};
 };
 
-export type EntityListExecuteEvent = { id: number; action: 'open' | 'remove' };
+export type EntityListExecuteEvent = { id: number; row: TableRowConfig<EntityListSchema>; action: 'open' | 'remove' };
