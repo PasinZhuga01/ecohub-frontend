@@ -18,7 +18,7 @@ export type MarketCartItemsSchema = {
 			| {
 					type: 'number';
 					number: number;
-					config: { isStepperable: true; min: 1 };
+					config: { isStepperable: true; min: number; step: number };
 					onChange: (value: number) => void;
 					isEditing: true;
 			  };

@@ -1,0 +1,29 @@
+<h1>Мой рынок</h1>
+<div class="section">
+	<app-market-select-currency
+		[items]="currenciesSelectItems()"
+		[current]="currentCurrency()"
+		(submited)="setCurrentCurrency($event)"></app-market-select-currency>
+</div>
+<div class="divider"></div>
+<div class="section">
+	<app-entity-name-form submitText="Переименовать рынок" (failed)="onError($event)" (submited)="rename($event)"></app-entity-name-form>
+</div>
+<div class="divider"></div>
+<div class="section">
+	<app-market-create-item (failed)="onError($event)" (itemCreated)="createItem($event)"></app-market-create-item>
+</div>
+<div class="divider"></div>
+<div class="section">
+	<app-market-items [config]="{type: 'edit', rows: catalogItemsList()}" (executed)="onCatalogItemsListExecute($event)"></app-market-items>
+</div>
+<div class="section settings">
+	<app-button-input value="Завершить изменения" [routerLink]="['..']"></app-button-input>
+</div>
+
+@if(messageBox.isActive){
+<app-message-box
+	[header]="messageBox.header"
+	[description]="messageBox.description"
+	(clicked)="messageBox.onClick($event)"></app-message-box>
+}

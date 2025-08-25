@@ -12,11 +12,16 @@ import { ButtonInput } from '../../controls/button-input/button-input';
 	styleUrl: './market-select-currency.css'
 })
 export class MarketSelectCurrency {
-	@Input({ required: true }) public items: SelectItem[] = [];
 	@Input() public current: { name: string; iconSrc: string } | null = null;
 	@Input() public widths: Partial<{ input: string; submit: string }> = {};
 
-	@Output() public submit = new EventEmitter<number>();
+	@Output() public submited = new EventEmitter<number>();
 
 	protected selectedItem: number = 0;
+	protected _items: SelectItem[] = [];
+
+	@Input({ required: true }) public set items(value: SelectItem[]) {
+		this._items = value;
+		this.selectedItem = value[0]?.id ?? 0;
+	}
 }

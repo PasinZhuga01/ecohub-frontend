@@ -1,0 +1,31 @@
+<h1>Мой рынок</h1>
+<div class="section">
+	<app-market-select-currency
+		[items]="currenciesSelectItems()"
+		[current]="currentCurrency()"
+		(submited)="setCurrentCurrency($event)"></app-market-select-currency>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+	<h2>Корзина</h2>
+	<app-market-items [config]="{type: 'cart', rows: this.cartItemsList()}" (executed)="onCartItemsListExecute($event)"></app-market-items>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+	<h2>Каталог товаров</h2>
+	<app-market-items
+		[config]="{type: 'catalog', rows: this.catalogItemsList()}"
+		(executed)="onCatalogItemsListExecute($event)"></app-market-items>
+</div>
+
+<div class="section settings">
+	<app-button-input value="Изменить рынок" [routerLink]="['edit']"></app-button-input>
+</div>
+
+@if (messageBox.isActive){
+<app-message-box [header]="messageBox.header" [description]="messageBox.description" (clicked)="onMessageBoxClick()"></app-message-box>
+}
