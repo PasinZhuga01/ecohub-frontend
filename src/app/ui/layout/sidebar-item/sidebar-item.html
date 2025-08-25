@@ -1,3 +1,4 @@
+@if (config.isVisible){
 <li class="item {{classes}}">
 	@if (!config.isSpecial){
 	<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
@@ -11,3 +12,4 @@
 	<div class="expand button" (click)="expand()">{{expandSymbol}}</div>
 	}
 </li>
+}

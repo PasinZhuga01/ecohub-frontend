@@ -10,7 +10,7 @@ import { SidebarItemConfig } from './sidebar-item.types';
 	styleUrl: './sidebar-item.css'
 })
 export class SidebarItem {
-	@Input({ required: true }) public config: SidebarItemConfig = { id: -1, isSpecial: true, level: 0, text: '' };
+	@Input({ required: true }) public config: SidebarItemConfig = { id: -1, isVisible: true, isSpecial: true, level: 0, text: '' };
 
 	@Output() public clicked = new EventEmitter<void>();
 	@Output() public expanded = new EventEmitter<void>();
