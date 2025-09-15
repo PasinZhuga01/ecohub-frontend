@@ -1,20 +1,12 @@
-<app-header
-	[profileLogin]="profileLogin()"
-	(authClicked)="router.navigate(['/auth'])"
-	(logoClicked)="gotoIndex()"
-	(navToggled)="toggleNavExpand()"
-	(profileClicked)="toggleProfileExpand()"></app-header>
+<app-header profileLogin="test"></app-header>
+
 <app-main>
-	@if (isNavExpanded() && profileLogin() !== null){
-	<app-sidebar [items]="navItems().list" (itemClicked)="onClickNavItem($event)" (itemExpanded)="onExpandNavItem($event)"></app-sidebar>
-	}
+	<app-sidebar [items]="[]"></app-sidebar>
 	<app-content>
 		<router-outlet></router-outlet>
 	</app-content>
 </app-main>
 
-@if (isProfileExpanded()){
-<app-sidebar [items]="profileItems()" [absolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}" (itemClicked)="logout()"></app-sidebar>
-}
+<app-sidebar [items]="[]" [absolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}"></app-sidebar>
 
 <app-footer [contacts]="{email: 'sergijumanskij@gmail.com', telegram: 'PasinZhuga', phone: '+380 00 00 00 000'}"></app-footer>

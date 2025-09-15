@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ProfilesApi } from 'ecohub-shared/schemas/api';
 
 import { AuthFormType, AuthServiceResult } from './auth.types';
 
 import { HttpService } from '../../core/http-service/http-service';
 import { StorageService } from '../../core/storage-service/storage-service';
-import { Profiles as Requests } from '../../core/http-service/types/requests';
-import { Profiles as Responses } from '../../core/http-service/types/responses';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
-	public constructor(private http: HttpService, private storage: StorageService, private router: Router) {}
+	public constructor(private http: HttpService<ProfilesApi>, private storage: StorageService) {}
 
 	public async auth(type: AuthFormType, object: Record<string, string>): Promise<AuthServiceResult> {
 		const isRegister = type === 'register';
@@ -21,7 +19,7 @@ export class AuthService {
 			return { success: false, errorText: 'Пароли не совпадают' };
 		}
 
-		const response = await this.http.post<Requests.AuthRequest, Responses.AuthResponse>('/profiles/auth', {
+		const response = await this.http.post<'/auth'>('/profiles/auth', {
 			isRegister,
 			login: object['login']!,
 			password: object['password']!
@@ -39,7 +37,6 @@ export class AuthService {
 		}
 
 		this.storage.setItem('token', response.response.token);
-		this.router.navigate(['/projects']);
 
 		return { success: true };
 	}
