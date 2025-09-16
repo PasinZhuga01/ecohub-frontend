@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TableButtonClickEvent, TableConfig, TableSchema } from '@ui/widgets/table/table.types';
+import { Table } from '@ui/widgets/table/table';
+import { TableRowConfig } from '@ui/widgets/table-row/table-row.types';
 
 import { MarketItemsConfig, MarketItemsSchema, MarketItemsAction } from './market-items.types';
-import { TableButtonClickEvent, TableConfig, TableSchema } from '../../widgets/table/table.types';
-import { Table } from '../../widgets/table/table';
-import { TableRowConfig } from '../../widgets/table-row/table-row.types';
 
 @Component({
 	selector: 'app-market-items',

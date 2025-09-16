@@ -27,7 +27,14 @@
 		"exactOptionalPropertyTypes": true,
 		"noUncheckedIndexedAccess": true,
 		"allowUnusedLabels": false,
-		"allowUnreachableCode": false
+		"allowUnreachableCode": false,
+		"baseUrl": "src",
+		"paths": {
+			"@core/*": ["app/core/*"],
+			"@ui/*": ["app/ui/*"],
+			"@features/*": ["app/features/*"],
+			"@env": ["env"]
+		}
 	},
 	"angularCompilerOptions": {
 		"enableI18nLegacyMessageIdFormat": false,

@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { SelectInput } from '@ui/controls/select-input/select-input';
+import { NumberInput } from '@ui/controls/number-input/number-input';
+import { ButtonInput } from '@ui/controls/button-input/button-input';
+import { SelectItem } from '@ui/controls/select-input/select-input.types';
 
 import { CurrencyType } from './currency-convert.types';
-
-import { SelectInput } from '../../controls/select-input/select-input';
-import { NumberInput } from '../../controls/number-input/number-input';
-import { ButtonInput } from '../../controls/button-input/button-input';
-import { SelectItem } from '../../controls/select-input/select-input.types';
 
 @Component({
 	selector: 'app-currency-convert',

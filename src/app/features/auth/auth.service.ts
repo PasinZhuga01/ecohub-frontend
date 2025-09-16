@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
 import { ProfilesApi } from 'ecohub-shared/schemas/api';
+import { Injectable } from '@angular/core';
+import { HttpService } from '@core/http-service/http-service';
+import { StorageService } from '@core/storage-service/storage-service';
 
 import { AuthFormType, AuthServiceResult } from './auth.types';
-
-import { HttpService } from '../../core/http-service/http-service';
-import { StorageService } from '../../core/storage-service/storage-service';
 
 @Injectable({
 	providedIn: 'root'

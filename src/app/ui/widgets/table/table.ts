@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output, computed } from '@angular/core'
 import { NgStyle } from '@angular/common';
 
 import { TableConfig, TableSchema, TableButtonClickEvent } from './table.types';
-
 import { TableRow } from '../table-row/table-row';
 
 @Component({

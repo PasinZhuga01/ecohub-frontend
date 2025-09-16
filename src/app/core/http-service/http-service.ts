@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
 import { BaseApi, AbsoluteRoute, Request, Response } from 'ecohub-shared/schemas/api';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import env from '@env';
 
-import { SuccessResult } from './types';
-
-import env from '../../env';
+import { SuccessResult } from './http-service.types';
 
 @Injectable({
 	providedIn: 'root'

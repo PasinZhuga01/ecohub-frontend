@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { TableRowButtonClickEvent } from './table-row.types';
-
 import { TableCell } from '../table-cell/table-cell';
 import { TableCellConfig } from '../table-cell/table-cell.types';
 import { BaseTableItem } from '../base-table-item/base-table-item';

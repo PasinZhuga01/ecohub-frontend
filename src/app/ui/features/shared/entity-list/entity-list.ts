@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Table } from '@ui/widgets/table/table';
+import { TableConfig, TableButtonClickEvent, TableSchema } from '@ui/widgets/table/table.types';
+import { TableRowConfig } from '@ui/widgets/table-row/table-row.types';
 
 import { EntityListSchema, EntityListExecuteEvent } from './entity-list.types';
-
-import { Table } from '../../widgets/table/table';
-import { TableConfig, TableButtonClickEvent, TableSchema } from '../../widgets/table/table.types';
-import { TableRowConfig } from '../../widgets/table-row/table-row.types';
 
 @Component({
 	selector: 'app-entity-list',

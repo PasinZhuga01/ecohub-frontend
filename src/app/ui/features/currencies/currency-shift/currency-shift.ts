@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-
-import { NumberInput } from '../../controls/number-input/number-input';
-import { ButtonInput } from '../../controls/button-input/button-input';
+import { NumberInput } from '@ui/controls/number-input/number-input';
+import { ButtonInput } from '@ui/controls/button-input/button-input';
 
 @Component({
 	selector: 'app-currency-shift',

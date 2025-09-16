@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { NumberInput } from '@ui/controls/number-input/number-input';
+import { TextInput } from '@ui/controls/text-input/text-input';
 
 import { TableCellItem, TableCellConfig } from './table-cell.types';
-
-import { NumberInput } from '../../controls/number-input/number-input';
-import { TextInput } from '../../controls/text-input/text-input';
 import { BaseTableItem } from '../base-table-item/base-table-item';
 
 @Component({

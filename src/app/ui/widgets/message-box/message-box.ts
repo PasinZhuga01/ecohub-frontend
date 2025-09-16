@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ButtonInput } from '../../controls/button-input/button-input';
+import { ButtonInput } from '@ui/controls/button-input/button-input';
 
 @Component({
 	selector: 'app-message-box',

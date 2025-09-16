@@ -1,10 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthForm } from '@ui/features/auth/auth-form/auth-form';
 
 import { AuthFormType } from './auth.types';
 import { AuthService } from './auth.service';
-
-import { AuthForm } from '../../ui/auth/auth-form/auth-form';
 
 @Component({
 	selector: 'app-auth',
