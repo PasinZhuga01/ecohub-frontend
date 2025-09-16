@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonInput } from '@ui/controls/button-input/button-input';
+
+import { MessageBoxService } from './message-box-service';
 
 @Component({
 	selector: 'app-message-box',
@@ -8,8 +10,19 @@ import { ButtonInput } from '@ui/controls/button-input/button-input';
 	styleUrl: './message-box.css'
 })
 export class MessageBox {
-	@Input() public header: string = '';
-	@Input() public description: string = '';
+	public constructor(protected service: MessageBoxService) {}
 
-	@Output() public clicked = new EventEmitter<boolean>();
+	protected get overlayCSSClasses(): string {
+		return this.service.isActive ? 'active' : '';
+	}
+
+	protected onConfirm() {
+		this.service.messageOptions.onConfirm?.();
+		this.service.hide();
+	}
+
+	protected onCancel() {
+		this.service.messageOptions.onCancel?.();
+		this.service.hide();
+	}
 }

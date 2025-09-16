@@ -1,6 +1,6 @@
 .overlay {
 	position: fixed;
-	display: flex;
+	display: none;
 	left: 0;
 	top: 0;
 	width: 100vw;
@@ -8,6 +8,11 @@
 	align-items: center;
 	justify-content: center;
 	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 10;
+}
+
+.overlay.active {
+	display: flex;
 }
 
 .message-box {

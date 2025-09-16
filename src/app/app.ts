@@ -8,10 +8,11 @@ import { Main } from './ui/layout/main/main';
 import { Footer } from './ui/layout/footer/footer';
 import { Sidebar } from './ui/layout/sidebar/sidebar';
 import { Content } from './ui/layout/content/content';
+import { MessageBox } from '@ui/widgets/message-box/message-box';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content, RouterOutlet],
+	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content, RouterOutlet, MessageBox],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })

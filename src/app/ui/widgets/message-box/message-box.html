@@ -1,13 +1,13 @@
-<div class="overlay">
+<div [class]="`overlay ${overlayCSSClasses}`">
 	<div class="message-box">
-		<h1>{{ header }}</h1>
-		<div class="description">{{ description }}</div>
+		<h1>{{ service.messageOptions.header }}</h1>
+		<div class="description">{{ service.messageOptions.description }}</div>
 		<div class="inputs">
 			<div class="input-wrapper">
-				<app-button-input value="Ок" (clicked)="clicked.emit(true)"></app-button-input>
+				<app-button-input value="Ок" (clicked)="onConfirm()"></app-button-input>
 			</div>
 			<div class="input-wrapper">
-				<app-button-input [isAccented]="false" value="Отмена" (clicked)="clicked.emit(false)"></app-button-input>
+				<app-button-input [isAccented]="false" value="Отмена" (clicked)="onCancel()"></app-button-input>
 			</div>
 		</div>
 	</div>
