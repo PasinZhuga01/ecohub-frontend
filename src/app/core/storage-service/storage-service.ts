@@ -1,44 +1,38 @@
 import { Injectable } from '@angular/core';
 
-import { StorageItems } from './storage-service.types';
+import { storageItems, StorageItems } from './storage-service.schemas';
+import { StorageError } from './storage-service.errors';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class StorageService {
 	public constructor() {
-		this.initializeItems({
-			token: '',
-			isNavigationVisible: false,
-			expandedNavigationItemIndexes: [],
-			marketsCurrenciesIndex: []
-		});
+		this.validate({ token: null, isNavVisible: false, expandedNavItems: {} });
+	}
+
+	public hasItem<K extends keyof StorageItems>(name: K): boolean {
+		return name in localStorage;
 	}
 
 	public getItem<K extends keyof StorageItems>(name: K): StorageItems[K] {
-		return this.getNullableItemOrThrow(name, true)!;
-	}
+		if (!this.hasItem(name)) {
+			throw new StorageError(`Storage item with name "${name}" is not defined.`);
+		}
 
-	public getNullableItem<K extends keyof StorageItems>(name: K): StorageItems[K] | null {
-		return this.getNullableItemOrThrow(name, false);
+		return JSON.parse(localStorage.getItem(name)!);
 	}
 
 	public setItem<K extends keyof StorageItems>(name: K, value: StorageItems[K]) {
 		localStorage.setItem(name, JSON.stringify(value));
 	}
 
-	private getNullableItemOrThrow<K extends keyof StorageItems>(name: K, shouldThrow: boolean): StorageItems[K] | null {
-		if (shouldThrow && !(name in localStorage)) {
-			throw new Error(`Storage item with name "${name}" is not defined.`);
-		}
+	private validate(defaultItems: StorageItems) {
+		for (const nameTSUntyped in defaultItems) {
+			const name = nameTSUntyped as keyof StorageItems;
 
-		return JSON.parse(localStorage.getItem(name)!);
-	}
-
-	private initializeItems(values: StorageItems) {
-		for (const [name, value] of Object.entries(values)) {
-			if (this.getNullableItem(name as keyof StorageItems) === null) {
-				localStorage.setItem(name, JSON.stringify(value));
+			if (!this.hasItem(name) || !storageItems.shape[name].safeParse(this.getItem(name)).success) {
+				this.setItem(name, defaultItems[name]);
 			}
 		}
 	}
