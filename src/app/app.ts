@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 
-import { SvgIcons } from './core/svg-icons/svg-icons';
+import { SvgIcons } from './core/resources/svg-icons/svg-icons';
 import { Header } from './ui/layout/header/header';
 import { Main } from './ui/layout/main/main';
 import { Footer } from './ui/layout/footer/footer';

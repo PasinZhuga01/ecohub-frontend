@@ -1,7 +1,7 @@
 import { ProfilesApi } from 'ecohub-shared/schemas/api';
 import { Injectable } from '@angular/core';
-import { HttpService } from '@core/http-service/http-service';
-import { StorageService } from '@core/storage-service/storage-service';
+import { HttpService } from '@core/services/http-service/http-service';
+import { StorageService } from '@core/services/storage-service/storage-service';
 
 import { AuthFormType, AuthServiceResult } from './auth.types';
 
