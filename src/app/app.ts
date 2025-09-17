@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
-
-import { SvgIcons } from './core/resources/svg-icons/svg-icons';
-import { Header } from './ui/layout/header/header';
-import { Main } from './ui/layout/main/main';
-import { Footer } from './ui/layout/footer/footer';
-import { Sidebar } from './ui/layout/sidebar/sidebar';
-import { Content } from './ui/layout/content/content';
+import { SvgIcons } from '@core/resources/svg-icons/svg-icons';
+import { Header } from '@ui/layout/header/header';
+import { Main } from '@ui/layout/main/main';
+import { Footer } from '@ui/layout/footer/footer';
+import { Sidebar } from '@ui/layout/sidebar/sidebar';
+import { Content } from '@ui/layout/content/content';
 import { MessageBox } from '@ui/widgets/message-box/message-box';
 
 @Component({

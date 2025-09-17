@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MessageBoxMessageOptions } from './message-box.types';
+import { MessageBoxMessageOptions } from './message-box-service.types';
 
 @Injectable({
 	providedIn: 'root'
