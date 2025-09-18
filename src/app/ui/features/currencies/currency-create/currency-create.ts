@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { TextInput } from '@ui/controls/text-input/text-input';
-import { ButtonInput } from '@ui/controls/button-input/button-input';
-import { NumberInput } from '@ui/controls/number-input/number-input';
+import { TextInput, ButtonInput, NumberInput } from '@ui/controls';
 
 @Component({
 	selector: 'app-currency-create',

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { TextInput } from '@ui/controls/text-input/text-input';
-import { ButtonInput } from '@ui/controls/button-input/button-input';
+import { TextInput, ButtonInput } from '@ui/controls';
 
 @Component({
 	selector: 'app-auth-form',

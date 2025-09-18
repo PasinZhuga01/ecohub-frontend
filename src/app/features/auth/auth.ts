@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthForm } from '@ui/features/auth/auth-form/auth-form';
+import { AuthForm } from '@ui/features/auth';
 
 import { AuthFormType } from './auth.types';
 import { AuthService } from './auth.service';

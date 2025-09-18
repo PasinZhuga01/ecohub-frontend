@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SelectInput } from '@ui/controls/select-input/select-input';
-import { NumberInput } from '@ui/controls/number-input/number-input';
-import { ButtonInput } from '@ui/controls/button-input/button-input';
-import { SelectItem } from '@ui/controls/select-input/select-input.types';
+import { SelectInput, NumberInput, ButtonInput, SelectItem } from '@ui/controls';
 
 import { CurrencyType } from './currency-convert.types';
 

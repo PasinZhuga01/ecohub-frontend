@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { SelectInput } from '@ui/controls/select-input/select-input';
-import { SelectItem } from '@ui/controls/select-input/select-input.types';
-import { ButtonInput } from '@ui/controls/button-input/button-input';
+import { SelectInput, ButtonInput, SelectItem } from '@ui/controls';
 
 @Component({
 	selector: 'app-market-select-currency',

@@ -1,4 +1,4 @@
-import { TableRowConfig } from '@ui/widgets/table-row/table-row.types';
+import { TableRowConfig } from '@ui/widgets';
 
 export type MarketItemsConfig =
 	| { type: 'cart'; rows: TableRowConfig<MarketCartItemsSchema>[] }

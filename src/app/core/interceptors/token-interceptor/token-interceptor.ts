@@ -1,6 +1,6 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { StorageService } from '@core/services/storage-service/storage-service';
+import { StorageService } from '@core/services';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 	const storage = inject(StorageService);

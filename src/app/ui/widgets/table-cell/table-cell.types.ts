@@ -1,5 +1,4 @@
-import { INumberInput } from '@ui/controls/number-input/number-input.types';
-import { ITextInput } from '@ui/controls/text-input/text-input.types';
+import { INumberInput, ITextInput } from '@ui/controls';
 
 export type TableCellItem =
 	| { type: 'icon'; iconSrc: string }

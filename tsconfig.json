@@ -30,9 +30,15 @@
 		"allowUnreachableCode": false,
 		"baseUrl": "src",
 		"paths": {
-			"@core/*": ["app/core/*"],
-			"@ui/*": ["app/ui/*"],
-			"@features/*": ["app/features/*"],
+			"@core/*": ["app/core/*/"],
+
+			"@features": ["app/features"],
+
+			"@ui/controls": ["app/ui/controls"],
+			"@ui/features/*": ["app/ui/features/*/"],
+			"@ui/layout": ["app/ui/layout"],
+			"@ui/widgets": ["app/ui/widgets"],
+
 			"@env": ["env"]
 		}
 	},

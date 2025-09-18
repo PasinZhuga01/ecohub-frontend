@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Table } from '@ui/widgets/table/table';
-import { TableConfig, TableButtonClickEvent, TableSchema } from '@ui/widgets/table/table.types';
-import { TableRowConfig } from '@ui/widgets/table-row/table-row.types';
+import { Table, TableConfig, TableButtonClickEvent, TableSchema, TableRowConfig } from '@ui/widgets';
 
 import { CurrencyListSchema } from './currency-list.types';
 

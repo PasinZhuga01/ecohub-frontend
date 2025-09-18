@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TextInput } from '@ui/controls/text-input/text-input';
-import { NumberInput } from '@ui/controls/number-input/number-input';
-import { ButtonInput } from '@ui/controls/button-input/button-input';
+import { TextInput, NumberInput, ButtonInput } from '@ui/controls';
 
 @Component({
 	selector: 'app-market-create-item',
