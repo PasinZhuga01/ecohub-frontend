@@ -7,7 +7,7 @@
 
         @switch (item.type) {
             @case ('icon') {
-                <img [src]="item.iconSrc" />
+                <img [src]="item.iconSrc" alt="Изображение" />
             }
             @case ('number'){
                 @if ('isEditing' in item){

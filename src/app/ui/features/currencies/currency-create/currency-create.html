@@ -1,5 +1,5 @@
 <div class="container">
-	<img [src]="iconSrc" [ngStyle]="{width: widths.icon}" />
+	<img [src]="iconSrc" [ngStyle]="{width: widths.icon}" alt="Значок валюты" />
 	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
 		<app-button-input value="Загрузить значок" (clicked)="iconUploaded.emit()"></app-button-input>
 	</div>

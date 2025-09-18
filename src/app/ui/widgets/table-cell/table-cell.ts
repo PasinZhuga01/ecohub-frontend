@@ -3,6 +3,7 @@ import { NumberInput } from '@ui/controls/number-input/number-input';
 import { TextInput } from '@ui/controls/text-input/text-input';
 
 import { TableCellItem, TableCellConfig } from './table-cell.types';
+
 import { BaseTableItem } from '../base-table-item/base-table-item';
 
 @Component({

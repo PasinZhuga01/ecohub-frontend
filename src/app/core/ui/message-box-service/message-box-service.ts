@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { MessageBoxMessageOptions } from './message-box-service.types';
 
 @Injectable({

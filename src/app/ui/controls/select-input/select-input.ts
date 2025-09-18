@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { SelectItem } from './select-input.types';
+
 import { BaseInput } from '../base-input/base-input';
 import { IBaseInput } from '../base-input/base-input.types';
 

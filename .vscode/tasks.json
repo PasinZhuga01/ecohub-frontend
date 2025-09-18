@@ -37,6 +37,12 @@
 					}
 				}
 			}
+		},
+		{
+			"label": "npm: lint",
+			"type": "npm",
+			"script": "lint",
+			"problemMatcher": ["$eslint-compact"]
 		}
 	]
 }

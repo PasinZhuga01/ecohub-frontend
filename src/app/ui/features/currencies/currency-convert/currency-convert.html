@@ -25,10 +25,10 @@
 		<div class="result-sum">
 			@if (result !== null){
 				<span class="input-sum">{{ result.from.count }}</span>
-				<img [src]="result.from.iconSrc" />
+				<img [src]="result.from.iconSrc" alt="Конвертируемая валюта"/>
 				<span class="equal">=</span>
 				<span class="output-sum">{{ result.to.count }}</span>
-				<img [src]="result.to.iconSrc" />
+				<img [src]="result.to.iconSrc" alt="Сконвертированная валюта" />
 			}
 		</div>
 		<div class="section-horizont">

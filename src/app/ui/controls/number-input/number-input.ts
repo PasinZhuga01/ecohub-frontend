@@ -1,6 +1,7 @@
 import { Component, Input, signal } from '@angular/core';
 
 import { INumberInput } from './number-input.types';
+
 import { BaseInput } from '../base-input/base-input';
 
 @Component({

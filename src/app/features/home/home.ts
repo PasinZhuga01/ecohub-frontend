@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
 import { ButtonInput } from '@ui/controls/button-input/button-input';
 
 @Component({
