@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { NumberInput, ButtonInput } from '@ui/controls';
+import { NumberControl, ButtonControl } from '@ui/controls';
 
 @Component({
 	selector: 'app-currency-shift',
-	imports: [NumberInput, ButtonInput, NgStyle],
+	imports: [NumberControl, ButtonControl, NgStyle],
 	templateUrl: './currency-shift.html',
 	styleUrl: './currency-shift.css'
 })

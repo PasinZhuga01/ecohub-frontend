@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="name-control" [ngStyle]="{width: widths.input}">
-		<app-text-input [limit]="80" placeholder="Название" (valueChanged)="value = $event"></app-text-input>
+		<app-text-control [config]="{limit: 80, placeholder: 'Название'}" (entered)="value = $event"></app-text-control>
 	</div>
 	<div class="submit-control" [ngStyle]="{width: widths.submit}">
-		<app-button-input [value]="submitText" (clicked)="onSubmit()"></app-button-input>
+		<app-button-control [config]="{value: submitText}" (entered)="onSubmit()"></app-button-control>
 	</div>
 </div>

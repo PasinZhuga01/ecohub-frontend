@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MessageBoxService } from '@core/ui';
-import { ButtonInput } from '@ui/controls';
+import { ButtonControl } from '@ui/controls';
 
 @Component({
 	selector: 'app-message-box',
-	imports: [ButtonInput],
+	imports: [ButtonControl],
 	templateUrl: './message-box.html',
 	styleUrl: './message-box.css'
 })

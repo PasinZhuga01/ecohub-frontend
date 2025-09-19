@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { SelectInput, ButtonInput, SelectItem } from '@ui/controls';
+import { SelectControl, ButtonControl, SelectControlItem } from '@ui/controls';
 
 @Component({
 	selector: 'app-market-select-currency',
-	imports: [SelectInput, ButtonInput, NgStyle],
+	imports: [SelectControl, ButtonControl, NgStyle],
 	templateUrl: './market-select-currency.html',
 	styleUrl: './market-select-currency.css'
 })
@@ -15,9 +15,9 @@ export class MarketSelectCurrency {
 	@Output() public submited = new EventEmitter<number>();
 
 	protected selectedItem: number = 0;
-	protected _items: SelectItem[] = [];
+	protected _items: SelectControlItem[] = [];
 
-	@Input({ required: true }) public set items(value: SelectItem[]) {
+	@Input({ required: true }) public set items(value: SelectControlItem[]) {
 		this._items = value;
 		this.selectedItem = value[0]?.id ?? 0;
 	}

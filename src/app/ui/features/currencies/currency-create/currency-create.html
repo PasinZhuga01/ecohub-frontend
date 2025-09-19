@@ -1,15 +1,15 @@
 <div class="container">
 	<img [src]="iconSrc" [ngStyle]="{width: widths.icon}" alt="Значок валюты" />
 	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
-		<app-button-input value="Загрузить значок" (clicked)="iconUploaded.emit()"></app-button-input>
+		<app-button-control [config]="{value: 'Загрузить значок'}" (entered)="iconUploaded.emit()"></app-button-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
-		<app-text-input placeholder="Название" [limit]="80" (valueChanged)="name = $event"></app-text-input>
+		<app-text-control [config]="{limit: 80, placeholder: 'Название'}" (entered)="name = $event"></app-text-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
-		<app-number-input title="Курс" [min]="1" (valueChanged)="rate = $event"></app-number-input>
+		<app-number-control title="Курс" [config]="{min: 1}" (entered)="rate = $event"></app-number-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
-		<app-button-input value="Создать валюту" (clicked)="onCurrencyCreate()"></app-button-input>
+		<app-button-control [config]="{value: 'Создать валюту'}" (entered)="onCurrencyCreate()"></app-button-control>
 	</div>
 </div>

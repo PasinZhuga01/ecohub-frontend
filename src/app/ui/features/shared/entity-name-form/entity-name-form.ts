@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { TextInput, ButtonInput } from '@ui/controls';
+import { TextControl, ButtonControl } from '@ui/controls';
 
 @Component({
 	selector: 'app-entity-name-form',
-	imports: [TextInput, ButtonInput, NgStyle],
+	imports: [TextControl, ButtonControl, NgStyle],
 	templateUrl: './entity-name-form.html',
 	styleUrl: './entity-name-form.css'
 })

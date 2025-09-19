@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { TextInput, NumberInput, ButtonInput } from '@ui/controls';
+import { TextControl, NumberControl, ButtonControl } from '@ui/controls';
 
 @Component({
 	selector: 'app-market-create-item',
-	imports: [TextInput, NumberInput, ButtonInput],
+	imports: [TextControl, NumberControl, ButtonControl],
 	templateUrl: './market-create-item.html',
 	styleUrl: './market-create-item.css'
 })

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonInput } from '@ui/controls';
+import { ButtonControl } from '@ui/controls';
 
 @Component({
 	selector: 'app-home',
-	imports: [ButtonInput, RouterLink],
+	imports: [ButtonControl, RouterLink],
 	templateUrl: './home.html',
 	styleUrl: './home.css'
 })

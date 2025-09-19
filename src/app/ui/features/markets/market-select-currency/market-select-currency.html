@@ -1,10 +1,12 @@
 <div class="container">
 	<div class="section">
 		<div class="currency-wrapper" [ngStyle]="{width: widths.input}">
-			<app-select-input [items]="_items" (valueChanged)="selectedItem = $event.id"></app-select-input>
+			<app-select-control [items]="_items" (entered)="selectedItem = $event.id"></app-select-control>
 		</div>
 		<div class="submit-wrapper" [ngStyle]="{width: widths.submit}">
-			<app-button-input value="Выбрать валюту для рассчётов" (clicked)="submited.emit(selectedItem)"></app-button-input>
+			<app-button-control
+				[config]="{value: 'Выбрать валюту для рассчётов'}"
+				(entered)="submited.emit(selectedItem)"></app-button-control>
 		</div>
 	</div>
 	@if (current !== null){

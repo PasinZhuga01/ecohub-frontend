@@ -5,19 +5,19 @@
 		<div class="section-horizont">
 			<span class="description">С валюты</span>
 			<div class="input-wrapper">
-				<app-select-input [items]="_items" (valueChanged)="selectedItems.from = $event.id"></app-select-input>
+				<app-select-control [items]="_items" (entered)="selectedItems.from = $event.id"></app-select-control>
 			</div>
 		</div>
 		<div class="section-horizont">
 			<span class="description">В валюту</span>
 			<div class="input-wrapper">
-				<app-select-input [items]="_items" (valueChanged)="selectedItems.to = $event.id"></app-select-input>
+				<app-select-control [items]="_items" (entered)="selectedItems.to = $event.id"></app-select-control>
 			</div>
 		</div>
 		<div class="section-horizont">
 			<span class="description">Сумма</span>
 			<div class="input-wrapper">
-				<app-number-input [min]="1" (valueChanged)="count = $event"></app-number-input>
+				<app-number-control [config]="{min: 1}" (entered)="count = $event"></app-number-control>
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 		</div>
 		<div class="section-horizont">
 			<div class="input-wrapper">
-				<app-button-input value="Рассчитать курс" (clicked)="executed.emit({from: selectedItems.from, to: selectedItems.to, count})"></app-button-input>
+				<app-button-control [config]="{value: 'Рассчитать курс'}" (entered)="executed.emit({from: selectedItems.from, to: selectedItems.to, count})"></app-button-control>
 			</div>
 		</div>
 	</div>

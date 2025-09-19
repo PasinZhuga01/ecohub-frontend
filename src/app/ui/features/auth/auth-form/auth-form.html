@@ -4,12 +4,12 @@
 
 	@for (item of items; track $index){
 	<div class="input-wrapper">
-		<app-text-input [name]="item.name" [limit]="item.limit" [placeholder]="item.placeholder"></app-text-input>
+		<app-text-control [config]="item"></app-text-control>
 	</div>
 	}
 
 	<div class="input-wrapper">
-		<app-button-input type="submit" [value]="submitText"></app-button-input>
+		<app-button-control [config]="{isSubmit: true, value: submitText}"></app-button-control>
 	</div>
 
 	<div class="error-output">{{ errorText }}</div>

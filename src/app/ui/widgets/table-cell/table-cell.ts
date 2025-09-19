@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NumberInput, TextInput } from '@ui/controls';
+import { NumberControl, TextControl } from '@ui/controls';
 
 import { TableCellItem, TableCellConfig } from './table-cell.types';
 
@@ -7,7 +7,7 @@ import { BaseTableItem } from '../base-table-item/base-table-item';
 
 @Component({
 	selector: 'app-table-cell',
-	imports: [NumberInput, TextInput],
+	imports: [NumberControl, TextControl],
 	templateUrl: './table-cell.html',
 	styleUrl: './table-cell.css'
 })
