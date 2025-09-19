@@ -14,11 +14,11 @@ export class ButtonControl extends BaseControl<void, typeof buttonControlConfig>
 	protected _config: ButtonControlConfig = { isHighlighted: true, isSubmit: false, value: 'Выполнить' };
 	protected _configSchema = buttonControlConfig;
 
-	protected get type(): string {
+	protected get HTMLInputType(): string {
 		return this._config.isSubmit ? 'submit' : 'button';
 	}
 
-	protected get highlightingClass(): string {
+	protected get CSSClasses(): string {
 		return this._config.isHighlighted ? '' : 'not-highlighted';
 	}
 }

@@ -15,7 +15,7 @@ export class NumberControl extends BaseControl<number, typeof numberControlConfi
 	protected _config: NumberControlConfig = { isStepperable: false, step: 1, scale: 0, min: 0, max: 1000000, value: 0 };
 	protected _configSchema: typeof numberControlConfig = numberControlConfig;
 
-	protected get stepperableClass(): string {
+	protected get CSSClasses(): string {
 		return this._config.isStepperable ? '' : 'not-stepperable';
 	}
 
