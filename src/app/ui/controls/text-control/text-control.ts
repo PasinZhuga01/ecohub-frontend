@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { textControlConfig, TextControlConfig } from './text-control.schemas';
+import { textControlConfig } from './text-control.schemas';
+import { TextControlConfig } from './text-control.types';
 
 import { BaseControl } from '../base-control/base-control';
 import { ControlError } from '../base-control/base-control.errors';

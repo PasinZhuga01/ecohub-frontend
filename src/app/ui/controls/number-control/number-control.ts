@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { numberControlConfig, NumberControlConfig } from './number-control.schemas';
+import { numberControlConfig } from './number-control.schemas';
+import { NumberControlConfig } from './number-control.types';
 
 import { BaseControl } from '../base-control/base-control';
 import { ControlError } from '../base-control/base-control.errors';

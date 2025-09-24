@@ -5,5 +5,3 @@ export const storageItems = z.object({
 	isNavVisible: z.boolean(),
 	expandedNavItems: z.record(z.number(), z.object({ isMarketsExpanded: z.literal(true) }).or(z.object({})))
 });
-
-export type StorageItems = z.input<typeof storageItems>;

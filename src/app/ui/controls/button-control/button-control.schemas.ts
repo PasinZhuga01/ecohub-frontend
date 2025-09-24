@@ -7,5 +7,3 @@ export const buttonControlConfig = baseControlConfig.extend({
 	isSubmit: z.boolean(),
 	value: z.string().min(1).max(75)
 });
-
-export type ButtonControlConfig = z.input<typeof buttonControlConfig>;

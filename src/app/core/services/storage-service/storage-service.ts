@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { storageItems, StorageItems } from './storage-service.schemas';
+import { storageItems } from './storage-service.schemas';
+import { StorageItems } from './storage-services.types';
 import { StorageError } from './storage-service.errors';
 
 @Injectable({

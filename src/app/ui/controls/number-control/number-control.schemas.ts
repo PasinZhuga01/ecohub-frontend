@@ -26,5 +26,3 @@ export const numberControlConfig = baseControlConfig
 
 		return { ...config, min, max, value };
 	});
-
-export type NumberControlConfig = z.input<typeof numberControlConfig>;

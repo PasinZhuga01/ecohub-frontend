@@ -17,5 +17,3 @@ export const textControlConfig = baseControlConfig
 
 		return { ...config, value };
 	});
-
-export type TextControlConfig = z.input<typeof textControlConfig>;

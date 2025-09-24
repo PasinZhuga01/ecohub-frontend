@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { buttonControlConfig, ButtonControlConfig } from './button-control.schemas';
+import { buttonControlConfig } from './button-control.schemas';
+import { ButtonControlConfig } from './button-control.types';
 
 import { BaseControl } from '../base-control/base-control';
 
