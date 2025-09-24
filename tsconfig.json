@@ -30,16 +30,16 @@
 		"allowUnreachableCode": false,
 		"baseUrl": "src",
 		"paths": {
-			"@core/*": ["app/core/*/"],
+			"@core/*": ["./app/core/*/"],
 
-			"@features": ["app/features"],
+			"@features": ["./app/features"],
 
-			"@ui/controls": ["app/ui/controls"],
-			"@ui/features/*": ["app/ui/features/*/"],
-			"@ui/layout": ["app/ui/layout"],
-			"@ui/widgets": ["app/ui/widgets"],
+			"@ui/controls": ["./app/ui/controls"],
+			"@ui/features/*": ["./app/ui/features/*/"],
+			"@ui/layout": ["./app/ui/layout"],
+			"@ui/widgets": ["./app/ui/widgets"],
 
-			"@env": ["env"]
+			"@env": ["./env"]
 		}
 	},
 	"angularCompilerOptions": {
