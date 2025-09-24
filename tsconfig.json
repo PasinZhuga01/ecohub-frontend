@@ -35,7 +35,11 @@
 			"@features": ["./app/features"],
 
 			"@ui/controls": ["./app/ui/controls"],
-			"@ui/features/*": ["./app/ui/features/*/"],
+
+			"@ui/features/auth": ["./app/ui/features/auth"],
+			"@ui/features/projects/currencies": ["./app/ui/features/projects/currencies"],
+			"@ui/features/projects/markets/markets": ["./app/ui/features/projects/markets/markets"],
+
 			"@ui/layout": ["./app/ui/layout"],
 			"@ui/widgets": ["./app/ui/widgets"],
 
