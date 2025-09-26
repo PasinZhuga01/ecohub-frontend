@@ -1,7 +1,9 @@
 import { z } from 'zod';
 
+export type ZodRawShapeFrom<T extends object> = { [K in keyof T]: z.ZodType<unknown, z.ZodTypeDef, T[K]> };
+
 export type ZodObjectPick<T extends object, K extends keyof T> = z.ZodObject<
-	Record<K, z.ZodTypeAny>,
+	ZodRawShapeFrom<T>,
 	z.UnknownKeysParam,
 	z.ZodTypeAny,
 	Pick<T, K>,
