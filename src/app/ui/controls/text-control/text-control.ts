@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { ControlError } from '@core/errors';
 
 import { textControlConfig } from './text-control.schemas';
 import { TextControlConfig } from './text-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { ControlError } from '../base-control/base-control.errors';
 
 @Component({
 	selector: 'app-text-control',

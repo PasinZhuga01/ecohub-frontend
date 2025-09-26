@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { ControlError } from '@core/errors';
 
 import { numberControlConfig } from './number-control.schemas';
 import { NumberControlConfig } from './number-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { ControlError } from '../base-control/base-control.errors';
 
 @Component({
 	selector: 'app-number-control',
