@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ConfigManager } from '@core/managers';
-import { ControlError } from '@core/errors';
 
 import { SelectControlItem } from './select-control.types';
 
 import { BaseControl } from '../base-control/base-control';
 import { BaseControlConfig } from '../base-control/base-control.types';
+import { ControlError } from '../errors';
 
 @Component({
 	selector: 'app-select-control',

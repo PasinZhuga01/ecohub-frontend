@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ControlError } from '@core/errors';
+import { ConfigManager } from '@core/managers';
 
 import { textControlConfigSchema } from './text-control.schemas';
 import { TextControlConfig } from './text-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { ConfigManager } from '@core/managers';
+import { ControlError } from '../errors';
 
 @Component({
 	selector: 'app-text-control',
