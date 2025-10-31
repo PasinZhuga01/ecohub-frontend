@@ -12,39 +12,28 @@ import { SuccessResult } from './http-service.types';
 export class HttpService<T extends BaseApi> {
 	public constructor(private http: HttpClient) {}
 
-	public async get<K extends keyof T['endpoints']>(
+	public async send<K extends keyof T['endpoints']>(
 		url: AbsoluteRoute<T, K>,
+		method: T['endpoints'][K]['method'],
 		body: Request<T, K>
 	): Promise<SuccessResult<Response<T, K>>> {
-		return this.executeRequest(() => this.http.get(this.resolveUrl(url), { params: body }));
+		return this._executeRequest(() => {
+			const fullUrl = new URL(url, env.serverUrl).toString();
+
+			switch (method) {
+				case 'GET':
+					return this.http.get(fullUrl, { params: body });
+				case 'POST':
+					return this.http.post(fullUrl, body);
+				case 'PATCH':
+					return this.http.patch(fullUrl, body);
+				case 'DELETE':
+					return this.http.delete(fullUrl, { params: body });
+			}
+		});
 	}
 
-	public async post<K extends keyof T['endpoints']>(
-		url: AbsoluteRoute<T, K>,
-		body: Request<T, K>
-	): Promise<SuccessResult<Response<T, K>>> {
-		return this.executeRequest(() => this.http.post(this.resolveUrl(url), body));
-	}
-
-	public async patch<K extends keyof T['endpoints']>(
-		url: AbsoluteRoute<T, K>,
-		body: Request<T, K>
-	): Promise<SuccessResult<Response<T, K>>> {
-		return this.executeRequest(() => this.http.patch(this.resolveUrl(url), body));
-	}
-
-	public async delete<K extends keyof T['endpoints']>(
-		url: AbsoluteRoute<T, K>,
-		body: Request<T, K>
-	): Promise<SuccessResult<Response<T, K>>> {
-		return this.executeRequest(() => this.http.delete(this.resolveUrl(url), { params: body }));
-	}
-
-	private resolveUrl<K extends keyof T['endpoints']>(url: AbsoluteRoute<T, K>): string {
-		return new URL(url, env.serverUrl).toString();
-	}
-
-	private async executeRequest<T extends object>(sendRequest: () => Observable<T>): Promise<SuccessResult<T>> {
+	private async _executeRequest<T extends object>(sendRequest: () => Observable<T>): Promise<SuccessResult<T>> {
 		try {
 			return { success: true, response: await firstValueFrom<T>(sendRequest()) };
 		} catch (error) {

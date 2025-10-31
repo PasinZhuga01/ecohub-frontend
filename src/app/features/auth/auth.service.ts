@@ -17,7 +17,7 @@ export class AuthService {
 			return { success: false, errorText: 'Пароли не совпадают' };
 		}
 
-		const response = await this.http.post<'/auth'>('/profiles/auth', {
+		const response = await this.http.send('/profiles/auth', 'POST', {
 			isRegister,
 			login: object['login']!,
 			password: object['password']!
