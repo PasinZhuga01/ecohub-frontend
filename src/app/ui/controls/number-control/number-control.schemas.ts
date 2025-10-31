@@ -1,19 +1,16 @@
 import { z } from 'zod';
 
-import { baseControlConfig } from '../base-control/base-control.schemas';
+import { NumberControlConfig } from './number-control.types';
+import { ConfigSchema } from '@core/types';
 
-export const numberControlConfig = baseControlConfig
-	.extend({
-		isStepperable: z.boolean(),
+export const numberControlConfigSchema: ConfigSchema<NumberControlConfig> = {
+	validators: {
 		step: z.number().finite(),
-		scale: z.number().min(0).max(100),
 		min: z.number().finite(),
 		max: z.number().finite(),
 		value: z.number().finite()
-	})
-	.transform((config) => {
-		let { min, max, value } = config;
-
+	},
+	normalize: ({ min, max, value, ...config }) => {
 		if (min > max) {
 			[min, max] = [max, min];
 		}
@@ -25,4 +22,5 @@ export const numberControlConfig = baseControlConfig
 		}
 
 		return { ...config, min, max, value };
-	});
+	}
+};

@@ -1,5 +1,7 @@
-import { z } from 'zod';
+import { BaseControlConfig } from '../base-control/base-control.types';
 
-import { buttonControlConfig } from './button-control.schemas';
-
-export type ButtonControlConfig = z.input<typeof buttonControlConfig>;
+export interface ButtonControlConfig extends BaseControlConfig {
+	isHighlighted: boolean;
+	isSubmit: boolean;
+	value: string;
+}

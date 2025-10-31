@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { buttonControlConfig } from './button-control.schemas';
 import { ButtonControlConfig } from './button-control.types';
 
 import { BaseControl } from '../base-control/base-control';
+import { ConfigManager } from '@core/managers';
 
 @Component({
 	selector: 'app-button-control',
@@ -11,15 +11,18 @@ import { BaseControl } from '../base-control/base-control';
 	templateUrl: './button-control.html',
 	styleUrl: './button-control.css'
 })
-export class ButtonControl extends BaseControl<void, typeof buttonControlConfig> {
-	protected _config: ButtonControlConfig = { isHighlighted: true, isSubmit: false, value: 'Выполнить' };
-	protected _configSchema = buttonControlConfig;
+export class ButtonControl extends BaseControl<void, ButtonControlConfig> {
+	protected readonly _configManager = new ConfigManager<ButtonControlConfig>({
+		isHighlighted: true,
+		isSubmit: false,
+		value: 'Выполнить'
+	});
 
 	protected get HTMLInputType(): string {
-		return this._config.isSubmit ? 'submit' : 'button';
+		return this.config.isSubmit ? 'submit' : 'button';
 	}
 
 	protected get CSSClasses(): string {
-		return this._config.isHighlighted ? '' : 'not-highlighted';
+		return this.config.isHighlighted ? '' : 'not-highlighted';
 	}
 }

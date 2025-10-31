@@ -1,5 +1,7 @@
-import { z } from 'zod';
+import { BaseControlConfig } from '../base-control/base-control.types';
 
-import { textControlConfig } from './text-control.schemas';
-
-export type TextControlConfig = z.input<typeof textControlConfig>;
+export interface TextControlConfig extends BaseControlConfig {
+	limit: number;
+	value: string;
+	placeholder: string;
+}

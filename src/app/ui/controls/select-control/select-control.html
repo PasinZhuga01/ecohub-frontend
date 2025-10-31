@@ -1,4 +1,4 @@
-<select [name]="_config.name" (change)="onValueChange($event)">
+<select [name]="config.name" (change)="onValueChange($event)">
 	@for (item of items; track item.id){
 	<option>{{ item.text }}</option>
 	}

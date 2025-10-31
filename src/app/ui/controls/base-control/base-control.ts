@@ -1,26 +1,19 @@
-import { z } from 'zod';
-import { Directive, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ObjectValidationService } from '@core/services';
+import { Directive, Input, Output, EventEmitter } from '@angular/core';
+import { ConfigManager } from '@core/managers';
 
-import { baseControlConfig } from './base-control.schemas';
+import { BaseControlConfig } from './base-control.types';
 
 @Directive()
-export abstract class BaseControl<E, S extends typeof baseControlConfig | z.ZodEffects<typeof baseControlConfig>> implements OnInit {
+export abstract class BaseControl<E, C extends BaseControlConfig> {
 	@Output() public entered = new EventEmitter<E>();
 
-	protected abstract _config: z.input<S>;
-	protected abstract _configSchema: S;
+	protected abstract readonly _configManager: ConfigManager<C>;
 
-	public constructor(protected objectValidator: ObjectValidationService) {}
-
-	@Input() public set config(value: Partial<z.input<S>>) {
-		const schema = this._configSchema instanceof z.ZodObject ? this._configSchema : this._configSchema.innerType();
-		const config = { ...this._config, ...this.objectValidator.filterValid(value, schema) };
-
-		this._config = this._configSchema instanceof z.ZodEffects ? this._configSchema.parse(config) : config;
+	public get config(): C {
+		return this._configManager.config;
 	}
 
-	public ngOnInit() {
-		this._config = this._configSchema.parse(this._config);
+	@Input() public set config(value: Partial<C>) {
+		this._configManager.set(value);
 	}
 }

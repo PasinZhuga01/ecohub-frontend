@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { ConfigManager } from '@core/managers';
 import { ControlError } from '@core/errors';
 
 import { SelectControlItem } from './select-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { baseControlConfig } from '../base-control/base-control.schemas';
 import { BaseControlConfig } from '../base-control/base-control.types';
 
 @Component({
@@ -13,11 +13,10 @@ import { BaseControlConfig } from '../base-control/base-control.types';
 	templateUrl: './select-control.html',
 	styleUrl: './select-control.css'
 })
-export class SelectControl extends BaseControl<SelectControlItem, typeof baseControlConfig> {
+export class SelectControl extends BaseControl<SelectControlItem, BaseControlConfig> {
 	@Input({ required: true }) public items: SelectControlItem[] = [];
 
-	protected _config: BaseControlConfig = {};
-	protected _configSchema: typeof baseControlConfig = baseControlConfig;
+	protected readonly _configManager = new ConfigManager<BaseControlConfig>({});
 
 	protected onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLSelectElement)) {

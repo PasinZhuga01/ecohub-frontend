@@ -1,5 +1,9 @@
-import { z } from 'zod';
+import { BaseControlConfig } from '../base-control/base-control.types';
 
-import { numberControlConfig } from './number-control.schemas';
-
-export type NumberControlConfig = z.input<typeof numberControlConfig>;
+export interface NumberControlConfig extends BaseControlConfig {
+	isStepperable: boolean;
+	step: number;
+	min: number;
+	max: number;
+	value: number;
+}
