@@ -8,11 +8,11 @@
 	</div>
 
 	@if (profileLogin !== null){
-	<div class="header-item button profile" (click)="profileClicked.emit()">
-		<mat-icon svgIcon="user"></mat-icon>
-		{{ profileLogin}}
-	</div>
+		<div class="header-item button profile" (click)="profileClicked.emit()">
+			<mat-icon svgIcon="user"></mat-icon>
+			{{ profileLogin}}
+		</div>
 	} @else{
-	<div class="header-item button profile" (click)="authClicked.emit()">Войти</div>
+		<div class="header-item button profile" (click)="authClicked.emit()">Войти</div>
 	}
 </header>

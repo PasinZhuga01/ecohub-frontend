@@ -1,10 +1,7 @@
-<!-- prettier-ignore  -->
-
 <table [ngStyle]="{fontSize}">
 	<tr>
 		@for (key of _headersKeys(); track $index){
 			<th [ngStyle]="{fontSize}">{{ _getHeader(key) }}</th>
-
 		}
 	</tr>
 

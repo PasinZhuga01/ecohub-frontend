@@ -1,15 +1,15 @@
 @if (config.isVisible){
-<li class="item {{_classes}}">
-	@if (!config.isSpecial){
-	<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
-	}
+	<li class="item {{_classes}}">
+		@if (!config.isSpecial){
+			<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
+		}
 
-	<div class="text button" (click)="clicked.emit()">
-		<span>{{config.text}}</span>
-	</div>
+		<div class="text button" (click)="clicked.emit()">
+			<span>{{config.text}}</span>
+		</div>
 
-	@if (!config.isSpecial && config.isExpandable){
-	<div class="expand button" (click)="_expand()">{{_expandSymbol}}</div>
-	}
-</li>
+		@if (!config.isSpecial && config.isExpandable){
+			<div class="expand button" (click)="_expand()">{{_expandSymbol}}</div>
+		}
+	</li>
 }

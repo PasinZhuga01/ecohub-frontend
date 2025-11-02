@@ -1,5 +1,5 @@
 <select [name]="config.name" (change)="_onValueChange($event)">
 	@for (item of items; track item.id){
-	<option>{{ item.text }}</option>
+		<option>{{ item.text }}</option>
 	}
 </select>
