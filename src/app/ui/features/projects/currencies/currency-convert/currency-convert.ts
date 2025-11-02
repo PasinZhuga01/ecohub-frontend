@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SelectControl, NumberControl, ButtonControl, SelectControlItem } from '@ui/controls';
+import { SelectControl, NumberControl, ButtonControl, SelectControlItemConfig } from '@ui/controls';
 
 import { CurrencyType } from './currency-convert.types';
 
@@ -17,9 +17,9 @@ export class CurrencyConvert {
 	protected selectedItems: Record<CurrencyType, number> = { from: 0, to: 0 };
 	protected count: number = 1;
 
-	protected _items: SelectControlItem[] = [];
+	protected _items: SelectControlItemConfig[] = [];
 
-	@Input({ required: true }) public set items(value: SelectControlItem[]) {
+	@Input({ required: true }) public set items(value: SelectControlItemConfig[]) {
 		this._items = value;
 
 		this.selectedItems = { from: value[0]?.id ?? 0, to: value[0]?.id ?? 0 };

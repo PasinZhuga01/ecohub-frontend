@@ -3,5 +3,5 @@ import { TableRowConfig, TableRowButtonClickEvent } from '../table-row/table-row
 
 export type TableSchema = { [header: string]: TableCellConfig<string> };
 
-export type TableConfig<T extends TableSchema> = { headers: Record<keyof T, string>; rows: TableRowConfig<T>[] };
-export type TableButtonClickEvent<T extends TableSchema> = TableRowButtonClickEvent<keyof T> & { row: TableRowConfig<T> };
+export type TableConfig<TSchema extends TableSchema> = { headers: Record<keyof TSchema, string>; rows: TableRowConfig<TSchema>[] };
+export type TableButtonClickEvent<TSchema extends TableSchema> = TableRowButtonClickEvent<keyof TSchema> & { row: TableRowConfig<TSchema> };

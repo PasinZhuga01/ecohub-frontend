@@ -9,14 +9,14 @@ import { SuccessResult } from './http-service.types';
 @Injectable({
 	providedIn: 'root'
 })
-export class HttpService<T extends BaseApi> {
+export class HttpService<TApi extends BaseApi> {
 	public constructor(private http: HttpClient) {}
 
-	public async send<K extends keyof T['endpoints']>(
-		url: AbsoluteRoute<T, K>,
-		method: T['endpoints'][K]['method'],
-		body: Request<T, K>
-	): Promise<SuccessResult<Response<T, K>>> {
+	public async send<TRoute extends keyof TApi['endpoints']>(
+		url: AbsoluteRoute<TApi, TRoute>,
+		method: TApi['endpoints'][TRoute]['method'],
+		body: Request<TApi, TRoute>
+	): Promise<SuccessResult<Response<TApi, TRoute>>> {
 		return this._executeRequest(() => {
 			const fullUrl = new URL(url, env.serverUrl).toString();
 
@@ -33,9 +33,9 @@ export class HttpService<T extends BaseApi> {
 		});
 	}
 
-	private async _executeRequest<T extends object>(sendRequest: () => Observable<T>): Promise<SuccessResult<T>> {
+	private async _executeRequest<TBody extends object>(sendRequest: () => Observable<TBody>): Promise<SuccessResult<TBody>> {
 		try {
-			return { success: true, response: await firstValueFrom<T>(sendRequest()) };
+			return { success: true, response: await firstValueFrom<TBody>(sendRequest()) };
 		} catch (error) {
 			if (error instanceof HttpErrorResponse) {
 				if (typeof error.error === 'object' && 'code' in error.error) {

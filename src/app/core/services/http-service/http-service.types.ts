@@ -1,1 +1,1 @@
-export type SuccessResult<T extends object> = { success: true; response: T } | { success: false; response: { code: unknown } };
+export type SuccessResult<TBody extends object> = { success: true; response: TBody } | { success: false; response: { code: unknown } };

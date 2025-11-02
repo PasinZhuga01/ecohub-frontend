@@ -1,1 +1,4 @@
-export type SelectControlItem = { id: number; text: string };
+export interface SelectControlItemConfig {
+	id: number;
+	text: string;
+}
