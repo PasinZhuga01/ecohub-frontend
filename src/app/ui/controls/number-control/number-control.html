@@ -1,6 +1,6 @@
-<div [class]="`container ${CSSClasses}`">
+<div [class]="`container ${_CSSClasses}`">
 	@if (config.isStepperable){
-	<input type="button" class="substract" value="-" (click)="onShiftValue(-1)" />
+	<input type="button" class="substract" value="-" (click)="_onShiftValue(-1)" />
 	}
 
 	<input
@@ -10,9 +10,9 @@
 		[max]="config.max"
 		[value]="config.value"
 		[step]="config.step"
-		(input)="onValueChange($event)" />
+		(input)="_onValueChange($event)" />
 
 	@if (config.isStepperable){
-	<input type="button" class="add" value="+" (click)="onShiftValue(1)" />
+		<input type="button" class="add" value="+" (click)="_onShiftValue(1)" />
 	}
 </div>

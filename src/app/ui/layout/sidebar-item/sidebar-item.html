@@ -1,5 +1,5 @@
 @if (config.isVisible){
-<li class="item {{classes}}">
+<li class="item {{_classes}}">
 	@if (!config.isSpecial){
 	<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
 	}
@@ -9,7 +9,7 @@
 	</div>
 
 	@if (!config.isSpecial && config.isExpandable){
-	<div class="expand button" (click)="expand()">{{expandSymbol}}</div>
+	<div class="expand button" (click)="_expand()">{{_expandSymbol}}</div>
 	}
 </li>
 }

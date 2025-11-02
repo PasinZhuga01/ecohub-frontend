@@ -14,5 +14,5 @@ export class CurrencyShift {
 
 	@Output() public shifted = new EventEmitter<number>();
 
-	protected value: number = 1;
+	protected _value: number = 1;
 }

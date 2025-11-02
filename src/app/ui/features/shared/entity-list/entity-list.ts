@@ -12,13 +12,13 @@ import { EntityListSchema, EntityListExecuteEvent } from './entity-list.types';
 export class EntityList {
 	@Output() public executed = new EventEmitter<EntityListExecuteEvent>();
 
-	protected readonly config: TableConfig<EntityListSchema> = { headers: { a: 'Название', b: 'Дата', c: 'Действия' }, rows: [] };
+	protected readonly _config: TableConfig<EntityListSchema> = { headers: { a: 'Название', b: 'Дата', c: 'Действия' }, rows: [] };
 
 	@Input({ required: true }) public set items(value: TableRowConfig<EntityListSchema>[]) {
-		this.config.rows = value;
+		this._config.rows = value;
 	}
 
-	protected onExecute(event: TableButtonClickEvent<TableSchema>) {
+	protected _onExecute(event: TableButtonClickEvent<TableSchema>) {
 		const id = event.row.id;
 		const row = event.row as TableRowConfig<EntityListSchema>;
 		const action = event.name === 'remove' ? 'remove' : 'open';

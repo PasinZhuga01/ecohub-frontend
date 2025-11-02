@@ -18,11 +18,11 @@ export class ButtonControl extends BaseControl<void, ButtonControlConfig> {
 		value: 'Выполнить'
 	});
 
-	protected get HTMLInputType(): string {
+	protected get _HTMLInputType(): string {
 		return this.config.isSubmit ? 'submit' : 'button';
 	}
 
-	protected get CSSClasses(): string {
+	protected get _CSSClasses(): string {
 		return this.config.isHighlighted ? '' : 'not-highlighted';
 	}
 }

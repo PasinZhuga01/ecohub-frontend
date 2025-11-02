@@ -2,8 +2,8 @@
 
 <table [ngStyle]="{fontSize}">
 	<tr>
-		@for (key of headersKeys(); track $index){
-			<th [ngStyle]="{fontSize}">{{ getHeader(key) }}</th>
+		@for (key of _headersKeys(); track $index){
+			<th [ngStyle]="{fontSize}">{{ _getHeader(key) }}</th>
 
 		}
 	</tr>

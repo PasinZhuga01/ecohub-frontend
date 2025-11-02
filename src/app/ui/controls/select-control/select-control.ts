@@ -18,7 +18,7 @@ export class SelectControl extends BaseControl<SelectControlItemConfig, BaseCont
 
 	protected readonly _configManager = new ConfigManager<BaseControlConfig>({});
 
-	protected onValueChange(event: Event) {
+	protected _onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLSelectElement)) {
 			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
 		}

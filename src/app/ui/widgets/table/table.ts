@@ -17,9 +17,9 @@ export class Table {
 
 	@Output() public buttonClicked = new EventEmitter<TableButtonClickEvent<TableSchema>>();
 
-	protected headersKeys = computed(() => Object.keys(this.config.headers).sort());
+	protected _headersKeys = computed(() => Object.keys(this.config.headers).sort());
 
-	protected getHeader(key: string): string {
+	protected _getHeader(key: string): string {
 		const header = this.config.headers[key];
 
 		if (header === undefined) {

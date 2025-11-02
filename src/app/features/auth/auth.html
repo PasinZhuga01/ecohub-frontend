@@ -6,9 +6,9 @@
 			header="Вход"
 			description="Введите логин и пароль"
 			submitText="Войти"
-			[errorText]="errorTexts().login"
-			(failed)="setErrorText('login', $event)"
-			(submited)="auth('login', $event)"></app-auth-form>
+			[errorText]="_errorTexts().login"
+			(failed)="_setErrorText('login', $event)"
+			(submited)="_auth('login', $event)"></app-auth-form>
 	</div>
 
 	<div class="divider"></div>
@@ -20,8 +20,8 @@
 			header="Регистрация"
 			description="Для создания аккаунта придумайте логин и пароль"
 			submitText="Зарегистрироваться"
-			[errorText]="errorTexts().register"
-			(failed)="setErrorText('register', $event)"
-			(submited)="auth('register', $event)"></app-auth-form>
+			[errorText]="_errorTexts().register"
+			(failed)="_setErrorText('register', $event)"
+			(submited)="_auth('register', $event)"></app-auth-form>
 	</div>
 </div>

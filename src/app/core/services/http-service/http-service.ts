@@ -10,7 +10,7 @@ import { SuccessResult } from './http-service.types';
 	providedIn: 'root'
 })
 export class HttpService<TApi extends BaseApi> {
-	public constructor(private http: HttpClient) {}
+	public constructor(private readonly _http: HttpClient) {}
 
 	public async send<TRoute extends keyof TApi['endpoints']>(
 		url: AbsoluteRoute<TApi, TRoute>,
@@ -22,13 +22,13 @@ export class HttpService<TApi extends BaseApi> {
 
 			switch (method) {
 				case 'GET':
-					return this.http.get(fullUrl, { params: body });
+					return this._http.get(fullUrl, { params: body });
 				case 'POST':
-					return this.http.post(fullUrl, body);
+					return this._http.post(fullUrl, body);
 				case 'PATCH':
-					return this.http.patch(fullUrl, body);
+					return this._http.patch(fullUrl, body);
 				case 'DELETE':
-					return this.http.delete(fullUrl, { params: body });
+					return this._http.delete(fullUrl, { params: body });
 			}
 		});
 	}

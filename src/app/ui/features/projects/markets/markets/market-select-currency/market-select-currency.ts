@@ -14,11 +14,11 @@ export class MarketSelectCurrency {
 
 	@Output() public submited = new EventEmitter<number>();
 
-	protected selectedItem: number = 0;
+	protected _selectedItem: number = 0;
 	protected _items: SelectControlItemConfig[] = [];
 
 	@Input({ required: true }) public set items(value: SelectControlItemConfig[]) {
 		this._items = value;
-		this.selectedItem = value[0]?.id ?? 0;
+		this._selectedItem = value[0]?.id ?? 0;
 	}
 }

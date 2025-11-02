@@ -17,7 +17,7 @@ export class Sidebar {
 	@Output() public itemClicked = new EventEmitter<SidebarItemConfig>();
 	@Output() public itemExpanded = new EventEmitter<SidebarItemConfig>();
 
-	protected get classes(): string {
+	protected get _classes(): string {
 		return this.absolutePositionConfig !== null ? 'absolute' : '';
 	}
 }

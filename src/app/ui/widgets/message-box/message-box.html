@@ -1,13 +1,13 @@
-<div [class]="`overlay ${overlayCSSClasses}`">
+<div [class]="`overlay ${_overlayCSSClasses}`">
 	<div class="message-box">
-		<h1>{{ service.messageOptions.header }}</h1>
-		<div class="description">{{ service.messageOptions.description }}</div>
+		<h1>{{ _service.messageOptions.header }}</h1>
+		<div class="description">{{ _service.messageOptions.description }}</div>
 		<div class="inputs">
 			<div class="input-wrapper">
-				<app-button-control [config]="{value: 'Ок'}" (entered)="onConfirm()"></app-button-control>
+				<app-button-control [config]="{value: 'Ок'}" (entered)="_onConfirm()"></app-button-control>
 			</div>
 			<div class="input-wrapper">
-				<app-button-control [config]="{isHighlighted: false, value: 'Отмена'}" (entered)="onCancel()"></app-button-control>
+				<app-button-control [config]="{isHighlighted: false, value: 'Отмена'}" (entered)="_onCancel()"></app-button-control>
 			</div>
 		</div>
 	</div>

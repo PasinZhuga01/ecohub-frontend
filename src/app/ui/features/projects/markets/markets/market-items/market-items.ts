@@ -21,7 +21,7 @@ export class MarketItems {
 		this._config.rows = value.rows;
 	}
 
-	protected onExecute(event: TableButtonClickEvent<TableSchema>) {
+	protected _onExecute(event: TableButtonClickEvent<TableSchema>) {
 		this.executed.emit({
 			id: event.row.id,
 			action: event.name as MarketItemsAction,

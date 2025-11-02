@@ -23,7 +23,7 @@ export class TextControl extends BaseControl<string, TextControlConfig> {
 		textControlConfigSchema
 	);
 
-	protected onValueChange(event: Event) {
+	protected _onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLInputElement)) {
 			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
 		}

@@ -4,12 +4,12 @@
 		<app-button-control [config]="{value: 'Загрузить значок'}" (entered)="iconUploaded.emit()"></app-button-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
-		<app-text-control [config]="{limit: 80, placeholder: 'Название'}" (entered)="name = $event"></app-text-control>
+		<app-text-control [config]="{limit: 80, placeholder: 'Название'}" (entered)="_name = $event"></app-text-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.input}">
-		<app-number-control title="Курс" [config]="{min: 1}" (entered)="rate = $event"></app-number-control>
+		<app-number-control title="Курс" [config]="{min: 1}" (entered)="_rate = $event"></app-number-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.button}">
-		<app-button-control [config]="{value: 'Создать валюту'}" (entered)="onCurrencyCreate()"></app-button-control>
+		<app-button-control [config]="{value: 'Создать валюту'}" (entered)="_onCurrencyCreate()"></app-button-control>
 	</div>
 </div>

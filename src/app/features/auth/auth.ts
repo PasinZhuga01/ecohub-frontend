@@ -12,22 +12,22 @@ import { AuthService } from './auth.service';
 	styleUrl: './auth.css'
 })
 export class Auth {
-	protected errorTexts = signal<Record<AuthFormType, string>>({ login: '', register: '' });
+	protected _errorTexts = signal<Record<AuthFormType, string>>({ login: '', register: '' });
 
-	public constructor(private service: AuthService, private router: Router) {}
+	public constructor(private readonly _service: AuthService, private readonly _router: Router) {}
 
-	protected setErrorText(type: AuthFormType, text: string) {
-		this.errorTexts.update((object) => ({ ...object, [type]: text }));
+	protected _setErrorText(type: AuthFormType, text: string) {
+		this._errorTexts.update((object) => ({ ...object, [type]: text }));
 	}
 
-	protected async auth(type: AuthFormType, object: Record<string, string>) {
-		const result = await this.service.auth(type, object);
+	protected async _auth(type: AuthFormType, object: Record<string, string>) {
+		const result = await this._service.auth(type, object);
 
 		if (!result.success) {
-			return this.setErrorText(type, result.errorText);
+			return this._setErrorText(type, result.errorText);
 		}
 
-		await this.router.navigate(['../']);
+		await this._router.navigate(['../']);
 		location.reload();
 	}
 }

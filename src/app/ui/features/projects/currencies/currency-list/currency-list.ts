@@ -12,16 +12,16 @@ import { CurrencyListSchema } from './currency-list.types';
 export class CurrencyList {
 	@Output() public executed = new EventEmitter<{ id: number; row: TableRowConfig<CurrencyListSchema>; action: 'modify' | 'remove' }>();
 
-	protected readonly config: TableConfig<CurrencyListSchema> = {
+	protected readonly _config: TableConfig<CurrencyListSchema> = {
 		headers: { a: 'Значок', b: 'Название', c: 'Курс', d: 'Действия' },
 		rows: []
 	};
 
 	@Input({ required: true }) public set items(value: TableRowConfig<CurrencyListSchema>[]) {
-		this.config.rows = value;
+		this._config.rows = value;
 	}
 
-	protected onClick(event: TableButtonClickEvent<TableSchema>) {
+	protected _onClick(event: TableButtonClickEvent<TableSchema>) {
 		const id = event.row.id;
 		const action = event.name === 'remove' ? 'remove' : 'modify';
 

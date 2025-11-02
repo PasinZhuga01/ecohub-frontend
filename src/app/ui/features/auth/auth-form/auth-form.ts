@@ -20,7 +20,7 @@ export class AuthForm {
 	@Output() public failed = new EventEmitter<string>();
 	@Output() public submited = new EventEmitter<Record<string, string>>();
 
-	protected onSubmit(event: SubmitEvent) {
+	protected _onSubmit(event: SubmitEvent) {
 		event.preventDefault();
 
 		const form = event.target as HTMLFormElement;

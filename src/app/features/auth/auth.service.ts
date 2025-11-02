@@ -8,7 +8,7 @@ import { AuthFormType, AuthServiceResult } from './auth.types';
 	providedIn: 'root'
 })
 export class AuthService {
-	public constructor(private http: HttpService<ProfilesApi>, private storage: StorageService) {}
+	public constructor(private readonly _http: HttpService<ProfilesApi>, private readonly _storage: StorageService) {}
 
 	public async auth(type: AuthFormType, object: Record<string, string>): Promise<AuthServiceResult> {
 		const isRegister = type === 'register';
@@ -17,7 +17,7 @@ export class AuthService {
 			return { success: false, errorText: 'Пароли не совпадают' };
 		}
 
-		const response = await this.http.send('/profiles/auth', 'POST', {
+		const response = await this._http.send('/profiles/auth', 'POST', {
 			isRegister,
 			login: object['login']!,
 			password: object['password']!
@@ -34,7 +34,7 @@ export class AuthService {
 			throw new Error(`Received unknown response code = "${response.response.code}"`);
 		}
 
-		this.storage.setItem('token', response.response.token);
+		this._storage.setItem('token', response.response.token);
 
 		return { success: true };
 	}

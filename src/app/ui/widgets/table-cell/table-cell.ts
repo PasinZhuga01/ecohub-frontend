@@ -14,7 +14,7 @@ import { BaseTableItem } from '../base-table-item/base-table-item';
 export class TableCell extends BaseTableItem<string, TableCellItem> {
 	@Input({ required: true }) public items: TableCellConfig<string> = {};
 
-	protected onNumberValueChange(item: { number: number; onChange?: (value: number) => void }, value: number) {
+	protected _onNumberValueChange(item: { number: number; onChange?: (value: number) => void }, value: number) {
 		item.number = value;
 
 		if (item.onChange !== undefined) {
@@ -22,7 +22,7 @@ export class TableCell extends BaseTableItem<string, TableCellItem> {
 		}
 	}
 
-	protected onTextValueChange(item: { text: string; onChange?: (value: string) => void }, value: string) {
+	protected _onTextValueChange(item: { text: string; onChange?: (value: string) => void }, value: string) {
 		item.text = value;
 
 		if (item.onChange !== undefined) {

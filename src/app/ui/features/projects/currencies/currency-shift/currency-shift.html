@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="input-wrapper" [ngStyle]="{width: widths.input, margin: `0 ${margin}`}">
-		<app-number-control [config]="{min: 1}" (entered)="value = $event"></app-number-control>
+		<app-number-control [config]="{min: 1}" (entered)="_value = $event"></app-number-control>
 	</div>
 	<div class="input-wrapper" [ngStyle]="{width: widths.button, margin: `0 ${margin}`}">
-		<app-button-control [config]="{value: 'Сдвинуть курсы'}" (entered)="shifted.emit(value)"></app-button-control>
+		<app-button-control [config]="{value: 'Сдвинуть курсы'}" (entered)="shifted.emit(_value)"></app-button-control>
 	</div>
 </div>

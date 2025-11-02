@@ -25,11 +25,11 @@ export class NumberControl extends BaseControl<number, NumberControlConfig> {
 		numberControlConfigSchema
 	);
 
-	protected get CSSClasses(): string {
+	protected get _CSSClasses(): string {
 		return this.config.isStepperable ? '' : 'not-stepperable';
 	}
 
-	protected onValueChange(event: Event) {
+	protected _onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLInputElement)) {
 			throw new ControlError("NumberControl value changer isn't an HTMLInputElement");
 		}
@@ -38,7 +38,7 @@ export class NumberControl extends BaseControl<number, NumberControlConfig> {
 		this.entered.emit(this.config.value);
 	}
 
-	protected onShiftValue(side: -1 | 1) {
+	protected _onShiftValue(side: -1 | 1) {
 		const { value, step } = this.config;
 
 		this.config = { value: value + step * side };

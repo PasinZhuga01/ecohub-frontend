@@ -9,7 +9,7 @@ import { StorageError } from './storage-service.errors';
 })
 export class StorageService {
 	public constructor() {
-		this.validate({ token: null, isNavVisible: false, expandedNavItems: {} });
+		this._validate({ token: null, isNavVisible: false, expandedNavItems: {} });
 	}
 
 	public hasItem<K extends keyof StorageItems>(name: K): boolean {
@@ -28,7 +28,7 @@ export class StorageService {
 		localStorage.setItem(name, JSON.stringify(value));
 	}
 
-	private validate(defaultItems: StorageItems) {
+	private _validate(defaultItems: StorageItems) {
 		for (const nameTSUntyped in defaultItems) {
 			const name = nameTSUntyped as keyof StorageItems;
 

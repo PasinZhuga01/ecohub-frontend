@@ -15,13 +15,13 @@ export class EntityNameForm {
 	@Output() public failed = new EventEmitter<string>();
 	@Output() public submited = new EventEmitter<string>();
 
-	protected value: string = '';
+	protected _value: string = '';
 
-	protected onSubmit() {
-		if (this.value.length === 0) {
+	protected _onSubmit() {
+		if (this._value.length === 0) {
 			return this.failed.emit('Название не было указано');
 		}
 
-		this.submited.emit(this.value);
+		this.submited.emit(this._value);
 	}
 }

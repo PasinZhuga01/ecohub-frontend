@@ -2,8 +2,8 @@
 
 <td>
     <div class="container">
-	@for (key of itemsKeys(); track $index){
-        @let item = getItem(key);
+	@for (key of _itemsKeys(); track $index){
+        @let item = _getItem(key);
 
         @switch (item.type) {
             @case ('icon') {
@@ -11,7 +11,7 @@
             }
             @case ('number'){
                 @if ('isEditing' in item){
-                    <app-number-control [config]="item.config" (entered)="onNumberValueChange(item, $event)"></app-number-control>
+                    <app-number-control [config]="item.config" (entered)="_onNumberValueChange(item, $event)"></app-number-control>
                 }
                 @else {
                     <span>{{ item.number }}</span>
@@ -19,7 +19,7 @@
             }
             @case ('text'){
                 @if ('isEditing' in item){
-                    <app-text-control [config]="item.config" (entered)="onTextValueChange(item, $event)"></app-text-control>
+                    <app-text-control [config]="item.config" (entered)="_onTextValueChange(item, $event)"></app-text-control>
                 }
                 @else {
                     @if ('isSpecial' in item){

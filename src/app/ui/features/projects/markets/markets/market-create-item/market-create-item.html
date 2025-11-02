@@ -2,25 +2,25 @@
 	<div class="section">
 		<div class="input-wrapper">
 			<span class="hidden">Название</span>
-			<app-text-control [config]="{placeholder: 'Название'}" (entered)="name = $event"></app-text-control>
+			<app-text-control [config]="{placeholder: 'Название'}" (entered)="_name = $event"></app-text-control>
 		</div>
 	</div>
 	<div class="section">
 		<div class="input-wrapper">
 			<span>Количество</span>
-			<app-number-control [config]="{min: 1}" (entered)="count = $event"></app-number-control>
+			<app-number-control [config]="{min: 1}" (entered)="_count = $event"></app-number-control>
 		</div>
 	</div>
 	<div class="section">
 		<div class="input-wrapper">
 			<span>Цена</span>
-			<app-number-control [config]="{min: 1}" (entered)="price = $event"></app-number-control>
+			<app-number-control [config]="{min: 1}" (entered)="_price = $event"></app-number-control>
 		</div>
 	</div>
 	<div class="section">
 		<span class="hidden">Добавить</span>
 		<div class="input-wrapper">
-			<app-button-control [config]="{value: 'Добавить товар'}" (entered)="onItemCreate()"></app-button-control>
+			<app-button-control [config]="{value: 'Добавить товар'}" (entered)="_onItemCreate()"></app-button-control>
 		</div>
 	</div>
 </div>

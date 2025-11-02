@@ -9,19 +9,19 @@ import { ButtonControl } from '@ui/controls';
 	styleUrl: './message-box.css'
 })
 export class MessageBox {
-	public constructor(protected service: MessageBoxService) {}
+	public constructor(protected readonly _service: MessageBoxService) {}
 
-	protected get overlayCSSClasses(): string {
-		return this.service.isActive ? 'active' : '';
+	protected get _overlayCSSClasses(): string {
+		return this._service.isActive ? 'active' : '';
 	}
 
-	protected onConfirm() {
-		this.service.messageOptions.onConfirm?.();
-		this.service.hide();
+	protected _onConfirm() {
+		this._service.messageOptions.onConfirm?.();
+		this._service.hide();
 	}
 
-	protected onCancel() {
-		this.service.messageOptions.onCancel?.();
-		this.service.hide();
+	protected _onCancel() {
+		this._service.messageOptions.onCancel?.();
+		this._service.hide();
 	}
 }

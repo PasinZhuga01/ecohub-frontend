@@ -15,21 +15,21 @@ export class SidebarItem {
 	@Output() public clicked = new EventEmitter<void>();
 	@Output() public expanded = new EventEmitter<void>();
 
-	protected isExpanded = signal<boolean>(false);
+	protected _isExpanded = signal<boolean>(false);
 
-	protected get expandSymbol(): string {
-		return this.isExpanded() ? '-' : '+';
+	protected get _expandSymbol(): string {
+		return this._isExpanded() ? '-' : '+';
 	}
 
-	protected get classes(): string {
+	protected get _classes(): string {
 		const specialClass = this.config.isSpecial ? 'special' : '';
 		const levelClass = this.config.level > 0 ? `item-level-${this.config.level}` : '';
 
 		return `${specialClass} ${levelClass}`;
 	}
 
-	protected expand() {
-		this.isExpanded.update((value) => !value);
+	protected _expand() {
+		this._isExpanded.update((value) => !value);
 		this.expanded.emit();
 	}
 }
