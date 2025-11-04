@@ -1,14 +1,18 @@
-<div [class]="`overlay ${_overlayCSSClasses}`">
-	<div class="message-box">
-		<h1>{{ _service.messageOptions.header }}</h1>
-		<div class="description">{{ _service.messageOptions.description }}</div>
-		<div class="inputs">
-			<div class="input-wrapper">
-				<app-button-control [config]="{value: 'Ок'}" (entered)="_onConfirm()"></app-button-control>
-			</div>
-			<div class="input-wrapper">
-				<app-button-control [config]="{isHighlighted: false, value: 'Отмена'}" (entered)="_onCancel()"></app-button-control>
+@let config = _service.messageConfig();
+
+@if (config !== null){
+	<div class="overlay">
+		<div class="message-box">
+			<h1>{{ config.header }}</h1>
+			<div class="description">{{ config.description }}</div>
+			<div class="inputs">
+				<div class="input-wrapper">
+					<app-button-control [config]="{value: 'Ок'}" (entered)="_close(config.onConfirm)"></app-button-control>
+				</div>
+				<div class="input-wrapper">
+					<app-button-control [config]="{isHighlighted: false, value: 'Отмена'}" (entered)="_close(config.onCancel)"></app-button-control>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+}

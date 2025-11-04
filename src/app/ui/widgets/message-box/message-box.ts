@@ -11,17 +11,8 @@ import { ButtonControl } from '@ui/controls';
 export class MessageBox {
 	public constructor(protected readonly _service: MessageBoxService) {}
 
-	protected get _overlayCSSClasses(): string {
-		return this._service.isActive ? 'active' : '';
-	}
-
-	protected _onConfirm() {
-		this._service.messageOptions.onConfirm?.();
-		this._service.hide();
-	}
-
-	protected _onCancel() {
-		this._service.messageOptions.onCancel?.();
-		this._service.hide();
+	protected _close(beforeClose?: () => void) {
+		beforeClose?.();
+		this._service.messageConfig.set(null);
 	}
 }

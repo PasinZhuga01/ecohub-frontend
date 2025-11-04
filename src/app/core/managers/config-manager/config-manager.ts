@@ -2,6 +2,7 @@ import { InputSignal, signal, effect, untracked, WritableSignal, Signal } from '
 import { ConfigSchema } from '@core/types';
 
 import { ConfigManagerError } from './config-manager.errors';
+
 export class ConfigManager<TConfig extends object> {
 	private readonly _schema: ConfigSchema<TConfig>;
 	private readonly _config: WritableSignal<TConfig>;

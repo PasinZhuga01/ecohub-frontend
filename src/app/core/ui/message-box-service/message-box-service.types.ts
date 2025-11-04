@@ -1,1 +1,6 @@
-export type MessageBoxMessageOptions = { header: string; description: string; onConfirm?: () => void; onCancel?: () => void };
+export interface MessageBoxMessageConfig {
+	header: string;
+	description: string;
+	onConfirm?: () => void;
+	onCancel?: () => void;
+}
