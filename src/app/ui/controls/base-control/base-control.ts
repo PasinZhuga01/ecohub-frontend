@@ -6,13 +6,13 @@ import { BaseControlConfig } from './base-control.types';
 
 @Directive()
 export abstract class BaseControl<TEnterResponse, TConfig extends BaseControlConfig> {
-	public readonly configInput = input<Partial<TConfig>>({}, { alias: 'config' });
+	public readonly config = input<Partial<TConfig>>({}, { alias: 'config' });
 	public readonly entered = output<TEnterResponse>();
 
 	private readonly _configManager: ConfigManager<TConfig>;
 
 	public constructor(config: TConfig, schema?: ConfigSchema<TConfig>) {
-		this._configManager = new ConfigManager(config, this.configInput, schema);
+		this._configManager = new ConfigManager(config, this.config, schema);
 	}
 
 	protected get _config(): Signal<TConfig> {
