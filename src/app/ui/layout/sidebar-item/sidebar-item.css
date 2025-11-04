@@ -56,11 +56,3 @@ li {
 	font-style: italic;
 	text-align: center;
 }
-
-.item-level-1 {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-.item-level-2 {
-	background-color: rgba(0, 0, 0, 0.2);
-}

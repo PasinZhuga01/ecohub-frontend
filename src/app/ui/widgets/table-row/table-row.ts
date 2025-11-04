@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { TableRowButtonClickEvent } from './table-row.types';
 
@@ -13,6 +13,5 @@ import { BaseTableItem } from '../base-table-item/base-table-item';
 	styleUrl: './table-row.css'
 })
 export class TableRow extends BaseTableItem<TableRowButtonClickEvent<string>, TableCellConfig<string>> {
-	@Input({ required: true }) public id: number = -1;
-	@Input({ required: true }) public items: Record<string, TableCellConfig<string>> = {};
+	public readonly id = input.required<number>();
 }

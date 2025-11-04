@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ConfigManager } from '@core/managers';
 
 import { textControlConfigSchema } from './text-control.schemas';
 import { TextControlConfig } from './text-control.types';
@@ -14,14 +13,9 @@ import { ControlError } from '../errors';
 	styleUrl: './text-control.css'
 })
 export class TextControl extends BaseControl<string, TextControlConfig> {
-	protected readonly _configManager = new ConfigManager<TextControlConfig>(
-		{
-			limit: 1_000_000,
-			value: '',
-			placeholder: ''
-		},
-		textControlConfigSchema
-	);
+	public constructor() {
+		super({ limit: 1_000_000, value: '', placeholder: '' }, textControlConfigSchema);
+	}
 
 	protected _onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLInputElement)) {

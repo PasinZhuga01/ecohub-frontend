@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { ButtonControlConfig } from './button-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { ConfigManager } from '@core/managers';
 
 @Component({
 	selector: 'app-button-control',
@@ -12,17 +11,15 @@ import { ConfigManager } from '@core/managers';
 	styleUrl: './button-control.css'
 })
 export class ButtonControl extends BaseControl<void, ButtonControlConfig> {
-	protected readonly _configManager = new ConfigManager<ButtonControlConfig>({
-		isHighlighted: true,
-		isSubmit: false,
-		value: 'Выполнить'
-	});
+	public constructor() {
+		super({ isHighlighted: true, isSubmit: false, value: 'Выполнить' });
+	}
 
 	protected get _HTMLInputType(): string {
-		return this.config.isSubmit ? 'submit' : 'button';
+		return this._config().isSubmit ? 'submit' : 'button';
 	}
 
 	protected get _CSSClasses(): string {
-		return this.config.isHighlighted ? '' : 'not-highlighted';
+		return this._config().isHighlighted ? '' : 'not-highlighted';
 	}
 }

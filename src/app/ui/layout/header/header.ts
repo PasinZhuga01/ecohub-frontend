@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -8,10 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 	styleUrl: './header.css'
 })
 export class Header {
-	@Input({ required: true }) public profileLogin: string | null = null;
+	public readonly profileLogin = input.required<string | null>();
 
-	@Output() public navToggled = new EventEmitter<void>();
-	@Output() public logoClicked = new EventEmitter<void>();
-	@Output() public authClicked = new EventEmitter<void>();
-	@Output() public profileClicked = new EventEmitter<void>();
+	public readonly navToggled = output<void>();
+	public readonly logoClicked = output<void>();
+	public readonly authClicked = output<void>();
+	public readonly profileClicked = output<void>();
 }

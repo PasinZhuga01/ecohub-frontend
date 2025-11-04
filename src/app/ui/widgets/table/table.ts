@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, computed } from '@angular/core';
+import { Component, input, output, computed } from '@angular/core';
 import { NgStyle } from '@angular/common';
 
 import { TableConfig, TableSchema, TableButtonClickEvent } from './table.types';
@@ -12,15 +12,15 @@ import { TableRow } from '../table-row/table-row';
 	styleUrl: './table.css'
 })
 export class Table {
-	@Input({ required: true }) public config: TableConfig<TableSchema> = { headers: {}, rows: [] };
-	@Input() public fontSize?: string;
+	public readonly config = input.required<TableConfig<TableSchema>>();
+	public readonly fontSize = input<string>();
 
-	@Output() public buttonClicked = new EventEmitter<TableButtonClickEvent<TableSchema>>();
+	public readonly buttonClicked = output<TableButtonClickEvent<TableSchema>>();
 
-	protected _headersKeys = computed(() => Object.keys(this.config.headers).sort());
+	protected readonly _headersKeys = computed(() => Object.keys(this.config().headers).sort());
 
 	protected _getHeader(key: string): string {
-		const header = this.config.headers[key];
+		const header = this.config().headers[key];
 
 		if (header === undefined) {
 			throw new Error(`Header not found for key: ${key}`);

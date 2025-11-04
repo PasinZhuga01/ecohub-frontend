@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, computed, input, output, Signal, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { ConfigManager } from '@core/managers';
 
 import { SidebarItemConfig } from './sidebar-item.types';
 
@@ -10,26 +11,32 @@ import { SidebarItemConfig } from './sidebar-item.types';
 	styleUrl: './sidebar-item.css'
 })
 export class SidebarItem {
-	@Input({ required: true }) public config: SidebarItemConfig = { id: -1, isVisible: true, isSpecial: true, level: 0, text: '' };
+	public readonly configInput = input.required<Partial<SidebarItemConfig>>({ alias: 'config' });
 
-	@Output() public clicked = new EventEmitter<void>();
-	@Output() public expanded = new EventEmitter<void>();
+	public readonly clicked = output<void>();
+	public readonly expanded = output<boolean>();
 
-	protected _isExpanded = signal<boolean>(false);
+	private readonly _configManager = new ConfigManager<SidebarItemConfig>(
+		{
+			id: -1,
+			isVisible: true,
+			isSpecial: true,
+			level: 0,
+			text: ''
+		},
+		this.configInput
+	);
 
-	protected get _expandSymbol(): string {
-		return this._isExpanded() ? '-' : '+';
-	}
+	protected readonly _expandSymbol = computed(() => (this._isExpanded() ? '-' : '+'));
 
-	protected get _classes(): string {
-		const specialClass = this.config.isSpecial ? 'special' : '';
-		const levelClass = this.config.level > 0 ? `item-level-${this.config.level}` : '';
+	private readonly _isExpanded = signal<boolean>(false);
 
-		return `${specialClass} ${levelClass}`;
+	protected get _config(): Signal<SidebarItemConfig> {
+		return this._configManager.config;
 	}
 
 	protected _expand() {
 		this._isExpanded.update((value) => !value);
-		this.expanded.emit();
+		this.expanded.emit(this._isExpanded());
 	}
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ConfigManager } from '@core/managers';
 
 import { NumberControlConfig } from './number-control.types';
 import { numberControlConfigSchema } from './number-control.schemas';
@@ -14,19 +13,12 @@ import { ControlError } from '../errors';
 	styleUrl: './number-control.css'
 })
 export class NumberControl extends BaseControl<number, NumberControlConfig> {
-	protected readonly _configManager = new ConfigManager<NumberControlConfig>(
-		{
-			isStepperable: false,
-			step: 1,
-			min: 0,
-			max: 1000000,
-			value: 0
-		},
-		numberControlConfigSchema
-	);
+	public constructor() {
+		super({ isStepperable: false, step: 1, min: 0, max: 1000000, value: 0 }, numberControlConfigSchema);
+	}
 
 	protected get _CSSClasses(): string {
-		return this.config.isStepperable ? '' : 'not-stepperable';
+		return this._config().isStepperable ? '' : 'not-stepperable';
 	}
 
 	protected _onValueChange(event: Event) {
@@ -34,14 +26,21 @@ export class NumberControl extends BaseControl<number, NumberControlConfig> {
 			throw new ControlError("NumberControl value changer isn't an HTMLInputElement");
 		}
 
-		this.config = { value: Number(event.target.value) };
-		this.entered.emit(this.config.value);
+		this._updateValue(Number(event.target.value));
 	}
 
 	protected _onShiftValue(side: -1 | 1) {
-		const { value, step } = this.config;
+		const { value, step } = this._config();
 
-		this.config = { value: value + step * side };
-		this.entered.emit(this.config.value);
+		this._updateValue(value + step * side);
+	}
+
+	protected _createConfigObject(): NumberControlConfig {
+		return { isStepperable: false, step: 1, min: 0, max: 1000000, value: 0 };
+	}
+
+	private _updateValue(value: number) {
+		this._updateConfig({ value });
+		this.entered.emit(value);
 	}
 }

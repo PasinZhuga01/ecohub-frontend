@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SidebarItem } from '../sidebar-item/sidebar-item';
@@ -11,13 +11,9 @@ import { SidebarItemConfig } from '../sidebar-item/sidebar-item.types';
 	styleUrl: './sidebar.css'
 })
 export class Sidebar {
-	@Input({ required: true }) public items: SidebarItemConfig[] = [];
-	@Input() public absolutePositionConfig: Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null = null;
+	public readonly items = input.required<SidebarItemConfig[]>();
+	public readonly CSSFixedPositionConfig = input<Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null>(null);
 
-	@Output() public itemClicked = new EventEmitter<SidebarItemConfig>();
-	@Output() public itemExpanded = new EventEmitter<SidebarItemConfig>();
-
-	protected get _classes(): string {
-		return this.absolutePositionConfig !== null ? 'absolute' : '';
-	}
+	public readonly itemClicked = output<SidebarItemConfig>();
+	public readonly itemExpanded = output<SidebarItemConfig>();
 }

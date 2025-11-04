@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
@@ -8,9 +8,5 @@ import { MatIcon } from '@angular/material/icon';
 	styleUrl: './footer.css'
 })
 export class Footer {
-	@Input({ required: true }) public contacts: Record<'email' | 'telegram' | 'phone', string> = {
-		email: 'example@mail.com',
-		telegram: 'example',
-		phone: '+371 00 00 00 000'
-	};
+	public readonly contacts = input.required<Record<'email' | 'telegram' | 'phone', string>>();
 }

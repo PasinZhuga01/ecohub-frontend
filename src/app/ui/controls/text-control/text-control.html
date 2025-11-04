@@ -1,8 +1,8 @@
 <input
 	type="text"
-	[name]="config.name"
-	[maxLength]="config.limit"
-	[value]="config.value"
-	[placeholder]="config.placeholder"
+	[name]="_config().name"
+	[maxLength]="_config().limit"
+	[value]="_config().value"
+	[placeholder]="_config().placeholder"
 	(input)="_onValueChange($event)"
 />

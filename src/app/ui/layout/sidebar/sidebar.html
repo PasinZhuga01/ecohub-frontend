@@ -1,6 +1,6 @@
-<nav [class]="_classes" [ngStyle]="absolutePositionConfig">
+<nav [class.absolute]="CSSFixedPositionConfig() !== null" [ngStyle]="CSSFixedPositionConfig()">
 	<ul>
-		@for (item of items; track $index){
+		@for (item of items(); track $index){
 			<app-sidebar-item [config]="item" (clicked)="itemClicked.emit(item)" (expanded)="itemExpanded.emit(item)"></app-sidebar-item>
 		}
 	</ul>

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { ConfigManager } from '@core/managers';
+import { Component, input } from '@angular/core';
 
 import { SelectControlItemConfig } from './select-control.types';
 
@@ -14,15 +13,23 @@ import { ControlError } from '../errors';
 	styleUrl: './select-control.css'
 })
 export class SelectControl extends BaseControl<SelectControlItemConfig, BaseControlConfig> {
-	@Input({ required: true }) public items: SelectControlItemConfig[] = [];
+	public readonly items = input.required<SelectControlItemConfig[]>();
 
-	protected readonly _configManager = new ConfigManager<BaseControlConfig>({});
+	public constructor() {
+		super({});
+	}
 
 	protected _onValueChange(event: Event) {
 		if (!(event.target instanceof HTMLSelectElement)) {
 			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
 		}
 
-		this.entered.emit(this.items[event.target.selectedIndex]);
+		const item = this.items()[event.target.selectedIndex];
+
+		if (item === undefined) {
+			throw new ControlError('SelectControl selected item is not defined.');
+		}
+
+		this.entered.emit(item);
 	}
 }
