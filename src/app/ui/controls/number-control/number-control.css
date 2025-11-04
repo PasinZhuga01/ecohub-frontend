@@ -1,11 +1,11 @@
-.container {
+:host {
 	display: flex;
 	width: 100%;
 	height: 5.75vh;
 	font-size: 0.75rem;
 }
 
-.container input[type='button'] {
+:host input[type='button'] {
 	width: 20%;
 	font-weight: bold;
 	color: var(--color-primary-alt);
@@ -14,26 +14,26 @@
 	transition: ease 0.1s;
 }
 
-.container input[type='button']:hover {
+:host input[type='button']:hover {
 	cursor: pointer;
 	filter: brightness(120%);
 }
 
-.container input[type='button']:focus {
+:host input[type='button']:focus {
 	outline: none;
 }
 
-.container input[type='button'].substract {
+:host input[type='button'].left {
 	border-top-left-radius: 6px;
 	border-bottom-left-radius: 6px;
 }
 
-.container input[type='button'].add {
+:host input[type='button'].right {
 	border-top-right-radius: 6px;
 	border-bottom-right-radius: 6px;
 }
 
-.container input[type='number'] {
+:host input[type='number'] {
 	width: 60%;
 	height: 100%;
 	flex-grow: 1;
@@ -45,16 +45,16 @@
 	background-color: var(--color-primary-alt);
 }
 
-.container.not-stepperable input[type='number'] {
+:host.not-stepperable input[type='number'] {
 	border-radius: 6px;
 	border-width: 1px 1px;
 	text-align: left;
 }
 
-.container input[type='number']::placeholder {
+:host input[type='number']::placeholder {
 	color: var(--color-placeholder);
 }
 
-.container input[type='number']:focus {
+:host input[type='number']:focus {
 	outline: none;
 }

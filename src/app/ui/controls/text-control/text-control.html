@@ -1,8 +1,10 @@
+@let config = _config();
+
 <input
 	type="text"
-	[name]="_config().name"
-	[maxLength]="_config().limit"
-	[value]="_config().value"
-	[placeholder]="_config().placeholder"
-	(input)="_onValueChange($event)"
+	[name]="config.name"
+	[maxLength]="config.limit"
+	[value]="config.value"
+	[placeholder]="config.placeholder"
+	(input)="_onValueChange($event.target.value)"
 />

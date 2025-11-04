@@ -4,7 +4,6 @@ import { textControlConfigSchema } from './text-control.schemas';
 import { TextControlConfig } from './text-control.types';
 
 import { BaseControl } from '../base-control/base-control';
-import { ControlError } from '../errors';
 
 @Component({
 	selector: 'app-text-control',
@@ -17,11 +16,10 @@ export class TextControl extends BaseControl<string, TextControlConfig> {
 		super({ limit: 1_000_000, value: '', placeholder: '' }, textControlConfigSchema);
 	}
 
-	protected _onValueChange(event: Event) {
-		if (!(event.target instanceof HTMLInputElement)) {
-			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
-		}
+	protected _onValueChange(value: string) {
+		this._updateConfig({ value });
+		value = this._config().value;
 
-		this.entered.emit(event.target.value);
+		this.entered.emit(value);
 	}
 }

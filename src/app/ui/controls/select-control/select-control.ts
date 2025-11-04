@@ -19,12 +19,12 @@ export class SelectControl extends BaseControl<SelectControlItemConfig, BaseCont
 		super({});
 	}
 
-	protected _onValueChange(event: Event) {
-		if (!(event.target instanceof HTMLSelectElement)) {
+	protected _onValueChange({ target }: Event) {
+		if (!(target instanceof HTMLSelectElement)) {
 			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
 		}
 
-		const item = this.items()[event.target.selectedIndex];
+		const item = this.items()[target.selectedIndex];
 
 		if (item === undefined) {
 			throw new ControlError('SelectControl selected item is not defined.');

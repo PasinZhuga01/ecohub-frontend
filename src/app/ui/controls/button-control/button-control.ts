@@ -14,12 +14,4 @@ export class ButtonControl extends BaseControl<void, ButtonControlConfig> {
 	public constructor() {
 		super({ isHighlighted: true, isSubmit: false, value: 'Выполнить' });
 	}
-
-	protected get _HTMLInputType(): string {
-		return this._config().isSubmit ? 'submit' : 'button';
-	}
-
-	protected get _CSSClasses(): string {
-		return this._config().isHighlighted ? '' : 'not-highlighted';
-	}
 }

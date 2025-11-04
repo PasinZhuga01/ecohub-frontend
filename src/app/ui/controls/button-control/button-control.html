@@ -1,1 +1,4 @@
-<input [type]="_HTMLInputType" [class]="_CSSClasses" [value]="_config().value" (click)="entered.emit()" />
+@let config = _config();
+@let type = config.isSubmit ? 'submit' : 'button';
+
+<input [type]="type" [class.not-highlighted]="!config.isHighlighted" [value]="config.value" (click)="entered.emit()" />

@@ -10,23 +10,22 @@ import { ControlError } from '../errors';
 	selector: 'app-number-control',
 	imports: [],
 	templateUrl: './number-control.html',
-	styleUrl: './number-control.css'
+	styleUrl: './number-control.css',
+	host: {
+		'[class.not-stepperable]': '!_config().isStepperable'
+	}
 })
 export class NumberControl extends BaseControl<number, NumberControlConfig> {
 	public constructor() {
 		super({ isStepperable: false, step: 1, min: 0, max: 1000000, value: 0 }, numberControlConfigSchema);
 	}
 
-	protected get _CSSClasses(): string {
-		return this._config().isStepperable ? '' : 'not-stepperable';
-	}
-
-	protected _onValueChange(event: Event) {
-		if (!(event.target instanceof HTMLInputElement)) {
+	protected _onValueChange({ target }: Event) {
+		if (!(target instanceof HTMLInputElement)) {
 			throw new ControlError("NumberControl value changer isn't an HTMLInputElement");
 		}
 
-		this._updateValue(Number(event.target.value));
+		target.value = String(this._updateValue(Number(target.value)));
 	}
 
 	protected _onShiftValue(side: -1 | 1) {
@@ -35,12 +34,12 @@ export class NumberControl extends BaseControl<number, NumberControlConfig> {
 		this._updateValue(value + step * side);
 	}
 
-	protected _createConfigObject(): NumberControlConfig {
-		return { isStepperable: false, step: 1, min: 0, max: 1000000, value: 0 };
-	}
-
-	private _updateValue(value: number) {
+	private _updateValue(value: number): number {
 		this._updateConfig({ value });
+		value = this._config().value;
+
 		this.entered.emit(value);
+
+		return value;
 	}
 }
