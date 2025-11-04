@@ -3,11 +3,15 @@ import { ConfigSchema } from '@core/types';
 
 import { ConfigManagerError } from './config-manager.errors';
 
-export class ConfigManager<TConfig extends object> {
+export class ConfigManager<TConfig extends object, TRequiredKeys extends keyof TConfig = never> {
 	private readonly _schema: ConfigSchema<TConfig>;
 	private readonly _config: WritableSignal<TConfig>;
 
-	public constructor(config: TConfig, input: InputSignal<Partial<TConfig>>, schema: ConfigSchema<TConfig> = {}) {
+	public constructor(
+		config: TConfig,
+		input: InputSignal<Partial<TConfig>> | InputSignal<Partial<TConfig> & Pick<TConfig, TRequiredKeys>>,
+		schema: ConfigSchema<TConfig> = {}
+	) {
 		this._config = signal(config);
 		this._schema = schema;
 
