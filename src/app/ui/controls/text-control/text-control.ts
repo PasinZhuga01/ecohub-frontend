@@ -17,8 +17,8 @@ export class TextControl extends BaseControl<string, TextControlConfig> {
 	}
 
 	protected _onValueChange(value: string) {
-		this._updateConfig({ value });
-		value = this._config().value;
+		this._configManager.set({ value });
+		value = this._configManager.config().value;
 
 		this.entered.emit(value);
 	}

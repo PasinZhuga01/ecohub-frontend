@@ -1,4 +1,4 @@
-@let config = _config();
+@let config = _configManager.config();
 
 @if (config.isStepperable){
 	<input type="button" class="left" value="-" (click)="_onShiftValue(-1)" />

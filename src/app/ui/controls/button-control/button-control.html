@@ -1,4 +1,4 @@
-@let config = _config();
+@let config = _configManager.config();
 @let type = config.isSubmit ? 'submit' : 'button';
 
 <input [type]="type" [class.not-highlighted]="!config.isHighlighted" [value]="config.value" (click)="entered.emit()" />

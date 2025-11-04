@@ -12,7 +12,7 @@ import { ControlError } from '../errors';
 	templateUrl: './number-control.html',
 	styleUrl: './number-control.css',
 	host: {
-		'[class.not-stepperable]': '!_config().isStepperable'
+		'[class.not-stepperable]': '!_configManager.config().isStepperable'
 	}
 })
 export class NumberControl extends BaseControl<number, NumberControlConfig> {
@@ -29,14 +29,14 @@ export class NumberControl extends BaseControl<number, NumberControlConfig> {
 	}
 
 	protected _onShiftValue(side: -1 | 1) {
-		const { value, step } = this._config();
+		const { value, step } = this._configManager.config();
 
 		this._updateValue(value + step * side);
 	}
 
 	private _updateValue(value: number): number {
-		this._updateConfig({ value });
-		value = this._config().value;
+		this._configManager.set({ value });
+		value = this._configManager.config().value;
 
 		this.entered.emit(value);
 
