@@ -1,17 +1,24 @@
 @let config = _config();
+@let isExpanded = config.expandState?.isExpanded ?? false;
 
-@if (config.isVisible){
-	<li [class.item]="true" [class.special]="config.isSpecial">
-		@if (!config.isSpecial){
-			<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
+<li [class.special]="config.isSpecial" [style.--level]="config.level">
+	@if (config.iconName !== undefined){
+		<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
+	}
+
+	<div class="text button" (click)="clicked.emit(config)">
+		<span>{{config.text}}</span>
+	</div>
+
+	@if (config.expandState !== undefined){
+		<input type="button" class="expand button" (click)="_toggleExpandState(config.expandState)" [value]="isExpanded ? '-' : '+'">
+	}
+</li>
+
+@if (config.expandState !== undefined){
+	<div class="items" [class.not-expanded]="!isExpanded">
+		@for (subItemConfig of config.expandState.subItems; track subItemConfig.id){
+			<app-sidebar-item [config]="_prepareSubItemConfig(subItemConfig, config.level + 1)" (clicked)="clicked.emit($event)"></app-sidebar-item>
 		}
-
-		<div class="text button" (click)="clicked.emit()">
-			<span>{{config.text}}</span>
-		</div>
-
-		@if (!config.isSpecial && config.isExpandable){
-			<div class="expand button" (click)="_expand()">{{_expandSymbol()}}</div>
-		}
-	</li>
+	</div>
 }

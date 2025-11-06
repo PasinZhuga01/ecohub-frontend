@@ -5,7 +5,7 @@ nav {
 	border: 2px solid var(--color-secondary-alt);
 }
 
-nav.absolute {
+nav.fixed {
 	position: fixed;
 	z-index: 5;
 }

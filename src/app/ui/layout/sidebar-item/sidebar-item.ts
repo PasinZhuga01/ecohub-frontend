@@ -1,42 +1,32 @@
-import { Component, computed, input, output, Signal, signal } from '@angular/core';
+import { Component, input, output, signal, effect } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
-import { ConfigManager } from '@core/managers';
 
-import { SidebarItemConfig } from './sidebar-item.types';
+import { SidebarItemInputConfig, SidebarItemConfig, SidebarItemExpandState } from './sidebar-item.types';
 
 @Component({
 	selector: 'app-sidebar-item',
-	imports: [MatIcon],
+	imports: [MatIcon, CommonModule],
 	templateUrl: './sidebar-item.html',
 	styleUrl: './sidebar-item.css'
 })
 export class SidebarItem {
-	public readonly configInput = input.required<Partial<SidebarItemConfig>>({ alias: 'config' });
+	public readonly config = input.required<SidebarItemInputConfig>();
+	public readonly clicked = output<SidebarItemConfig>();
 
-	public readonly clicked = output<void>();
-	public readonly expanded = output<boolean>();
+	protected readonly _config = signal<SidebarItemConfig>({ id: -1, text: '', isSpecial: false, level: 0 });
 
-	private readonly _configManager = new ConfigManager<SidebarItemConfig>(
-		{
-			id: -1,
-			isVisible: true,
-			isSpecial: true,
-			level: 0,
-			text: ''
-		},
-		this.configInput
-	);
-
-	protected readonly _expandSymbol = computed(() => (this._isExpanded() ? '-' : '+'));
-
-	private readonly _isExpanded = signal<boolean>(false);
-
-	protected get _config(): Signal<SidebarItemConfig> {
-		return this._configManager.config;
+	public constructor() {
+		effect(() => this._config.update((config) => ({ ...config, ...this.config() })));
 	}
 
-	protected _expand() {
-		this._isExpanded.update((value) => !value);
-		this.expanded.emit(this._isExpanded());
+	protected _toggleExpandState(expandState: SidebarItemExpandState) {
+		this._config.update((config) => ({ ...config, expandState: { ...expandState, isExpanded: !expandState.isExpanded } }));
+	}
+
+	protected _prepareSubItemConfig(config: SidebarItemInputConfig, nextLevel: number): SidebarItemInputConfig {
+		config.level = nextLevel;
+
+		return config;
 	}
 }

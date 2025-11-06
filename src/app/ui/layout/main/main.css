@@ -1,4 +1,4 @@
-.main-container {
+:host {
 	position: relative;
 	display: flex;
 	width: calc(100% - 0.25vw * 2);
