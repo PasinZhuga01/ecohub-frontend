@@ -1,13 +1,16 @@
 import { PartialExcept } from '@core/types';
 
-export interface SidebarItemConfig {
+export interface SidebarItemConfig<T> {
 	id: number;
 	text: string;
 	level: number;
 	isSpecial: boolean;
+	value?: T;
 	iconName?: string;
-	expandState?: SidebarItemExpandState;
+	expansion?: SidebarItemExpansion<T>;
 }
 
-export type SidebarItemExpandState = { isExpanded?: boolean; subItems: SidebarItemInputConfig[] };
-export type SidebarItemInputConfig = PartialExcept<SidebarItemConfig, 'id' | 'text'>;
+export type SidebarItemInputConfig<T> = PartialExcept<SidebarItemConfig<T>, 'id' | 'text'>;
+
+export type SidebarItemExpansion<T> = { isExpanded?: boolean; items: SidebarItemInputConfig<T>[] };
+export type SidebarItemClickEvent<T> = { value: T; isExplicit: true } | { value: SidebarItemConfig<T>; isExplicit: false };

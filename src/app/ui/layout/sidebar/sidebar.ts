@@ -2,7 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SidebarItem } from '../sidebar-item/sidebar-item';
-import { SidebarItemConfig, SidebarItemInputConfig } from '../sidebar-item/sidebar-item.types';
+import { SidebarItemClickEvent, SidebarItemInputConfig } from '../sidebar-item/sidebar-item.types';
 
 @Component({
 	selector: 'app-sidebar',
@@ -10,9 +10,9 @@ import { SidebarItemConfig, SidebarItemInputConfig } from '../sidebar-item/sideb
 	templateUrl: './sidebar.html',
 	styleUrl: './sidebar.css'
 })
-export class Sidebar {
-	public readonly items = input.required<SidebarItemInputConfig[]>();
+export class Sidebar<T> {
+	public readonly items = input.required<SidebarItemInputConfig<T>[]>();
 	public readonly CSSFixedPositionConfig = input<Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null>(null);
 
-	public readonly clicked = output<SidebarItemConfig>();
+	public readonly clicked = output<SidebarItemClickEvent<T>>();
 }
