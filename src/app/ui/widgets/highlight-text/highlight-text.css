@@ -1,0 +1,9 @@
+:host {
+	color: var(--color-primary);
+	transition: ease 0.1s;
+}
+
+:host:hover {
+	cursor: pointer;
+	color: var(--color-placeholder);
+}

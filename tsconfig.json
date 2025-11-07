@@ -41,7 +41,9 @@
 			"@ui/features/projects/markets/markets": ["./app/ui/features/projects/markets/markets"],
 
 			"@ui/layout": ["./app/ui/layout"],
+
 			"@ui/widgets": ["./app/ui/widgets"],
+			"@ui/widgets/tables": ["./app/ui/widgets/tables"],
 
 			"@env": ["./env"]
 		}

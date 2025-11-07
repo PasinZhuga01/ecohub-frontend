@@ -1,0 +1,14 @@
+<ng-template #content>
+    <ng-content></ng-content>
+</ng-template>
+
+@if (isHeader()){
+    <th>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </th>
+}
+@else {
+    <td>
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+    </td>
+}

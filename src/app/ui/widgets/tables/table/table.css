@@ -1,5 +1,4 @@
-table,
-th {
+table {
 	width: 100%;
 	font-size: 0.8rem;
 	font-weight: normal;
@@ -11,13 +10,4 @@ th {
 table {
 	border-collapse: collapse;
 	border: 1px solid var(--color-secondary-alt);
-}
-
-th {
-	padding: 1vh 0.6vw;
-	background-color: var(--color-background);
-}
-
-tr {
-	border-bottom: 1px solid var(--color-secondary-alt);
 }

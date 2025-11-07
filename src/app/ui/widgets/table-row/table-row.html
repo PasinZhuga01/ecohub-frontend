@@ -1,7 +1,0 @@
-<tr>
-	@for (key of _itemsKeys(); track $index){
-		@let items = _getItem(key);
-
-		<app-table-cell [items]="items" (buttonClicked)="buttonClicked.emit({cell: items, name: $event})"></app-table-cell>
-	}
-</tr>
