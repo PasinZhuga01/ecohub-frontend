@@ -1,0 +1,8 @@
+<form (submit)="onSubmit($event)">
+	<h1>{{ header() }}</h1>
+	<div class="description">{{ description() }}</div>
+
+    <ng-content></ng-content>
+
+	<div class="error-text">{{ errorText() }}</div>
+</form>

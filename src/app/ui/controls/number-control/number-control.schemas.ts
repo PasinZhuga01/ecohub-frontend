@@ -1,7 +1,7 @@
 import { z } from 'zod';
+import { ConfigSchema } from '@core/types';
 
 import { NumberControlConfig } from './number-control.types';
-import { ConfigSchema } from '@core/types';
 
 export const numberControlConfigSchema: ConfigSchema<NumberControlConfig> = {
 	validators: {

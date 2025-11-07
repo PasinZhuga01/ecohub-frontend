@@ -1,0 +1,24 @@
+form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 0 1vw;
+}
+
+form h1 {
+	margin: 0;
+	font-size: var(--h1-font-size);
+}
+
+.description {
+	margin-bottom: 6vh;
+	margin-top: 2vh;
+}
+
+.error-text {
+	width: 100%;
+	color: red;
+	margin-top: 1.5vh;
+	font-size: 0.8rem;
+	text-align: center;
+}
