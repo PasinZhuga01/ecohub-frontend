@@ -1,15 +1,19 @@
 import { firstValueFrom, Observable } from 'rxjs';
 import { BaseApi, AbsoluteRoute, Request, Response } from 'ecohub-shared/http/api';
+import { codes } from 'ecohub-shared/http/payloads';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import env from '@env';
 
 import { SuccessResult } from './http-service.types';
+import z from 'zod';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class HttpService<TApi extends BaseApi> {
+	private readonly _payloadSchema = z.object({ code: z.enum(Object.keys(codes) as [keyof typeof codes, ...(keyof typeof codes)[]]) });
+
 	public constructor(private readonly _http: HttpClient) {}
 
 	public async send<TRoute extends keyof TApi['endpoints']>(
@@ -38,8 +42,10 @@ export class HttpService<TApi extends BaseApi> {
 			return { success: true, response: await firstValueFrom<TBody>(sendRequest()) };
 		} catch (error) {
 			if (error instanceof HttpErrorResponse) {
-				if (typeof error.error === 'object' && 'code' in error.error) {
-					return { success: false, response: error.error };
+				const { success, data } = this._payloadSchema.safeParse(error.error);
+
+				if (success) {
+					return { success: false, response: data };
 				}
 			}
 
