@@ -5,7 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Injectable({
 	providedIn: 'root'
 })
-export class SvgIcons {
+export class SvgIconService {
 	public constructor(private readonly _matIconRegistry: MatIconRegistry, private readonly _domSanitizer: DomSanitizer) {}
 
 	public registerIcons(sources: { [name: string]: string }) {

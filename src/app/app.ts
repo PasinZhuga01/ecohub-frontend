@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
-import { SvgIcons } from '@core/resources';
+import { SvgIconService } from '@core/services';
 import { Header, Main, Footer, Sidebar, Content } from '@ui/layout';
 import { MessageBox } from '@ui/widgets';
 
@@ -12,8 +12,8 @@ import { MessageBox } from '@ui/widgets';
 	styleUrl: './app.css'
 })
 export class App {
-	public constructor(svgIcons: SvgIcons) {
-		svgIcons.registerIcons({
+	public constructor(svgIcon: SvgIconService) {
+		svgIcon.registerIcons({
 			change: 'change.svg',
 			currency: 'currency.svg',
 			email: 'email.svg',
