@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MessageBoxService } from '@core/ui';
+import { MessageBoxService } from '@core/services';
 import { ButtonControl } from '@ui/controls';
 
 @Component({
