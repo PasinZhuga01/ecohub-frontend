@@ -1,24 +1,22 @@
-@let config = _configManager.config();
-@let isExpanded = config.expansion?.isExpanded ?? false;
+@let iconName = this.iconName();
+@let isExpanded = this.isExpanded();
 
-<li [class.special]="config.isSpecial" [style.--level]="config.level">
-	@if (config.iconName !== undefined){
-		<mat-icon [svgIcon]="config.iconName" class="icon"></mat-icon>
-	}
+<li [class.special]="isSpecial()">
+	<div class="text button" (click)="clicked.emit()">
+		@if (iconName !== undefined){
+			<mat-icon [svgIcon]="iconName" class="icon"></mat-icon>
+		}
 
-	<div class="text button" (click)="_onClick(config)">
-		<span>{{config.text}}</span>
+		<span>{{ value() }}</span>
 	</div>
 
-	@if (config.expansion !== undefined){
-		<input type="button" class="expand button" (click)="_toggleExpanded(config.expansion)" [value]="isExpanded ? '-' : '+'">
+	@if (isExpanded !== undefined){
+		<input type="button" class="expand button" (click)="this.isExpanded.set(!isExpanded)" [value]="isExpanded ? '-' : '+'">
 	}
 </li>
 
-@if (config.expansion !== undefined){
-	<div class="items" [class.not-expanded]="!isExpanded">
-		@for (subItemConfig of config.expansion.items; track subItemConfig.id){
-			<app-sidebar-item [config]="_prepareItemConfig(subItemConfig, config.level + 1)" (clicked)="clicked.emit($event)"></app-sidebar-item>
-		}
+@if (isExpanded){
+	<div class="items">
+		<ng-content></ng-content>
 	</div>
 }

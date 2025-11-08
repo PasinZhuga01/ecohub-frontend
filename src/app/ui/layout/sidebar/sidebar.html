@@ -2,8 +2,6 @@
 
 <nav [class.absolute]="CSSAbsolutePositionConfig !== null" [ngStyle]="CSSAbsolutePositionConfig">
 	<ul>
-		@for (item of items(); track item.id){
-			<app-sidebar-item [config]="item" (clicked)="clicked.emit($event)"></app-sidebar-item>
-		}
+		<ng-content></ng-content>
 	</ul>
 </nav>

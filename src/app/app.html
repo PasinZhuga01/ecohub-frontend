@@ -1,13 +1,13 @@
 <app-header [profileLogin]="null"></app-header>
 
 <app-main>
-	<app-sidebar [items]="[]"></app-sidebar>
+	<app-sidebar></app-sidebar>
 	<app-content>
 		<router-outlet></router-outlet>
 	</app-content>
 </app-main>
 
-<app-sidebar [items]="[]" [CSSAbsolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}"></app-sidebar>
+<app-sidebar [CSSAbsolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}"></app-sidebar>
 <app-message-box></app-message-box>
 
 <app-footer [contacts]="{email: 'sergijumanskij@gmail.com', telegram: 'PasinZhuga', phone: '+380 00 00 00 000'}"></app-footer>
