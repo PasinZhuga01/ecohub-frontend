@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import env from '@env';
 
-import { SuccessResult } from './http-service.types';
+import { HttpResult } from './http-service.types';
 import z from 'zod';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class HttpService<TApi extends BaseApi> {
 		url: AbsoluteRoute<TApi, TRoute>,
 		method: TApi['endpoints'][TRoute]['method'],
 		body: Request<TApi, TRoute>
-	): Promise<SuccessResult<Response<TApi, TRoute>>> {
+	): Promise<HttpResult<Response<TApi, TRoute>>> {
 		return this._executeRequest(() => {
 			const fullUrl = new URL(url, env.serverUrl).toString();
 
@@ -37,7 +37,7 @@ export class HttpService<TApi extends BaseApi> {
 		});
 	}
 
-	private async _executeRequest<TBody extends object>(sendRequest: () => Observable<TBody>): Promise<SuccessResult<TBody>> {
+	private async _executeRequest<TBody extends object>(sendRequest: () => Observable<TBody>): Promise<HttpResult<TBody>> {
 		try {
 			return { success: true, response: await firstValueFrom<TBody>(sendRequest()) };
 		} catch (error) {
@@ -45,7 +45,7 @@ export class HttpService<TApi extends BaseApi> {
 				const { success, data } = this._payloadSchema.safeParse(error.error);
 
 				if (success) {
-					return { success: false, response: data };
+					return { success: false, payload: data };
 				}
 			}
 
