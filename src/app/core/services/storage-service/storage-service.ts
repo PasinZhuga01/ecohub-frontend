@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { storageItems } from './storage-service.schemas';
 import { StorageItems } from './storage-services.types';
-import { StorageError } from './storage-service.errors';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class StorageService {
+	private readonly _defaultItems: StorageItems = { token: null, isNavVisible: false, expandedNavItems: {} };
+
 	public constructor() {
-		this._validate({ token: null, isNavVisible: false, expandedNavItems: {} });
+		this._validate();
 	}
 
 	public hasItem<K extends keyof StorageItems>(name: K): boolean {
@@ -18,7 +19,7 @@ export class StorageService {
 
 	public getItem<K extends keyof StorageItems>(name: K): StorageItems[K] {
 		if (!this.hasItem(name)) {
-			throw new StorageError(`Storage item with name "${name}" is not defined.`);
+			this.setItem(name, this._defaultItems[name]);
 		}
 
 		return JSON.parse(localStorage.getItem(name)!);
@@ -28,12 +29,12 @@ export class StorageService {
 		localStorage.setItem(name, JSON.stringify(value));
 	}
 
-	private _validate(defaultItems: StorageItems) {
-		for (const nameTSUntyped in defaultItems) {
+	private _validate() {
+		for (const nameTSUntyped in this._defaultItems) {
 			const name = nameTSUntyped as keyof StorageItems;
 
 			if (!this.hasItem(name) || !storageItems.shape[name].safeParse(this.getItem(name)).success) {
-				this.setItem(name, defaultItems[name]);
+				this.setItem(name, this._defaultItems[name]);
 			}
 		}
 	}
