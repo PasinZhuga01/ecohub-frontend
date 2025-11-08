@@ -12,7 +12,7 @@ import { SidebarItemClickEvent, SidebarItemInputConfig } from '../sidebar-item/s
 })
 export class Sidebar<T> {
 	public readonly items = input.required<SidebarItemInputConfig<T>[]>();
-	public readonly CSSFixedPositionConfig = input<Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null>(null);
+	public readonly CSSAbsolutePositionConfig = input<Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null>(null);
 
 	public readonly clicked = output<SidebarItemClickEvent<T>>();
 }
