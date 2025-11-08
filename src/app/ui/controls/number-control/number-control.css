@@ -5,6 +5,16 @@
 	font-size: 0.75rem;
 }
 
+:host.not-stepperable input[type='button'] {
+	display: none;
+}
+
+:host.not-stepperable input[type='number'] {
+	border-radius: 6px;
+	border-width: 1px 1px;
+	text-align: left;
+}
+
 :host input[type='button'] {
 	width: 20%;
 	font-weight: bold;
@@ -43,12 +53,6 @@
 	border: 1px solid var(--color-secondary-alt);
 	border-width: 1px 0px;
 	background-color: var(--color-primary-alt);
-}
-
-:host.not-stepperable input[type='number'] {
-	border-radius: 6px;
-	border-width: 1px 1px;
-	text-align: left;
 }
 
 :host input[type='number']::placeholder {

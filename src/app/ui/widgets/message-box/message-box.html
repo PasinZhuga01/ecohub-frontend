@@ -7,10 +7,10 @@
 			<div class="description">{{ config.description }}</div>
 			<div class="inputs">
 				<div class="input-wrapper">
-					<app-button-control [config]="{value: 'Ок'}" (entered)="_close(config.onConfirm)"></app-button-control>
+					<app-button-control value="Ок" (click)="_close(config.onConfirm)"></app-button-control>
 				</div>
 				<div class="input-wrapper">
-					<app-button-control [config]="{isHighlighted: false, value: 'Отмена'}" (entered)="_close(config.onCancel)"></app-button-control>
+					<app-button-control value="Отмена" [isHighlighted]="false" (click)="_close(config.onCancel)"></app-button-control>
 				</div>
 			</div>
 		</div>

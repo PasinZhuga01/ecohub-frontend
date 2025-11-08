@@ -1,5 +1,3 @@
-<select [name]="_configManager.config().name" (change)="_onValueChange($event)">
-	@for (item of items(); track item.id){
-		<option>{{ item.text }}</option>
-	}
+<select [name]="name()" [selectedIndex]="selectedIndex()" (change)="_updateSelectedIndex($event)">
+	<ng-content></ng-content>
 </select>

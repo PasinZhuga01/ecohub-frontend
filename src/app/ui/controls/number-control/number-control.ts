@@ -1,10 +1,7 @@
-import { Component } from '@angular/core';
-
-import { NumberControlConfig } from './number-control.types';
-import { numberControlConfigSchema } from './number-control.schemas';
+import { Component, effect, input, output, signal } from '@angular/core';
+import { clamp, toFixedNumber } from '@core/utils';
 
 import { BaseControl } from '../base-control/base-control';
-import { ControlError } from '../errors';
 
 @Component({
 	selector: 'app-number-control',
@@ -12,34 +9,45 @@ import { ControlError } from '../errors';
 	templateUrl: './number-control.html',
 	styleUrl: './number-control.css',
 	host: {
-		'[class.not-stepperable]': '!_configManager.config().isStepperable'
+		'[class.not-stepperable]': '!isStepperable()'
 	}
 })
-export class NumberControl extends BaseControl<number, NumberControlConfig> {
+export class NumberControl extends BaseControl {
+	public readonly isStepperable = input<boolean>(false);
+	public readonly step = input<number>(1);
+	public readonly min = input<number>(0);
+	public readonly max = input<number>(1000000);
+	public readonly scale = input<number>(0);
+	public readonly value = input<number>(0);
+
+	public readonly inputed = output<number>();
+
+	protected readonly _value = signal<number>(0);
+
 	public constructor() {
-		super({ isStepperable: false, step: 1, min: 0, max: 1000000, value: 0 }, numberControlConfigSchema);
+		super();
+
+		effect(() => this._value.set(this._validateValue(this.value())));
 	}
 
-	protected _onValueChange({ target }: Event) {
-		if (!(target instanceof HTMLInputElement)) {
-			throw new ControlError("NumberControl value changer isn't an HTMLInputElement");
-		}
+	protected _validateValue(value: number): number {
+		return toFixedNumber(clamp(value, this.min(), this.max()), clamp(Math.round(this.scale()), 0, 100));
+	}
 
+	protected _onInputValue(target: HTMLInputElement) {
 		target.value = String(this._updateValue(Number(target.value)));
 	}
 
-	protected _onShiftValue(side: -1 | 1) {
-		const { value, step } = this._configManager.config();
-
-		this._updateValue(value + step * side);
+	protected _shiftValue(side: -1 | 1) {
+		this._updateValue(this._value() + this.step() * side);
 	}
 
-	private _updateValue(value: number): number {
-		this._configManager.set({ value });
-		value = this._configManager.config().value;
+	protected _updateValue(value: number): number {
+		const validValue = this._validateValue(value);
 
-		this.entered.emit(value);
+		this._value.set(validValue);
+		this.inputed.emit(validValue);
 
-		return value;
+		return validValue;
 	}
 }

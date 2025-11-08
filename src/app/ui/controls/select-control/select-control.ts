@@ -1,10 +1,6 @@
-import { Component, input } from '@angular/core';
-
-import { SelectControlItemConfig } from './select-control.types';
+import { Component, input, output } from '@angular/core';
 
 import { BaseControl } from '../base-control/base-control';
-import { BaseControlConfig } from '../base-control/base-control.types';
-import { ControlError } from '../errors';
 
 @Component({
 	selector: 'app-select-control',
@@ -12,24 +8,13 @@ import { ControlError } from '../errors';
 	templateUrl: './select-control.html',
 	styleUrl: './select-control.css'
 })
-export class SelectControl extends BaseControl<SelectControlItemConfig, BaseControlConfig> {
-	public readonly items = input.required<SelectControlItemConfig[]>();
+export class SelectControl extends BaseControl {
+	public readonly selectedIndex = input<number>(0);
+	public readonly selected = output<number>();
 
-	public constructor() {
-		super({});
-	}
-
-	protected _onValueChange({ target }: Event) {
-		if (!(target instanceof HTMLSelectElement)) {
-			throw new ControlError("SelectControl value changer isn't an HTMLSelectElement");
+	protected _updateSelectedIndex({ target }: Event) {
+		if (target instanceof HTMLSelectElement) {
+			this.selected.emit(target.selectedIndex);
 		}
-
-		const item = this.items()[target.selectedIndex];
-
-		if (item === undefined) {
-			throw new ControlError('SelectControl selected item is not defined.');
-		}
-
-		this.entered.emit(item);
 	}
 }

@@ -1,20 +1,3 @@
-@let config = _configManager.config();
-
-@if (config.isStepperable){
-	<input type="button" class="left" value="-" (click)="_onShiftValue(-1)" />
-}
-
-<input
-	type="number"
-	[name]="config.name"
-	[min]="config.min"
-	[max]="config.max"
-	[value]="config.value"
-	[step]="config.step"
-	(input)="_onValueChange($event)"
-/>
-
-@if (config.isStepperable){
-	<input type="button" class="right" value="+" (click)="_onShiftValue(1)" />
-}
-
+<input type="button" class="left" value="-" (click)="_shiftValue(-1)" />
+<input type="number" [name]="name()" [min]="min()" [max]="max()" [value]="_value()" [step]="step()" (input)="_onInputValue($event.target)" />
+<input type="button" class="right" value="+" (click)="_shiftValue(1)" />

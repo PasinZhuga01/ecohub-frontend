@@ -1,10 +1,1 @@
-@let config = _configManager.config();
-
-<input
-	type="text"
-	[name]="config.name"
-	[maxLength]="config.limit"
-	[value]="config.value"
-	[placeholder]="config.placeholder"
-	(input)="_onValueChange($event.target.value)"
-/>
+<input type="text" [name]="name()" [maxLength]="limit()" [value]="value()" [placeholder]="placeholder()" (input)="_updateValue($event.target)" />

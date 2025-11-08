@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-
-import { textControlConfigSchema } from './text-control.schemas';
-import { TextControlConfig } from './text-control.types';
+import { Component, input, model } from '@angular/core';
 
 import { BaseControl } from '../base-control/base-control';
 
@@ -11,15 +8,14 @@ import { BaseControl } from '../base-control/base-control';
 	templateUrl: './text-control.html',
 	styleUrl: './text-control.css'
 })
-export class TextControl extends BaseControl<string, TextControlConfig> {
-	public constructor() {
-		super({ limit: 1_000_000, value: '', placeholder: '' }, textControlConfigSchema);
-	}
+export class TextControl extends BaseControl {
+	public readonly limit = input<number>(1_000_000);
+	public readonly placeholder = input<string>('');
 
-	protected _onValueChange(value: string) {
-		this._configManager.set({ value });
-		value = this._configManager.config().value;
+	public readonly value = model<string>('');
 
-		this.entered.emit(value);
+	protected _updateValue(target: HTMLInputElement) {
+		this.value.set(target.value);
+		target.value = String(this.value());
 	}
 }
