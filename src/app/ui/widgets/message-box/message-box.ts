@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MessageBoxService } from '@core/services';
 import { ButtonControl } from '@ui/controls';
 
@@ -9,7 +9,7 @@ import { ButtonControl } from '@ui/controls';
 	styleUrl: './message-box.css'
 })
 export class MessageBox {
-	public constructor(protected readonly _service: MessageBoxService) {}
+	protected readonly _service = inject(MessageBoxService);
 
 	protected _close(beforeClose?: () => void) {
 		beforeClose?.();

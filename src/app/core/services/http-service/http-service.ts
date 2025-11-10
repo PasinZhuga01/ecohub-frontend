@@ -1,20 +1,19 @@
 import { firstValueFrom, Observable } from 'rxjs';
 import { BaseApi, AbsoluteRoute, Request, Response } from 'ecohub-shared/http/api';
 import { codes } from 'ecohub-shared/http/payloads';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import env from '@env';
+import z from 'zod';
 
 import { HttpResult } from './http-service.types';
-import z from 'zod';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class HttpService<TApi extends BaseApi> {
+	private readonly _http = inject(HttpClient);
 	private readonly _payloadSchema = z.object({ code: z.enum(Object.keys(codes) as [keyof typeof codes, ...(keyof typeof codes)[]]) });
-
-	public constructor(private readonly _http: HttpClient) {}
 
 	public async send<TRoute extends keyof TApi['endpoints']>(
 		url: AbsoluteRoute<TApi, TRoute>,
