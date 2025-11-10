@@ -1,7 +1,15 @@
 <app-header [profileLogin]="_profile.login()"></app-header>
 
 <app-main>
-	<app-sidebar></app-sidebar>
+	<app-sidebar>
+		@for (project of _projects.navigationItems(); track project.id){
+			<app-sidebar-item [value]="project.name" [isExpanded]="false">
+				@for (market of project.markets; track market.id){
+					<app-sidebar-item [value]="market.name"></app-sidebar-item>
+				}
+			</app-sidebar-item>
+		}
+	</app-sidebar>
 	<app-content>
 		<router-outlet></router-outlet>
 	</app-content>

@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpService, ProfileService } from '@core/services';
+import { HttpService, ProfileService, ProjectService } from '@core/services';
 import { ProfilesApi, Request, Response } from 'ecohub-shared/http/api';
 
 import { loginSchema, registerSchema } from './auth.schemas';
@@ -12,6 +12,7 @@ import { AuthError } from './auth.errors';
 export class AuthService {
 	private readonly _http: HttpService<ProfilesApi> = inject(HttpService);
 	private readonly _profile = inject(ProfileService);
+	private readonly _projects = inject(ProjectService);
 
 	public async auth(type: AuthType, data: object): Promise<AuthResult> {
 		try {
@@ -19,6 +20,7 @@ export class AuthService {
 			const { token } = await this._sendRequest(body);
 
 			this._profile.refresh(token);
+			this._projects.refreshNavItems();
 
 			return { success: true };
 		} catch (error) {
