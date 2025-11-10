@@ -8,5 +8,7 @@ import { MatIcon } from '@angular/material/icon';
 	styleUrl: './footer.css'
 })
 export class Footer {
-	public readonly contacts = input.required<Record<'email' | 'telegram' | 'phone', string>>();
+	public readonly email = input.required<string>();
+	public readonly telegram = input.required<string>();
+	public readonly phone = input.required<string>();
 }

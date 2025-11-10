@@ -1,4 +1,5 @@
-@let contacts = this.contacts();
+@let email = this.email();
+@let telegram = this.telegram();
 
 <footer>
 	<div class="footer-item about">
@@ -11,17 +12,17 @@
 	<div class="footer-item contacts">
 		<h1>Контакты</h1>
 
-		<a class="contact" [href]="`mailto:${contacts.email}`">
+		<a class="contact" [href]="`mailto:${ email }`">
 			<mat-icon svgIcon="email" class="contact-icon"></mat-icon>
-			{{contacts.email}}
+			{{ email }}
 		</a>
-		<a class="contact" [href]="`https://t.me/${contacts.telegram}`">
+		<a class="contact" [href]="`https://t.me/${ telegram }`">
 			<mat-icon svgIcon="telegram" class="contact-icon"></mat-icon>
-			{{contacts.telegram}}
+			{{ telegram }}
 		</a>
 		<div class="contact">
 			<mat-icon svgIcon="phone" class="contact-icon"></mat-icon>
-			{{contacts.phone}}
+			{{ phone() }}
 		</div>
 	</div>
 </footer>
