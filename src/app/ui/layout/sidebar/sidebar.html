@@ -1,7 +1,9 @@
 @let CSSAbsolutePositionConfig = this.CSSAbsolutePositionConfig();
 
-<nav [class.absolute]="CSSAbsolutePositionConfig !== null" [ngStyle]="CSSAbsolutePositionConfig">
-	<ul>
-		<ng-content></ng-content>
-	</ul>
-</nav>
+@if (isVisible()){
+	<nav [class.absolute]="CSSAbsolutePositionConfig !== null" [ngStyle]="CSSAbsolutePositionConfig">
+		<ul>
+			<ng-content></ng-content>
+		</ul>
+	</nav>
+}
