@@ -1,1 +1,3 @@
-<input type="text" [name]="name()" [maxLength]="limit()" [value]="value()" [placeholder]="placeholder()" (input)="_updateValue($event.target)" />
+@let type = isPassword() ? 'password' : 'text';
+
+<input [type]="type" [name]="name()" [maxLength]="limit()" [value]="value()" [placeholder]="placeholder()" (input)="_updateValue($event.target)" />

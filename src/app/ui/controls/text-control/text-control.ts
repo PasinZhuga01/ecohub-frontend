@@ -11,6 +11,7 @@ import { BaseControl } from '../base-control/base-control';
 export class TextControl extends BaseControl {
 	public readonly limit = input<number>(1_000_000);
 	public readonly placeholder = input<string>('');
+	public readonly isPassword = input<boolean>(false);
 
 	public readonly value = model<string>('');
 
