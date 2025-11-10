@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
-import { SvgIconService } from '@core/services';
+import { SvgIconService, ProfileService } from '@core/services';
 import { Header, Main, Footer, Sidebar, Content } from '@ui/layout';
 import { MessageBox } from '@ui/widgets';
 
@@ -12,6 +12,8 @@ import { MessageBox } from '@ui/widgets';
 	styleUrl: './app.css'
 })
 export class App {
+	protected readonly _profile = inject(ProfileService);
+
 	public constructor(svgIcon: SvgIconService) {
 		svgIcon.registerIcons({
 			change: 'change.svg',
@@ -26,5 +28,7 @@ export class App {
 			telegram: 'telegram.svg',
 			user: 'user.svg'
 		});
+
+		this._profile.refresh();
 	}
 }

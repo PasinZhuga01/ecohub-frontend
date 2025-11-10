@@ -1,0 +1,37 @@
+<div class="form-wrapper">
+    <app-auth-form header="Вход" description="Введите логин и пароль" [errorText]="_errorTexts.login()" (submited)="_auth('login', $event)">
+        <div class="input-wrapper">
+            <app-text-control name="login" placeholder="Логин" [limit]="80"></app-text-control> 
+        </div>
+
+        <div class="input-wrapper">
+            <app-text-control name="password" placeholder="Пароль" [limit]="255" [isPassword]="true"></app-text-control>
+        </div>
+    
+        <div class="input-wrapper">
+            <app-button-control value="Войти" [isSubmit]="true"></app-button-control>
+        </div>
+    </app-auth-form>
+</div>
+
+<div class="separator"></div>
+
+<div class="form-wrapper">
+    <app-auth-form header="Регистрация" description="Для создания аккаунта придумайте логин и пароль" [errorText]="_errorTexts.register()" (submited)="_auth('register', $event)">
+        <div class="input-wrapper">
+            <app-text-control name="login" placeholder="Логин" [limit]="80"></app-text-control>
+        </div>
+
+        <div class="input-wrapper">
+            <app-text-control name="password" placeholder="Пароль" [limit]="255" [isPassword]="true"></app-text-control>
+        </div>
+   
+        <div class="input-wrapper">
+            <app-text-control name="repeat-password" placeholder="Повтор пароля" [limit]="255" [isPassword]="true"></app-text-control>
+        </div>
+
+        <div class="input-wrapper">
+            <app-button-control value="Зарегистрироваться" [isSubmit]="true"></app-button-control>
+        </div>
+    </app-auth-form>
+</div>
