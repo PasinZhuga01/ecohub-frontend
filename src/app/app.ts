@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 import { SvgIconService, ProfileService, ProjectService } from '@core/services';
-import { Header, Main, Footer, Sidebar, Content, SidebarItem } from '@ui/layout';
+import { Header, Main, Footer, Content } from '@ui/layout';
 import { MessageBox } from '@ui/widgets';
+import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 
 @Component({
 	selector: 'app-root',

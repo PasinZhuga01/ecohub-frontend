@@ -44,6 +44,7 @@
 
 			"@ui/widgets": ["./app/ui/widgets"],
 			"@ui/widgets/tables": ["./app/ui/widgets/tables"],
+			"@ui/widgets/sidebars": ["./app/ui/widgets/sidebars"],
 
 			"@env": ["./env"]
 		}
