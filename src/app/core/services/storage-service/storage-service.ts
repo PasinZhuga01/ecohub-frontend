@@ -9,7 +9,6 @@ import { StorageItems, StorageSchemas, StorageItemValue } from './storage-servic
 export class StorageService implements StorageItems {
 	public readonly token = this._createSignal('token', null);
 	public readonly isNavVisible = this._createSignal('isNavVisible', false);
-	public readonly expandedNavItems = this._createSignal('expandedNavItems', {});
 
 	private _getStorageItem<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>): StorageItemValue<K> {
 		const value = JSON.parse(localStorage.getItem(name) ?? '{}');
