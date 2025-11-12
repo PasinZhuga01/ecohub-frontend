@@ -4,7 +4,7 @@ import { StorageService } from '@core/services';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 	const storage = inject(StorageService);
-	const token = storage.getItem('token');
+	const token = storage.token();
 
 	if (token !== null) {
 		return next(req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }));

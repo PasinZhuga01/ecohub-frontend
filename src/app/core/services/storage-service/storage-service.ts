@@ -1,41 +1,32 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable, signal, WritableSignal } from '@angular/core';
 
-import { storageItems } from './storage-service.schemas';
-import { StorageItems } from './storage-services.types';
+import { schemas } from './storage-service.schemas';
+import { StorageItems, StorageSchemas, StorageItemValue } from './storage-service.types';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class StorageService {
-	private readonly _defaultItems: StorageItems = { token: null, isNavVisible: false, expandedNavItems: {} };
+export class StorageService implements StorageItems {
+	public readonly token = this._createSignal('token', null);
+	public readonly isNavVisible = this._createSignal('isNavVisible', false);
+	public readonly expandedNavItems = this._createSignal('expandedNavItems', {});
 
-	public constructor() {
-		this._validate();
+	private _getStorageItem<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>): StorageItemValue<K> {
+		const value = JSON.parse(localStorage.getItem(name) ?? '{}');
+		const { success, data } = schemas[name].safeParse(value);
+
+		return success ? data : defaultValue;
 	}
 
-	public hasItem<K extends keyof StorageItems>(name: K): boolean {
-		return name in localStorage;
-	}
-
-	public getItem<K extends keyof StorageItems>(name: K): StorageItems[K] {
-		if (!this.hasItem(name)) {
-			this.setItem(name, this._defaultItems[name]);
-		}
-
-		return JSON.parse(localStorage.getItem(name)!);
-	}
-
-	public setItem<K extends keyof StorageItems>(name: K, value: StorageItems[K]) {
+	private _setStorageItem<K extends keyof StorageSchemas>(name: K, value: StorageItemValue<K>) {
 		localStorage.setItem(name, JSON.stringify(value));
 	}
 
-	private _validate() {
-		for (const nameTSUntyped in this._defaultItems) {
-			const name = nameTSUntyped as keyof StorageItems;
+	private _createSignal<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>): WritableSignal<StorageItemValue<K>> {
+		const result = signal(this._getStorageItem(name, defaultValue));
 
-			if (!this.hasItem(name) || !storageItems.shape[name].safeParse(this.getItem(name)).success) {
-				this.setItem(name, this._defaultItems[name]);
-			}
-		}
+		effect(() => this._setStorageItem(name, result()));
+
+		return result;
 	}
 }
