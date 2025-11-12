@@ -1,5 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { ProfileService, StorageService } from '@core/services';
 
 @Component({
 	selector: 'app-header',
@@ -8,10 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 	styleUrl: './header.css'
 })
 export class Header {
-	public readonly profileLogin = input.required<string | null>();
+	protected readonly _router = inject(Router);
+	protected readonly _profile = inject(ProfileService);
 
-	public readonly navToggled = output<void>();
-	public readonly logoClicked = output<void>();
-	public readonly authClicked = output<void>();
-	public readonly profileClicked = output<void>();
+	private readonly _storage = inject(StorageService);
+
+	protected _toggleNavVisible() {
+		this._storage.isNavVisible.update((value) => !value);
+	}
 }

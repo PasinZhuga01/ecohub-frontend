@@ -1,0 +1,36 @@
+@let projects = _projects.navItems();
+
+<app-sidebar [isVisible]="_storage.isNavVisible()">
+    @if (projects.length === 0){
+        <div class="sidebar-text">
+            @if (_storage.token() === null){
+                Войдите в аккаунт.
+            }
+
+            Создавайте проекты и они будут отображаться здесь
+        </div>
+    }
+
+    @for (project of projects; track project.id){
+        <app-sidebar-item [value]="project.name" [isExpanded]="false">
+            <app-sidebar-item value="Валюты" iconName="currency"></app-sidebar-item>
+            <app-sidebar-item value="Рынки" iconName="markets" [isExpanded]="false">
+                @if (project.markets.length === 0){
+                    <div class="sidebar-text">Создавайте маркеты и они будут отображаться здесь</div>
+                }
+
+                @for (market of project.markets; track market.id){
+                    <app-sidebar-item [value]="market.name" iconName="market"></app-sidebar-item>
+                }
+
+                @if (project.markets.length === _projects.NAV_MAX_COUNT){
+                    <app-sidebar-item value="показать все..." [isSpecial]="true"></app-sidebar-item>
+                }
+            </app-sidebar-item>
+        </app-sidebar-item>
+    }
+
+    @if (projects.length === _projects.NAV_MAX_COUNT){
+        <app-sidebar-item value="показать все..." [isSpecial]="true"></app-sidebar-item>
+    }
+</app-sidebar>

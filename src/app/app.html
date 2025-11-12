@@ -1,21 +1,14 @@
-<app-header [profileLogin]="_profile.login()"></app-header>
+<app-header></app-header>
 
 <app-main>
-	<app-sidebar>
-		@for (project of _projects.navigationItems(); track project.id){
-			<app-sidebar-item [value]="project.name" [isExpanded]="false">
-				@for (market of project.markets; track market.id){
-					<app-sidebar-item [value]="market.name"></app-sidebar-item>
-				}
-			</app-sidebar-item>
-		}
-	</app-sidebar>
+	<app-nav></app-nav>
 	<app-content>
 		<router-outlet></router-outlet>
 	</app-content>
 </app-main>
 
-<app-sidebar [CSSAbsolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}"></app-sidebar>
+<app-profile-menu></app-profile-menu>
+
 <app-message-box></app-message-box>
 
-<app-footer email="sergijumanskij@gmail.com" telegram="PasinZhuga" phone="+380 00 00 00 000"></app-footer>
+<app-footer></app-footer>

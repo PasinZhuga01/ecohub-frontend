@@ -2,13 +2,12 @@ import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterOutlet } from '@angular/router';
 import { SvgIconService, ProfileService, ProjectService } from '@core/services';
-import { Header, Main, Footer, Content } from '@ui/layout';
+import { Header, Main, Footer, Content, Nav, ProfileMenu } from '@ui/layout';
 import { MessageBox } from '@ui/widgets';
-import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 
 @Component({
 	selector: 'app-root',
-	imports: [MatIconModule, Header, Main, Footer, Sidebar, Content, RouterOutlet, MessageBox, SidebarItem],
+	imports: [MatIconModule, Header, Main, Footer, Content, RouterOutlet, MessageBox, Nav, ProfileMenu],
 	templateUrl: './app.html',
 	styleUrl: './app.css'
 })
@@ -30,8 +29,5 @@ export class App {
 			telegram: 'telegram.svg',
 			user: 'user.svg'
 		});
-
-		this._profile.refresh();
-		this._projects.refreshNavItems();
 	}
 }

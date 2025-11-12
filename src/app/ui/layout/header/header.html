@@ -1,20 +1,20 @@
-@let profileLogin = this.profileLogin();
+@let login = _profile.login();
 
 <header>
-	<div class="header-item button" (click)="navToggled.emit()">
+	<div class="header-item button" (click)="_toggleNavVisible()">
 		<mat-icon svgIcon="nav"></mat-icon>
 	</div>
-	<div class="header-item" (click)="logoClicked.emit()">
+	<div class="header-item" (click)="_router.navigate(['/'])">
 		<img src="images/favicon.png" class="logo" alt="Лого" />
 		<span class="logo-text">EcoHub</span>
 	</div>
 
-	@if (profileLogin !== null){
-		<div class="header-item button profile" (click)="profileClicked.emit()">
+	@if (login !== null){
+		<div class="header-item button profile" (click)="_profile.toggleMenuVisible()">
 			<mat-icon svgIcon="user"></mat-icon>
-			{{ profileLogin }}
+			{{ login }}
 		</div>
 	} @else{
-		<div class="header-item button profile" (click)="authClicked.emit()">Войти</div>
+		<div class="header-item button profile" (click)="_router.navigate(['/auth'])">Войти</div>
 	}
 </header>
