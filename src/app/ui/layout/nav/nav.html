@@ -12,7 +12,7 @@
     }
 
     @for (project of projects; track project.id){
-        <app-sidebar-item [value]="project.name" [isExpanded]="false">
+        <app-sidebar-item iconName="projects" [value]="project.name" [isExpanded]="false">
             <app-sidebar-item value="Валюты" iconName="currency"></app-sidebar-item>
             <app-sidebar-item value="Рынки" iconName="markets" [isExpanded]="false">
                 @if (project.markets.length === 0){
