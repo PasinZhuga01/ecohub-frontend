@@ -12,20 +12,16 @@
     }
 
     @for (project of projects; track project.id){
-        <app-sidebar-item iconName="projects" [value]="project.name" [isExpanded]="false">
-            <app-sidebar-item value="Валюты" iconName="currency"></app-sidebar-item>
-            <app-sidebar-item value="Рынки" iconName="markets" [isExpanded]="false">
+        <app-sidebar-item iconName="projects" [value]="project.name" [isExpanded]="false" (clicked)="_router.navigate([`/project/${project.id}`])">
+            <app-sidebar-item value="Валюты" iconName="currency" (clicked)="_router.navigate([`/project/${project.id}/currencies`])"></app-sidebar-item>
+            <app-sidebar-item value="Рынки" iconName="markets" [isExpanded]="false" (clicked)="_router.navigate([`/project/${project.id}/markets`])">
                 @if (project.markets.length === 0){
                     <div class="sidebar-text">Создавайте рынки и они будут отображаться здесь</div>
                 }
-                @else{
-                    @for (market of project.markets; track market.id){
-                        <app-sidebar-item [value]="market.name" iconName="market"></app-sidebar-item>
-                    }
-                    
-                    <app-sidebar-item value="показать все..." [isSpecial]="true"></app-sidebar-item>
-                }
 
+                @for (market of project.markets; track market.id){
+                    <app-sidebar-item [value]="market.name" iconName="market" (clicked)="_router.navigate([`/project/${project.id}/market/${market.id}`])"></app-sidebar-item>
+                }
             </app-sidebar-item>
         </app-sidebar-item>
     }
