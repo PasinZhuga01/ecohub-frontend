@@ -1,0 +1,13 @@
+:host {
+	display: flex;
+	width: 100%;
+}
+
+app-text-control {
+	width: 70%;
+}
+
+app-button-control {
+	width: 30%;
+	margin-left: 1%;
+}

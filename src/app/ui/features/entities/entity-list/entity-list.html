@@ -1,0 +1,24 @@
+<h1 class="container">{{ header() }}</h1>
+
+<app-entity-name-input class="container" executeText="Создать" [(value)]="value" (executed)="created.emit()"></app-entity-name-input>
+
+<app-table class="container">
+    <app-table-row>
+        <app-table-cell [isHeader]="true">Название</app-table-cell>
+        <app-table-cell [isHeader]="true">Дата</app-table-cell>
+        <app-table-cell [isHeader]="true">Действия</app-table-cell>
+    </app-table-row>
+
+    @for (item of items(); track item.id){
+        <app-table-row>
+            <app-table-cell>{{ item.name }}</app-table-cell>
+            <app-table-cell>{{ item.interactedAt }}</app-table-cell>
+            <app-table-cell>
+                <app-highlight-text (click)="opened.emit(item.id)">Открыть</app-highlight-text>
+                <app-highlight-text (click)="removed.emit(item.id)">Удалить</app-highlight-text>
+            </app-table-cell>
+        </app-table-row>
+    }
+
+</app-table>
+
