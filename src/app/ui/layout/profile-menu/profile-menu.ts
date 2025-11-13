@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProfileService, StorageService } from '@core/services';
 import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 
@@ -10,5 +11,12 @@ import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 })
 export class ProfileMenu {
 	protected readonly _service = inject(ProfileService);
-	protected readonly _storage = inject(StorageService);
+
+	private readonly _storage = inject(StorageService);
+	private readonly _router = inject(Router);
+
+	protected _logout() {
+		this._storage.token.set(null);
+		this._router.navigate(['/']);
+	}
 }
