@@ -33,6 +33,7 @@
 			"@core/*": ["./app/core/*/"],
 
 			"@features": ["./app/features"],
+			"@features/projects": ["./app/features/projects"],
 
 			"@ui/controls": ["./app/ui/controls"],
 

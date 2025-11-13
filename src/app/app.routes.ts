@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
+import { createAuthGuard } from '@core/guards';
 
 export const routes: Routes = [
-	{ path: '', loadComponent: () => import('@features').then(({ Home }) => Home) },
-	{ path: 'auth', loadComponent: () => import('@features').then(({ Auth }) => Auth) }
+	{ path: '', loadComponent: () => import('@features').then(({ Home }) => Home), canActivate: [createAuthGuard('/projects', true)] },
+	{ path: 'auth', loadComponent: () => import('@features').then(({ Auth }) => Auth) },
+	{ path: 'projects', loadComponent: () => import('@features/projects').then(({ Home }) => Home), canActivate: [createAuthGuard('/')] }
 ];
