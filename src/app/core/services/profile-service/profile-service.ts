@@ -3,6 +3,7 @@ import { ProfilesApi } from 'ecohub-shared/http/api';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
+import { RouterService } from '../router-service/router-service';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,6 +13,7 @@ export class ProfileService {
 	private readonly _login = signal<string | null>(null);
 
 	private readonly _storage = inject(StorageService);
+	private readonly _router = inject(RouterService);
 	private readonly _http: HttpService<ProfilesApi> = inject(HttpService);
 
 	public constructor() {
@@ -24,6 +26,11 @@ export class ProfileService {
 
 	public get login(): Signal<string | null> {
 		return this._login.asReadonly();
+	}
+
+	public logout() {
+		this._storage.token.set(null);
+		this._router.goto('/');
 	}
 
 	public toggleMenuVisible() {

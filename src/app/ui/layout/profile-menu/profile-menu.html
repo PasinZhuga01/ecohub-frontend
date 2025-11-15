@@ -1,4 +1,4 @@
 
 <app-sidebar [isVisible]="_service.isMenuVisible()" [CSSAbsolutePositionConfig]="{top: '10.5vh', right: '0.25vw'}">
-    <app-sidebar-item value="Выйти" iconName="logout" (clicked)="_logout()"></app-sidebar-item>
+    <app-sidebar-item value="Выйти" iconName="logout" (clicked)="_service.logout()"></app-sidebar-item>
 </app-sidebar>
