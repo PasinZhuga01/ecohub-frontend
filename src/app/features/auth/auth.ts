@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { AuthForm } from '@ui/features/auth';
 import { TextControl, ButtonControl } from '@ui/controls';
-import { RouterService } from '@core/services';
 
 import { AuthErrorTexts, AuthType } from './auth.types';
 import { AuthService } from './auth.service';
@@ -16,15 +15,12 @@ export class Auth {
 	protected readonly _errorTexts: AuthErrorTexts = { login: signal(''), register: signal('') };
 
 	private readonly _service = inject(AuthService);
-	private readonly _router = inject(RouterService);
 
 	protected async _auth(type: AuthType, data: object) {
 		const result = await this._service.auth(type, data);
 
 		if (!result.success) {
-			return this._errorTexts[type].set(result.message);
+			this._errorTexts[type].set(result.message);
 		}
-
-		this._router.goto('/');
 	}
 }

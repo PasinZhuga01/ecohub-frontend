@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpService, StorageService } from '@core/services';
-import { ProfilesApi, Request, Response } from 'ecohub-shared/http/api';
+import { ProfileService } from '@core/services';
+import { ProfilesApi, Request } from 'ecohub-shared/http/api';
+import { Code } from 'ecohub-shared/http/payloads';
 
 import { loginSchema, registerSchema } from './auth.schemas';
 import { AuthResult, AuthType } from './auth.types';
@@ -10,15 +11,11 @@ import { AuthError } from './auth.errors';
 	providedIn: 'root'
 })
 export class AuthService {
-	private readonly _http: HttpService<ProfilesApi> = inject(HttpService);
-	private readonly _storage = inject(StorageService);
+	private readonly _profile = inject(ProfileService);
 
 	public async auth(type: AuthType, data: object): Promise<AuthResult> {
 		try {
-			const body = this._validateRequestBody(type, data);
-			const { token } = await this._sendRequest(body);
-
-			this._storage.token.set(token);
+			await this._sendRequest(this._validateRequestBody(type, data));
 
 			return { success: true };
 		} catch (error) {
@@ -43,20 +40,22 @@ export class AuthService {
 		return { ...result.data, isRegister };
 	}
 
-	private async _sendRequest(body: Request<ProfilesApi, '/auth'>): Promise<Response<ProfilesApi, '/auth'>> {
-		const result = await this._http.send('/profiles/auth', 'POST', body);
+	private async _sendRequest(body: Request<ProfilesApi, '/auth'>) {
+		const result = await this._profile.auth(body);
 
 		if (!result.success) {
-			switch (result.payload.code) {
-				case 'INVALID_CREDENTIALS':
-					throw new AuthError('Неверный логин или пароль');
-				case 'LOGIN_TAKEN':
-					throw new AuthError('Аккаунт с указанным логином уже существует');
-			}
+			throw new AuthError(this._createErrorText(result.code));
+		}
+	}
 
-			throw new AuthError();
+	private _createErrorText(code: Code): string {
+		switch (code) {
+			case 'INVALID_CREDENTIALS':
+				return 'Неверный логин или пароль';
+			case 'LOGIN_TAKEN':
+				return 'Аккаунт с указанным логином уже существует';
 		}
 
-		return result.response;
+		return 'Неизвестная ошибка';
 	}
 }
