@@ -2,5 +2,7 @@ export * from './http-service/http-service';
 export * from './storage-service/storage-service';
 export * from './svg-icon-service/svg-icon-service';
 export * from './message-box-service/message-box-service';
+export * from './router-service/router-service';
+export * from './router-service/router-service.types';
 export * from './profile-service/profile-service';
 export * from './project-service/project-service';

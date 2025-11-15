@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthForm } from '@ui/features/auth';
 import { TextControl, ButtonControl } from '@ui/controls';
+import { RouterService } from '@core/services';
 
 import { AuthErrorTexts, AuthType } from './auth.types';
 import { AuthService } from './auth.service';
@@ -15,8 +15,8 @@ import { AuthService } from './auth.service';
 export class Auth {
 	protected readonly _errorTexts: AuthErrorTexts = { login: signal(''), register: signal('') };
 
-	private readonly _service: AuthService = inject(AuthService);
-	private readonly _router: Router = inject(Router);
+	private readonly _service = inject(AuthService);
+	private readonly _router = inject(RouterService);
 
 	protected async _auth(type: AuthType, data: object) {
 		const result = await this._service.auth(type, data);
@@ -25,6 +25,6 @@ export class Auth {
 			return this._errorTexts[type].set(result.message);
 		}
 
-		await this._router.navigate(['../']);
+		this._router.goto('/');
 	}
 }

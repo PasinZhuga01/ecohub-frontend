@@ -4,7 +4,7 @@
 	<div class="header-item button" (click)="_toggleNavVisible()">
 		<mat-icon svgIcon="nav"></mat-icon>
 	</div>
-	<div class="header-item" (click)="_router.navigate(['/'])">
+	<div class="header-item" (click)="_router.goto('/')">
 		<img src="images/favicon.png" class="logo" alt="Лого" />
 		<span class="logo-text">EcoHub</span>
 	</div>
@@ -15,6 +15,6 @@
 			{{ login }}
 		</div>
 	} @else{
-		<div class="header-item button profile" (click)="_router.navigate(['/auth'])">Войти</div>
+		<div class="header-item button profile" (click)="_router.goto('/auth')">Войти</div>
 	}
 </header>

@@ -2,7 +2,7 @@
     header="Проекты"
     [items]="_service.items()"
     (created)="_create()"
-    (opened)="_router.navigate([`/project/${$event}`])"
+    (opened)="_router.goto(`/project/${$event}`)"
     (removed)="_service.remove($event)"
     [(value)]="_projectName"
 ></app-entity-list>

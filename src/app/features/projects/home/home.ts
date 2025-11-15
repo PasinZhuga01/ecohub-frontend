@@ -1,8 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { EntityList } from '@ui/features/entities';
-import { MessageBoxService, ProjectService } from '@core/services';
+import { MessageBoxService, ProjectService, RouterService } from '@core/services';
 import { Code } from 'ecohub-shared/http/payloads';
-import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-home',
@@ -12,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class Home {
 	protected readonly _service = inject(ProjectService);
-	protected readonly _router = inject(Router);
+	protected readonly _router = inject(RouterService);
 
 	protected readonly _projectName = signal<string>('');
 

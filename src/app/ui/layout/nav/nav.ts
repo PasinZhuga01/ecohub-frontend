@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProjectService, StorageService } from '@core/services';
+import { ProjectService, RouterService, StorageService } from '@core/services';
 import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 
 @Component({
@@ -10,7 +9,7 @@ import { Sidebar, SidebarItem } from '@ui/widgets/sidebars';
 	styleUrl: './nav.css'
 })
 export class Nav {
-	protected readonly _router = inject(Router);
+	protected readonly _router = inject(RouterService);
 	protected readonly _storage = inject(StorageService);
 	protected readonly _projects = inject(ProjectService);
 }

@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { ProfileService, StorageService } from '@core/services';
+import { ProfileService, StorageService, RouterService } from '@core/services';
 
 @Component({
 	selector: 'app-header',
@@ -10,7 +9,7 @@ import { ProfileService, StorageService } from '@core/services';
 	styleUrl: './header.css'
 })
 export class Header {
-	protected readonly _router = inject(Router);
+	protected readonly _router = inject(RouterService);
 	protected readonly _profile = inject(ProfileService);
 
 	private readonly _storage = inject(StorageService);

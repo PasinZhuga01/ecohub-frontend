@@ -14,5 +14,5 @@
 </p>
 
 <p class="input-wrapper">
-	<app-button-control value="Войти" [routerLink]="['auth']"></app-button-control>
+	<app-button-control value="Войти" (click)="_router.goto('/auth')"></app-button-control>
 </p>

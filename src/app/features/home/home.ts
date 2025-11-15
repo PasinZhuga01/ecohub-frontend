@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonControl } from '@ui/controls';
-import { RouterLink } from '@angular/router';
+import { RouterService } from '@core/services';
 
 @Component({
 	selector: 'app-home',
-	imports: [ButtonControl, RouterLink],
+	imports: [ButtonControl],
 	templateUrl: './home.html',
 	styleUrl: './home.css'
 })
-export class Home {}
+export class Home {
+	protected readonly _router = inject(RouterService);
+}
