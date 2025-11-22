@@ -1,7 +1,2 @@
-export function toFixedNumber(value: number, digits: number): number {
-	return Number(value.toFixed(digits));
-}
-
-export function clamp(value: number, min: number, max: number): number {
-	return Math.min(Math.max(value, min), max);
-}
+export * from './functions';
+export * from './types';

@@ -1,8 +1,7 @@
-import { effect, inject, Injectable, Signal, signal } from '@angular/core';
 import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
-
-import { ProjectServiceHttpResult } from './project-service.types';
+import { effect, inject, Injectable, Signal, signal } from '@angular/core';
+import { processHttp } from '@core/utils';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
@@ -34,16 +33,11 @@ export class ProjectService {
 		return this._navItems.asReadonly();
 	}
 
-	public async create(name: string): Promise<ProjectServiceHttpResult> {
-		const result = await this._http.send('/projects/create', 'POST', { name });
-
-		if (!result.success) {
-			return { success: false, code: result.payload.code };
-		}
-
-		this._items.update((items) => [result.response, ...items]);
-
-		return { success: true };
+	public async create(name: string) {
+		return await processHttp({
+			sendRequest: () => this._http.send('/projects/create', 'POST', { name }),
+			onSuccess: (response) => this._items.update((items) => [response, ...items])
+		});
 	}
 
 	public async remove(id: number) {
