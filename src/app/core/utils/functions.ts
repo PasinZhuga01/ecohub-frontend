@@ -26,5 +26,5 @@ export async function processHttp<TResponse extends object>(callbacks: ProcessHt
 		return { success: false, code: result.payload.code };
 	}
 
-	return (await callbacks.onSuccess(result.response)) ?? { success: true };
+	return (await callbacks.onSuccess?.(result.response)) ?? { success: true };
 }
