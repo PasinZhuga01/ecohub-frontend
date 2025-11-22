@@ -32,9 +32,11 @@ export class ProfileService {
 	public async auth(data: Request<ProfilesApi, '/auth'>) {
 		return processHttp({
 			sendRequest: () => this._http.send('/profiles/auth', 'POST', data),
-			onSuccess: ({ token }) => {
+			onSuccess: async ({ token }) => {
 				this._storage.token.set(token);
 				this._router.goto('/');
+
+				return { success: true };
 			}
 		});
 	}

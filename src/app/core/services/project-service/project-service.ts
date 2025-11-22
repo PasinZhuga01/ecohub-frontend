@@ -36,7 +36,11 @@ export class ProjectService {
 	public async create(name: string) {
 		return await processHttp({
 			sendRequest: () => this._http.send('/projects/create', 'POST', { name }),
-			onSuccess: (response) => this._items.update((items) => [response, ...items])
+			onSuccess: async (response) => {
+				this._items.update((items) => [response, ...items]);
+
+				return { success: true };
+			}
 		});
 	}
 

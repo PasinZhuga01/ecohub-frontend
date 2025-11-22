@@ -1,10 +1,7 @@
-import { Code } from 'ecohub-shared/http/payloads';
 import { HttpResult } from '@core/services';
 import { SuccessableObject } from '@core/types';
 
-export type ProcessHttpCallbacks<TResponse extends object> = {
+export type ProcessHttpCallbacks<TResponse extends object, TSuccess extends object, TError extends object> = {
 	sendRequest: () => Promise<HttpResult<TResponse>>;
-	onSuccess?: (response: TResponse) => Promise<ProcessHttpResult | void> | void;
+	onSuccess: (response: TResponse) => Promise<SuccessableObject<TSuccess, TError>>;
 };
-
-export type ProcessHttpResult = SuccessableObject<object, { code: Code }>;
