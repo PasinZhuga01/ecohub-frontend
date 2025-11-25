@@ -1,10 +1,10 @@
 import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
 import { effect, inject, Injectable, Signal, signal } from '@angular/core';
-import { processHttp } from '@core/utils';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
+import { processHttpWithoutExtra } from '../helpers';
 
 @Injectable({
 	providedIn: 'root'
@@ -34,20 +34,21 @@ export class ProjectService {
 	}
 
 	public async create(name: string) {
-		return await processHttp({
+		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/create', 'POST', { name }),
 			onSuccess: async (response) => {
 				this._items.update((items) => [response, ...items]);
-
-				return { success: true };
 			}
 		});
 	}
 
 	public async remove(id: number) {
-		if ((await this._http.send('/projects/remove', 'DELETE', { id })).success) {
-			this._items.update((items) => items.filter((item) => item.id !== id));
-		}
+		return processHttpWithoutExtra({
+			sendRequest: () => this._http.send('/projects/remove', 'DELETE', { id }),
+			onSuccess: async () => {
+				this._items.update((items) => items.filter((item) => item.id !== id));
+			}
+		});
 	}
 
 	public initializeItems() {

@@ -1,10 +1,10 @@
 import { ProfilesApi, Request } from 'ecohub-shared/http/api';
 import { effect, inject, Injectable, Signal, signal } from '@angular/core';
-import { processHttp } from '@core/utils';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
 import { RouterService } from '../router-service/router-service';
+import { processHttpWithoutExtra } from '../helpers';
 
 @Injectable({
 	providedIn: 'root'
@@ -30,13 +30,11 @@ export class ProfileService {
 	}
 
 	public async auth(data: Request<ProfilesApi, '/auth'>) {
-		return processHttp({
+		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/profiles/auth', 'POST', data),
 			onSuccess: async ({ token }) => {
 				this._storage.token.set(token);
 				this._router.goto('/');
-
-				return { success: true };
 			}
 		});
 	}
