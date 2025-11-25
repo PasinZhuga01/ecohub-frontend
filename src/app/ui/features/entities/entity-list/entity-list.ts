@@ -18,6 +18,6 @@ export class EntityList {
 	public readonly value = model('');
 
 	public readonly created = output();
-	public readonly opened = output<number>();
-	public readonly removed = output<number>();
+	public readonly opened = output<EntityListItem>();
+	public readonly removed = output<EntityListItem>();
 }

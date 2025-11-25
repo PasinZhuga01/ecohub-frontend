@@ -38,4 +38,12 @@ export class Home {
 
 		this._projectName.set('');
 	}
+
+	protected _showRemoveConfirm({ id, name }: { id: number; name: string }) {
+		this._messageBox.messageConfig.set({
+			type: 'confirm',
+			text: `Вы уверены что хотите удалить проект "${name}"? Отменить это действие будет невозможно`,
+			onConfirm: () => this._service.remove(id)
+		});
+	}
 }

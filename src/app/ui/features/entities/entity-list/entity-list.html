@@ -14,8 +14,8 @@
             <app-table-cell>{{ item.name }}</app-table-cell>
             <app-table-cell>{{ item.interactedAt }}</app-table-cell>
             <app-table-cell>
-                <app-highlight-text (click)="opened.emit(item.id)">Открыть</app-highlight-text>
-                <app-highlight-text (click)="removed.emit(item.id)">Удалить</app-highlight-text>
+                <app-highlight-text (click)="opened.emit(item)">Открыть</app-highlight-text>
+                <app-highlight-text (click)="removed.emit(item)">Удалить</app-highlight-text>
             </app-table-cell>
         </app-table-row>
     }
