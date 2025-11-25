@@ -27,6 +27,7 @@
 		"@angular/build": "^20.0.2",
 		"@angular/cli": "^20.0.2",
 		"@angular/compiler-cli": "^20.0.0",
+		"@angular/language-service": "^21.0.0",
 		"@types/jasmine": "~5.1.0",
 		"angular-eslint": "20.3.0",
 		"eslint": "^9.35.0",

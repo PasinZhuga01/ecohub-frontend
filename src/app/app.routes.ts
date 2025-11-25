@@ -9,6 +9,11 @@ export const routes: Routes = [
 		loadComponent: () => import('@features/projects').then(({ Home }) => Home),
 		canActivate: [createAuthGuard('/auth')]
 	},
+	{
+		path: 'project/:id',
+		loadComponent: () => import('@features/projects').then(({ Project }) => Project),
+		canActivate: [createAuthGuard('/auth')]
+	},
 
 	{ path: '**', loadComponent: () => import('@features').then(({ Error }) => Error) }
 ];

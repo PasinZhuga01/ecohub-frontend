@@ -1,0 +1,29 @@
+@let project = _project();
+
+<app-entity-error-wrapper [isValid]="project.isValid">
+    <h1>{{ project.name }}</h1>
+
+    <div class="card" (click)="_router.goto(`/project/${project.id}/currencies`)">
+        <mat-icon svgIcon="currency" class="card-icon"></mat-icon>
+        <div class="card-text">
+            <div class="card-header">Валюты</div>
+            <div class="card-description">Создавайте и управляйте валютами чтобы использовать их для расчётов на рынках.</div>
+        </div>
+    </div>
+
+    <div class="card" (click)="_router.goto(`/project/${project.id}/markets`)">
+        <mat-icon svgIcon="markets" class="card-icon"></mat-icon>
+        <div class="card-text">
+            <div class="card-header">Рынки</div>
+            <div class="card-description">Создавайте и управляйте рынками: добавляйте товары и цены для обеспечения товарообмена.</div>
+        </div>
+    </div>
+
+    <div class="card" (click)="_router.goto(`/project/${project.id}/edit`)">
+        <mat-icon svgIcon="change" class="card-icon"></mat-icon>
+        <div class="card-text">
+            <div class="card-header">Редактировать проект</div>
+            <div class="card-description">Управляйте проектом и настраивайте его по своему вкусу.</div>
+        </div>
+    </div>
+</app-entity-error-wrapper>

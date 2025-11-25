@@ -4,7 +4,7 @@ import { effect, inject, Injectable, Signal, signal } from '@angular/core';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
-import { processHttpWithoutExtra } from '../helpers';
+import { processHttp, processHttpWithoutExtra } from '../helpers';
 
 @Injectable({
 	providedIn: 'root'
@@ -31,6 +31,13 @@ export class ProjectService {
 
 	public get navItems(): Signal<Response<ProjectsApi, '/get_nav'>> {
 		return this._navItems.asReadonly();
+	}
+
+	public async get(id: number) {
+		return processHttp({
+			sendRequest: () => this._http.send('/projects/get', 'GET', { id }),
+			onSuccess: async (response) => ({ name: response.name })
+		});
 	}
 
 	public async create(name: string) {
