@@ -24,9 +24,7 @@
 }
 
 h1 {
-	margin: 0;
-	margin-bottom: 5%;
-	font-size: var(--h1-font-size);
+	margin-bottom: 2.5vh;
 	text-align: center;
 }
 

@@ -9,8 +9,6 @@
 	--color-menu-level-3: #e5e5e5;
 	--color-placeholder: #407984;
 
-	--h1-font-size: 1.6rem;
-
 	font-size: 1.3vw;
 }
 
@@ -21,6 +19,12 @@
 body {
 	margin: 0;
 	background-color: var(--color-background);
+}
+
+h1 {
+	margin: 0;
+	margin-bottom: 5vh;
+	font-size: var(1.6rem);
 }
 
 input {
