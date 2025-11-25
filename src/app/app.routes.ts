@@ -2,9 +2,13 @@ import { Routes } from '@angular/router';
 import { createAuthGuard } from '@core/guards';
 
 export const routes: Routes = [
-	{ path: 'error', loadComponent: () => import('@features').then(({ Error }) => Error) },
-
 	{ path: '', loadComponent: () => import('@features').then(({ Home }) => Home), canActivate: [createAuthGuard('/projects', true)] },
 	{ path: 'auth', loadComponent: () => import('@features').then(({ Auth }) => Auth) },
-	{ path: 'projects', loadComponent: () => import('@features/projects').then(({ Home }) => Home), canActivate: [createAuthGuard('/')] }
+	{
+		path: 'projects',
+		loadComponent: () => import('@features/projects').then(({ Home }) => Home),
+		canActivate: [createAuthGuard('/auth')]
+	},
+
+	{ path: '**', loadComponent: () => import('@features').then(({ Error }) => Error) }
 ];
