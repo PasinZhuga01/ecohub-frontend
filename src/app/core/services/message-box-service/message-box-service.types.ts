@@ -1,6 +1,8 @@
+export type MessageBoxType = 'error' | 'confirm';
+
 export interface MessageBoxMessageConfig {
-	header: string;
-	description: string;
+	type: MessageBoxType;
+	text: string;
 	onConfirm?: () => void;
 	onCancel?: () => void;
 }

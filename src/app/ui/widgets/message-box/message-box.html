@@ -3,8 +3,8 @@
 @if (config !== null){
 	<div class="overlay">
 		<div class="message-box">
-			<h1>{{ config.header }}</h1>
-			<div class="description">{{ config.description }}</div>
+			<h1>{{ _headers[config.type] }}</h1>
+			<div class="description">{{ config.text }}</div>
 			<div class="inputs">
 				<div class="input-wrapper">
 					<app-button-control value="Ок" (click)="_close(config.onConfirm)"></app-button-control>

@@ -25,10 +25,7 @@ export class Home {
 		const result = await this._service.create(this._projectName());
 
 		if (!result.success) {
-			return this._messageBox.messageConfig.set({
-				header: 'Ошибка',
-				description: this._createErrorText(result.code)
-			});
+			return this._messageBox.messageConfig.set({ type: 'error', text: this._createErrorText(result.code) });
 		}
 
 		this._projectName.set('');

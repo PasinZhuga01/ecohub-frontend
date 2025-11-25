@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { MessageBoxService } from '@core/services';
+import { MessageBoxService, MessageBoxType } from '@core/services';
 import { ButtonControl } from '@ui/controls';
 
 @Component({
@@ -9,6 +9,7 @@ import { ButtonControl } from '@ui/controls';
 	styleUrl: './message-box.css'
 })
 export class MessageBox {
+	protected readonly _headers: { [K in MessageBoxType]: string } = { error: 'Ошибка', confirm: 'Подтверждение' };
 	protected readonly _service = inject(MessageBoxService);
 
 	protected _close(beforeClose?: () => void) {

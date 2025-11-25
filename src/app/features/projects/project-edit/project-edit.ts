@@ -25,7 +25,7 @@ export class ProjectEdit {
 		const result = await this._service.rename(this._project().id, this._newName());
 
 		if (!result.success) {
-			return this._messageBox.messageConfig.set({ header: 'Ошибка', description: this._getRenameErrorText(result.code) });
+			return this._messageBox.messageConfig.set({ type: 'error', text: this._getRenameErrorText(result.code) });
 		}
 
 		this._project.update((project) => ({ ...project, name: result.name }));
