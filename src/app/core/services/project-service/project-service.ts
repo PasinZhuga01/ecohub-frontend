@@ -2,6 +2,8 @@ import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
 import { effect, inject, Injectable, Signal, signal } from '@angular/core';
 
+import { renameItemInArray } from './project-service.helpers';
+
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
 import { processHttp, processHttpWithoutExtra } from '../helpers';
@@ -45,6 +47,17 @@ export class ProjectService {
 			sendRequest: () => this._http.send('/projects/create', 'POST', { name }),
 			onSuccess: async (response) => {
 				this._items.update((items) => [response, ...items]);
+			}
+		});
+	}
+
+	public async rename(id: number, name: string) {
+		return processHttp({
+			sendRequest: () => this._http.send('/projects/rename', 'PATCH', { id, name }),
+			onSuccess: async (response) => {
+				renameItemInArray(this._items, id, response.name);
+
+				return response;
 			}
 		});
 	}
