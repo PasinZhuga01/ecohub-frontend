@@ -13,16 +13,16 @@ import { BaseControl } from '../base-control/base-control';
 	}
 })
 export class NumberControl extends BaseControl {
-	public readonly isStepperable = input<boolean>(false);
-	public readonly step = input<number>(1);
-	public readonly min = input<number>(0);
-	public readonly max = input<number>(1000000);
-	public readonly scale = input<number>(0);
-	public readonly value = input<number>(0);
+	public readonly isStepperable = input(false);
+	public readonly step = input(1);
+	public readonly min = input(0);
+	public readonly max = input(1000000);
+	public readonly scale = input(0);
+	public readonly value = input(0);
 
 	public readonly inputed = output<number>();
 
-	protected readonly _value = signal<number>(0);
+	protected readonly _value = signal(0);
 
 	public constructor() {
 		super();
@@ -30,7 +30,7 @@ export class NumberControl extends BaseControl {
 		effect(() => this._value.set(this._validateValue(this.value())));
 	}
 
-	protected _validateValue(value: number): number {
+	protected _validateValue(value: number) {
 		return toFixedNumber(clamp(value, this.min(), this.max()), clamp(Math.round(this.scale()), 0, 100));
 	}
 
@@ -42,7 +42,7 @@ export class NumberControl extends BaseControl {
 		this._updateValue(this._value() + this.step() * side);
 	}
 
-	protected _updateValue(value: number): number {
+	protected _updateValue(value: number) {
 		const validValue = this._validateValue(value);
 
 		this._value.set(validValue);

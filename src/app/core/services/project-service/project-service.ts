@@ -1,6 +1,6 @@
 import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
-import { effect, inject, Injectable, Signal, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 
 import { renameItemInArray } from './project-service.helpers';
 
@@ -27,11 +27,11 @@ export class ProjectService {
 		});
 	}
 
-	public get items(): Signal<Response<ProjectsApi, '/get_page'>> {
+	public get items() {
 		return this._items.asReadonly();
 	}
 
-	public get navItems(): Signal<Response<ProjectsApi, '/get_nav'>> {
+	public get navItems() {
 		return this._navItems.asReadonly();
 	}
 

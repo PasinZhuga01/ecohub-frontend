@@ -9,7 +9,7 @@ import { BaseControl } from '../base-control/base-control';
 	styleUrl: './select-control.css'
 })
 export class SelectControl extends BaseControl {
-	public readonly selectedIndex = input<number>(0);
+	public readonly selectedIndex = input(0);
 	public readonly selected = output<number>();
 
 	protected _updateSelectedIndex({ target }: Event) {

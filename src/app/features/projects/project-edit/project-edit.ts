@@ -32,7 +32,7 @@ export class ProjectEdit {
 		this._newName.set('');
 	}
 
-	private _getRenameErrorText(code: Code): string {
+	private _getRenameErrorText(code: Code) {
 		switch (code) {
 			case 'NAME_TAKEN':
 				return 'Указанное название проекта уже используется';

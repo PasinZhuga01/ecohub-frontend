@@ -1,5 +1,5 @@
 import { ProfilesApi, Request } from 'ecohub-shared/http/api';
-import { effect, inject, Injectable, Signal, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
@@ -10,7 +10,7 @@ import { processHttpWithoutExtra } from '../helpers';
 	providedIn: 'root'
 })
 export class ProfileService {
-	private readonly _isMenuVisible = signal<boolean>(false);
+	private readonly _isMenuVisible = signal(false);
 	private readonly _login = signal<string | null>(null);
 
 	private readonly _storage = inject(StorageService);
@@ -21,11 +21,11 @@ export class ProfileService {
 		effect(() => this._refresh());
 	}
 
-	public get isMenuVisible(): Signal<boolean> {
+	public get isMenuVisible() {
 		return this._isMenuVisible.asReadonly();
 	}
 
-	public get login(): Signal<string | null> {
+	public get login() {
 		return this._login.asReadonly();
 	}
 

@@ -9,11 +9,11 @@ import { BaseControl } from '../base-control/base-control';
 	styleUrl: './text-control.css'
 })
 export class TextControl extends BaseControl {
-	public readonly limit = input<number>(1_000_000);
-	public readonly placeholder = input<string>('');
-	public readonly isPassword = input<boolean>(false);
+	public readonly limit = input(1_000_000);
+	public readonly placeholder = input('');
+	public readonly isPassword = input(false);
 
-	public readonly value = model<string>('');
+	public readonly value = model('');
 
 	protected _updateValue(target: HTMLInputElement) {
 		this.value.set(target.value);

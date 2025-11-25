@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { AuthForm } from '@ui/features/auth';
 import { TextControl, ButtonControl } from '@ui/controls';
 
-import { AuthErrorTexts, AuthType } from './auth.types';
+import { AuthType } from './auth.types';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 	styleUrl: './auth.css'
 })
 export class Auth {
-	protected readonly _errorTexts: AuthErrorTexts = { login: signal(''), register: signal('') };
+	protected readonly _errorTexts = { login: signal(''), register: signal('') };
 
 	private readonly _service = inject(AuthService);
 

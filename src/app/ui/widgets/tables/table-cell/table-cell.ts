@@ -8,5 +8,5 @@ import { NgTemplateOutlet } from '@angular/common';
 	styleUrl: './table-cell.css'
 })
 export class TableCell {
-	public readonly isHeader = input<boolean>(false);
+	public readonly isHeader = input(false);
 }

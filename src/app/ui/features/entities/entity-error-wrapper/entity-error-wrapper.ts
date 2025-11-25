@@ -7,5 +7,5 @@ import { Component, input } from '@angular/core';
 	styleUrl: './entity-error-wrapper.css'
 })
 export class EntityErrorWrapper {
-	public readonly isValid = input.required();
+	public readonly isValid = input.required<boolean>();
 }

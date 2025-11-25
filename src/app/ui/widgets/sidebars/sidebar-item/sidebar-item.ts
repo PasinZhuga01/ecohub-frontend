@@ -12,9 +12,9 @@ import { SvgIconSource } from '@core/resources';
 export class SidebarItem {
 	public readonly value = input.required<string>();
 
-	public readonly isSpecial = input<boolean>(false);
+	public readonly isSpecial = input(false);
 	public readonly iconName = input<SvgIconSource>();
 	public readonly isExpanded = model<boolean>();
 
-	public readonly clicked = output<void>();
+	public readonly clicked = output();
 }

@@ -9,7 +9,7 @@ import { TextControl, ButtonControl } from '@ui/controls';
 })
 export class EntityNameInput {
 	public readonly executeText = input.required<string>();
-	public readonly value = model<string>('');
+	public readonly value = model('');
 
 	public readonly executed = output();
 }

@@ -27,7 +27,7 @@ export class AuthService {
 		}
 	}
 
-	private _validateRequestBody(type: AuthType, data: object): Request<ProfilesApi, '/auth'> {
+	private _validateRequestBody(type: AuthType, data: object) {
 		const isRegister = type === 'register';
 		const schema = isRegister ? registerSchema : loginSchema;
 
@@ -48,7 +48,7 @@ export class AuthService {
 		}
 	}
 
-	private _createErrorText(code: Code): string {
+	private _createErrorText(code: Code) {
 		switch (code) {
 			case 'INVALID_CREDENTIALS':
 				return 'Неверный логин или пароль';

@@ -15,7 +15,7 @@ import { EntityNameInput } from '../entity-name-input/entity-name-input';
 export class EntityList {
 	public readonly items = input.required<EntityListItem[]>();
 	public readonly header = input.required<string>();
-	public readonly value = model<string>('');
+	public readonly value = model('');
 
 	public readonly created = output();
 	public readonly opened = output<number>();

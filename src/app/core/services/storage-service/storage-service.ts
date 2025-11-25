@@ -10,7 +10,7 @@ export class StorageService implements StorageItems {
 	public readonly token = this._createSignal('token', null);
 	public readonly isNavVisible = this._createSignal('isNavVisible', false);
 
-	private _getStorageItem<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>): StorageItemValue<K> {
+	private _getStorageItem<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>) {
 		const value = JSON.parse(localStorage.getItem(name) ?? '{}');
 		const { success, data } = schemas[name].safeParse(value);
 

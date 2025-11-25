@@ -8,6 +8,6 @@ import { CommonModule } from '@angular/common';
 	styleUrl: './sidebar.css'
 })
 export class Sidebar {
-	public readonly isVisible = input<boolean>(true);
+	public readonly isVisible = input(true);
 	public readonly CSSAbsolutePositionConfig = input<Partial<Record<'left' | 'right' | 'top' | 'bottom', string>> | null>(null);
 }

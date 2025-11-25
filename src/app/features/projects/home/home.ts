@@ -13,7 +13,7 @@ export class Home {
 	protected readonly _service = inject(ProjectService);
 	protected readonly _router = inject(RouterService);
 
-	protected readonly _projectName = signal<string>('');
+	protected readonly _projectName = signal('');
 
 	private readonly _messageBox = inject(MessageBoxService);
 
@@ -34,7 +34,7 @@ export class Home {
 		this._projectName.set('');
 	}
 
-	private _createErrorText(code: Code): string {
+	private _createErrorText(code: Code) {
 		switch (code) {
 			case 'INVALID_FORMAT':
 				return 'Название проекта не было введено';
