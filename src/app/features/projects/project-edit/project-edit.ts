@@ -5,6 +5,7 @@ import { EntityErrorWrapper, EntityNameInput } from '@ui/features/entities';
 import { ButtonControl } from '@ui/controls';
 
 import { createProjectSignal } from '../helpers';
+import { createLookup } from '@core/utils';
 
 @Component({
 	selector: 'app-project-edit',
@@ -21,6 +22,14 @@ export class ProjectEdit {
 	private readonly _service = inject(ProjectService);
 	private readonly _messageBox = inject(MessageBoxService);
 
+	private readonly _getRenameErrorText = createLookup<Code, string>(
+		{
+			NAME_TAKEN: 'Указанное название проекта уже используется',
+			INVALID_FORMAT: 'Некорректное название проекта или название не было введено'
+		},
+		'Неизвестная ошибка'
+	);
+
 	protected async _rename() {
 		const result = await this._service.rename(this._project().id, this._newName());
 
@@ -30,16 +39,5 @@ export class ProjectEdit {
 
 		this._project.update((project) => ({ ...project, name: result.name }));
 		this._newName.set('');
-	}
-
-	private _getRenameErrorText(code: Code) {
-		switch (code) {
-			case 'NAME_TAKEN':
-				return 'Указанное название проекта уже используется';
-			case 'INVALID_FORMAT':
-				return 'Некорректное название проекта или название не было введено';
-		}
-
-		return 'Неизвестная ошибка';
 	}
 }

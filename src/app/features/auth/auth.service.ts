@@ -6,12 +6,21 @@ import { Code } from 'ecohub-shared/http/payloads';
 import { loginSchema, registerSchema } from './auth.schemas';
 import { AuthResult, AuthType } from './auth.types';
 import { AuthError } from './auth.errors';
+import { createLookup } from '@core/utils';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
 	private readonly _profile = inject(ProfileService);
+
+	private readonly _getErrorText = createLookup<Code, string>(
+		{
+			INVALID_CREDENTIALS: 'Неверный логин или пароль',
+			LOGIN_TAKEN: 'Аккаунт с указанным логином уже существует'
+		},
+		'Неизвестная ошибка'
+	);
 
 	public async auth(type: AuthType, data: object): Promise<AuthResult> {
 		try {
@@ -44,18 +53,7 @@ export class AuthService {
 		const result = await this._profile.auth(body);
 
 		if (!result.success) {
-			throw new AuthError(this._createErrorText(result.code));
+			throw new AuthError(this._getErrorText(result.code));
 		}
-	}
-
-	private _createErrorText(code: Code) {
-		switch (code) {
-			case 'INVALID_CREDENTIALS':
-				return 'Неверный логин или пароль';
-			case 'LOGIN_TAKEN':
-				return 'Аккаунт с указанным логином уже существует';
-		}
-
-		return 'Неизвестная ошибка';
 	}
 }

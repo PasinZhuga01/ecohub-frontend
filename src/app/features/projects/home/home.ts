@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { EntityList } from '@ui/features/entities';
 import { MessageBoxService, ProjectService, RouterService } from '@core/services';
 import { Code } from 'ecohub-shared/http/payloads';
+import { createLookup } from '@core/utils';
 
 @Component({
 	selector: 'app-home',
@@ -16,6 +17,13 @@ export class Home {
 	protected readonly _projectName = signal('');
 
 	private readonly _messageBox = inject(MessageBoxService);
+	private readonly _getErrorText = createLookup<Code, string>(
+		{
+			INVALID_FORMAT: 'Название проекта не было введено',
+			NAME_TAKEN: 'Проект с таким названием уже существует'
+		},
+		'Неизвестная ошибка'
+	);
 
 	public constructor() {
 		this._service.initializeItems();
@@ -25,20 +33,9 @@ export class Home {
 		const result = await this._service.create(this._projectName());
 
 		if (!result.success) {
-			return this._messageBox.messageConfig.set({ type: 'error', text: this._createErrorText(result.code) });
+			return this._messageBox.messageConfig.set({ type: 'error', text: this._getErrorText(result.code) });
 		}
 
 		this._projectName.set('');
-	}
-
-	private _createErrorText(code: Code) {
-		switch (code) {
-			case 'INVALID_FORMAT':
-				return 'Название проекта не было введено';
-			case 'NAME_TAKEN':
-				return 'Проект с таким названием уже существует';
-		}
-
-		return 'Неизвестная ошибка';
 	}
 }
