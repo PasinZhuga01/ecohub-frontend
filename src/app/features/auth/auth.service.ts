@@ -5,8 +5,7 @@ import { Code } from 'ecohub-shared/http/payloads';
 
 import { loginSchema, registerSchema } from './auth.schemas';
 import { AuthResult, AuthType } from './auth.types';
-import { AuthError } from './auth.errors';
-import { createLookup } from '@core/utils';
+import { createLookup, processFlow, AbortFlowError } from '@core/utils';
 
 @Injectable({
 	providedIn: 'root'
@@ -22,18 +21,15 @@ export class AuthService {
 		'Неизвестная ошибка'
 	);
 
-	public async auth(type: AuthType, data: object): Promise<AuthResult> {
-		try {
-			await this._sendRequest(this._validateRequestBody(type, data));
+	public async auth(type: AuthType, data: object) {
+		return processFlow<Promise<AuthResult>>({
+			onSuccess: async () => {
+				await this._sendRequest(this._validateRequestBody(type, data));
 
-			return { success: true };
-		} catch (error) {
-			if (error instanceof AuthError) {
-				return { success: false, message: error.message };
-			}
-
-			throw error;
-		}
+				return { success: true };
+			},
+			onError: async (error) => ({ success: false, message: error.message })
+		});
 	}
 
 	private _validateRequestBody(type: AuthType, data: object) {
@@ -43,7 +39,7 @@ export class AuthService {
 		const result = schema.safeParse(data);
 
 		if (!result.success) {
-			throw new AuthError(result.error.errors[0]?.message);
+			throw new AbortFlowError(result.error.errors[0]?.message ?? this._getErrorText(null));
 		}
 
 		return { ...result.data, isRegister };
@@ -53,7 +49,7 @@ export class AuthService {
 		const result = await this._profile.auth(body);
 
 		if (!result.success) {
-			throw new AuthError(this._getErrorText(result.code));
+			throw new AbortFlowError(this._getErrorText(result.code));
 		}
 	}
 }
