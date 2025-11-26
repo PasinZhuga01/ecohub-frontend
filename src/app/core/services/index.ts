@@ -8,3 +8,5 @@ export * from './router-service/router-service';
 export * from './router-service/router-service.types';
 export * from './profile-service/profile-service';
 export * from './project-service/project-service';
+export * from './currency-service/currency-service';
+export * from './currency-service/currency-service.types';

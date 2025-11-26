@@ -1,0 +1,10 @@
+<img [src]="_iconSrc()" class="icon"/>
+<app-button-control value="Загрузить значок" class="load" (click)="_uploadIcon()"></app-button-control>
+<app-text-control placeholder="Название" class="name" [(value)]="_name"></app-text-control>
+
+<div class="rate">
+    <div>Курс</div>
+    <app-number-control [min]="1" [value]="_rate()" (inputed)="_rate.set($event)"></app-number-control>
+</div>
+
+<app-button-control value="Создать валюту" class="create" (click)="_create()"></app-button-control>
