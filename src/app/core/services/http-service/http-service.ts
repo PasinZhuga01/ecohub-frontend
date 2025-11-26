@@ -7,6 +7,7 @@ import env from '@env';
 import z from 'zod';
 
 import { HttpResult } from './http-service.types';
+import { rejectFormData } from './http-service.helpers';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,20 +19,20 @@ export class HttpService<TApi extends BaseApi> {
 	public async send<TRoute extends keyof TApi['endpoints']>(
 		url: AbsoluteRoute<TApi, TRoute>,
 		method: TApi['endpoints'][TRoute]['method'],
-		body: Request<TApi, TRoute>
+		body: Request<TApi, TRoute> | FormData
 	): Promise<HttpResult<Response<TApi, TRoute>>> {
 		return this._executeRequest(() => {
 			const fullUrl = new URL(url, env.serverUrl).toString();
 
 			switch (method) {
 				case 'GET':
-					return this._http.get(fullUrl, { params: body });
+					return this._http.get(fullUrl, { params: rejectFormData(body) });
 				case 'POST':
 					return this._http.post(fullUrl, body);
 				case 'PATCH':
 					return this._http.patch(fullUrl, body);
 				case 'DELETE':
-					return this._http.delete(fullUrl, { params: body });
+					return this._http.delete(fullUrl, { params: rejectFormData(body) });
 			}
 		});
 	}
