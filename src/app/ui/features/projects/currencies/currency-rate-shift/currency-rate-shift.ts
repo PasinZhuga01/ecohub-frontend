@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CurrencyService } from '@core/services';
+import { CurrencyService, MessageBoxService } from '@core/services';
 import { NumberControl, ButtonControl } from '@ui/controls';
 
 @Component({
@@ -10,5 +10,15 @@ import { NumberControl, ButtonControl } from '@ui/controls';
 })
 export class CurrencyRateShift {
 	protected readonly _value = signal(0);
-	protected readonly _service = inject(CurrencyService);
+
+	private readonly _service = inject(CurrencyService);
+	private readonly _messageBox = inject(MessageBoxService);
+
+	protected _showShiftRateConfirm() {
+		this._messageBox.messageConfig.set({
+			type: 'confirm',
+			text: 'Вы уверены что хотите сдвинуть курс всех валют в текущем проекте? Курсы сдвигаются только вперёд и отменить сдвиг будет невозможно',
+			onConfirm: () => this._service.shiftRate(this._value())
+		});
+	}
 }

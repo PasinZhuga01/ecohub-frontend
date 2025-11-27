@@ -10,7 +10,7 @@ import { CurrencyCreateResult } from './currency-create.types';
 export class CurrencyCreateService {
 	private readonly _service = inject(CurrencyService);
 	private readonly _getErrorText = createLookup<Code, string>(
-		{ NAME_TAKEN: 'Валюта таким названием уже существует' },
+		{ NAME_TAKEN: 'Валюта с таким названием уже существует' },
 		'Неизвестная ошибка'
 	);
 

@@ -20,5 +20,11 @@ export const routes: Routes = [
 		canActivate: [createAuthGuard('/auth')]
 	},
 
+	{
+		path: 'project/:id/currencies',
+		loadComponent: () => import('@features/projects').then(({ Currencies }) => Currencies),
+		canActivate: [createAuthGuard('/auth')]
+	},
+
 	{ path: '**', loadComponent: () => import('@features').then(({ Error }) => Error) }
 ];

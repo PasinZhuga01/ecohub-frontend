@@ -3,4 +3,4 @@
     <app-number-control (inputed)="_value.set($event)"></app-number-control>
 </div>
 
-<app-button-control class="container" value="Сдвинуть курс" (click)="_service.shiftRate(_value())"></app-button-control>
+<app-button-control class="container" value="Сдвинуть курс" (click)="_showShiftRateConfirm()"></app-button-control>
