@@ -13,6 +13,10 @@ export function createLookup<K extends string, V extends unknown>(object: Partia
 	return (name: K | null) => (name === null ? defaultValue : object[name] ?? defaultValue);
 }
 
+export function copyObjectIfDefined<T extends object>(object: T | undefined): T | undefined {
+	return object !== undefined ? { ...object } : undefined;
+}
+
 export function modifySignalArrayItems<T>(
 	array: WritableSignal<T[]>,
 	callbacks: { condition?: (item: T) => boolean; modify: (item: T) => void }

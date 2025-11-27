@@ -1,8 +1,7 @@
 import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
 import { CurrencyService } from '@core/services';
+import { copyObjectIfDefined } from '@core/utils';
 import { NumberControl, SelectControl } from '@ui/controls';
-
-import { CurrencyConvertSelectedItems, CurrencyConvertItemType } from './currency-convert.types';
 
 @Component({
 	selector: 'app-currency-convert',
@@ -11,30 +10,36 @@ import { CurrencyConvertSelectedItems, CurrencyConvertItemType } from './currenc
 	styleUrl: './currency-convert.css'
 })
 export class CurrencyConvert {
-	protected readonly _selectedItems: CurrencyConvertSelectedItems = { from: signal(null), to: signal(null) };
+	protected readonly _selectedIndexes = { from: signal(0), to: signal(0) };
+	protected readonly _selectedItems = {
+		from: computed(() => copyObjectIfDefined(this._service.items()[this._selectedIndexes.from()])),
+		to: computed(() => copyObjectIfDefined(this._service.items()[this._selectedIndexes.to()]))
+	};
 
 	protected readonly _sum = signal(0);
-	protected readonly _result = computed(() => ((this._getItemRate('from') * this._sum()) / this._getItemRate('to')).toFixed(3));
+	protected readonly _result = computed(() => {
+		const fromItemRate = this._selectedItems.from()?.rate;
+		const toItemRate = this._selectedItems.to()?.rate;
+
+		if (fromItemRate === undefined || toItemRate === undefined) {
+			return null;
+		}
+
+		return ((fromItemRate * this._sum()) / toItemRate).toFixed(2);
+	});
 
 	protected readonly _service = inject(CurrencyService);
 
+	private readonly _countItems = computed(() => this._service.items().length);
+
 	public constructor() {
 		effect(() => {
-			this._service.items();
-			untracked(() => this._refreshSelectedItems());
+			const lastIndex = this._countItems() - 1;
+
+			untracked(() => {
+				this._selectedIndexes.from.set(this._selectedIndexes.from() === 0 ? lastIndex : 0);
+				this._selectedIndexes.to.set(this._selectedIndexes.to() === 0 ? lastIndex : 0);
+			});
 		});
-	}
-
-	protected _selectItem(index: number, type: CurrencyConvertItemType) {
-		this._selectedItems[type].set(this._service.items()[index] ?? null);
-	}
-
-	private _getItemRate(type: CurrencyConvertItemType) {
-		return this._selectedItems[type]()?.rate ?? 1;
-	}
-
-	private _refreshSelectedItems() {
-		this._selectItem(0, 'from');
-		this._selectItem(0, 'to');
 	}
 }

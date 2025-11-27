@@ -1,7 +1,9 @@
+@let result = _result();
+
 <div class="container">
     <div class="input-container">
         <div class="text">С валюты</div>
-        <app-select-control (selected)="_selectItem($event, 'from')">
+        <app-select-control [selectedIndex]="_selectedIndexes.from()" (selected)="_selectedIndexes.from.set($event)">
             @for (item of _service.items(); track item.id){
                 <option>{{ item.name }}</option>
             }
@@ -10,7 +12,7 @@
 
     <div class="input-container">
         <div class="text">В валюту</div>
-        <app-select-control (selected)="_selectItem($event, 'to')">
+        <app-select-control [selectedIndex]="_selectedIndexes.to()" (selected)="_selectedIndexes.to.set($event)">
             @for (item of _service.items(); track item.id){
                 <option>{{ item.name }}</option>
             }
@@ -22,12 +24,15 @@
         <app-number-control (inputed)="_sum.set($event)"></app-number-control>
     </div>
 </div>
-<div class="container">
-    <span>{{ _sum() }}</span>
-    <img [src]="_selectedItems.from()?.iconSrc">
-    
-    <span class="equal">=</span>
 
-    <span>{{ _result() }}</span>
-    <img [src]="_selectedItems.to()?.iconSrc">
-</div>
+@if (result !== null){
+    <div class="container">
+        <span>{{ _sum() }}</span>
+        <img [src]="_selectedItems.from()?.iconSrc">
+        
+        <span class="equal">=</span>
+
+        <span>{{ _result() }}</span>
+        <img [src]="_selectedItems.to()?.iconSrc">
+    </div>
+}

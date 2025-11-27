@@ -25,7 +25,7 @@ export class CurrencyService {
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(this._projectId, args)),
-			onSuccess: async (response) => this._items.update((items) => [...items, validateItemIconSrc(response)])
+			onSuccess: async (response) => this._items.update((items) => [validateItemIconSrc(response), ...items])
 		});
 	}
 

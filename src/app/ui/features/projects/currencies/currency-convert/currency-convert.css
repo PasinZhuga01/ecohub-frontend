@@ -34,6 +34,10 @@
 	margin: 0 0.25vw;
 }
 
+.container:last-child img[src=''] {
+	visibility: hidden;
+}
+
 .container:last-child .equal {
 	margin: 0 0.25vw;
 }
