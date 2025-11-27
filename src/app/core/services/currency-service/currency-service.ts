@@ -2,9 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { CurrenciesApi } from 'ecohub-shared/http/api/projects';
 import { Response } from 'ecohub-shared/http/api';
 import { modifySignalArrayItems } from '@core/utils';
-import env from '@env';
 
-import { createCurrencyCreateFormData } from './currency-service.helpers';
+import { createCurrencyCreateFormData, validateItemIconSrc } from './currency-service.helpers';
 import { CurrencyCreateArgs } from './currency-service.types';
 
 import { HttpService } from '../http-service/http-service';
@@ -26,7 +25,7 @@ export class CurrencyService {
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(this._projectId, args)),
-			onSuccess: async () => {}
+			onSuccess: async (response) => this._items.update((items) => [...items, validateItemIconSrc(response)])
 		});
 	}
 
@@ -68,11 +67,7 @@ export class CurrencyService {
 
 	private async _refreshItems() {
 		const result = await this._http.send('/projects/currencies/get', 'GET', { projectId: this._projectId });
-		const items = result.success ? result.response : [];
-
-		for (const item of items) {
-			item.iconSrc = new URL(`images/${item.iconSrc}`, env.serverUrl).toString();
-		}
+		const items = result.success ? result.response.map((item) => validateItemIconSrc(item)) : [];
 
 		this._items.set(items);
 	}
