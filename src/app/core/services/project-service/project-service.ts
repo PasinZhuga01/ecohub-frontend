@@ -6,6 +6,7 @@ import { modifySignalArrayItems } from '@core/utils';
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
 import { processHttp, processHttpWithoutExtra } from '../helpers';
+import { MarketService } from '../market-service/market-service';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,12 +17,15 @@ export class ProjectService {
 	private readonly _items = signal<Response<ProjectsApi, '/get_page'>>([]);
 	private readonly _navItems = signal<Response<ProjectsApi, '/get_nav'>>([]);
 
+	private readonly _markets = inject(MarketService);
 	private readonly _storage = inject(StorageService);
 	private readonly _http: HttpService<ProjectsApi> = inject(HttpService);
 
 	public constructor() {
 		effect(() => {
 			this._items();
+			this._markets.items();
+
 			this._refreshNavItems();
 		});
 	}

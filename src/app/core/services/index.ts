@@ -10,3 +10,4 @@ export * from './profile-service/profile-service';
 export * from './project-service/project-service';
 export * from './currency-service/currency-service';
 export * from './currency-service/currency-service.types';
+export * from './market-service/market-service';

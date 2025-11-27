@@ -34,6 +34,7 @@
 
 			"@features": ["./app/features"],
 			"@features/projects": ["./app/features/projects"],
+			"@features/projects/markets": ["./app/features/projects/markets"],
 
 			"@ui/controls": ["./app/ui/controls"],
 

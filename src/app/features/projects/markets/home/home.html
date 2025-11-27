@@ -1,0 +1,13 @@
+@let project = _project();
+
+<app-entity-error-wrapper [isValid]="project.isValid">
+    <app-entity-list
+        header="Рынки"
+        [items]="_service.items()"
+        (created)="_create()"
+        (opened)="_router.goto(`/project/${project.id}/market/${$event.id}`)"
+        (removed)="_showRemoveConfirm($event)"
+        [(value)]="_marketName"
+    ></app-entity-list>
+</app-entity-error-wrapper>
+
