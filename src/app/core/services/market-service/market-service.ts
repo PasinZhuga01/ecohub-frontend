@@ -1,4 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
+import { modifySignalArrayItems } from '@core/utils';
 import { Response } from 'ecohub-shared/http/api';
 import { MarketsApi } from 'ecohub-shared/http/api/projects/markets';
 
@@ -36,6 +37,20 @@ export class MarketService {
 		return processHttp({
 			sendRequest: () => this._http.send('/projects/markets/set_currency', 'PATCH', { marketId, currencyId }),
 			onSuccess: async () => ({ currencyId })
+		});
+	}
+
+	public async rename(id: number, name: string) {
+		return processHttp({
+			sendRequest: () => this._http.send('/projects/markets/rename', 'PATCH', { id, name }),
+			onSuccess: async (response) => {
+				modifySignalArrayItems(this._items, {
+					condition: (item) => item.id === id,
+					modify: (item) => (item.name = name)
+				});
+
+				return response;
+			}
 		});
 	}
 
