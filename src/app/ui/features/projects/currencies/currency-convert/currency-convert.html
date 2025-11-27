@@ -24,10 +24,10 @@
 </div>
 <div class="container">
     <span>{{ _sum() }}</span>
-    <img [src]="_getItemIconSrc('from')">
+    <img [src]="_selectedItems.from()?.iconSrc">
     
     <span class="equal">=</span>
 
     <span>{{ _result() }}</span>
-    <img [src]="_getItemIconSrc('to')">
+    <img [src]="_selectedItems.to()?.iconSrc">
 </div>

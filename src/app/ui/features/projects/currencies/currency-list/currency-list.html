@@ -1,0 +1,39 @@
+@let rateEditModeItems = _rateEditModeItems();
+
+<app-table>
+    <app-table-row>
+        <app-table-cell [isHeader]="true">Значок</app-table-cell>
+        <app-table-cell [isHeader]="true">Название</app-table-cell>
+        <app-table-cell [isHeader]="true">Курс</app-table-cell>
+        <app-table-cell [isHeader]="true">Действия</app-table-cell>
+    </app-table-row>
+    
+    @for (item of _service.items(); track item.id){
+        @let isItemRateEditMode = rateEditModeItems.has(item.id);
+
+        <app-table-row>
+            <app-table-cell>
+                <img [src]="item.iconSrc">
+            </app-table-cell>
+            <app-table-cell>{{ item.name }}</app-table-cell>
+            <app-table-cell>
+                @if (isItemRateEditMode){
+                    <app-number-control [isStepperable]="true" [min]="1" [value]="item.rate" (inputed)="rateEditModeItems.set(item.id, $event)"></app-number-control>
+                }
+                @else{
+                    {{ item.rate }}
+                }
+            </app-table-cell>
+            <app-table-cell>
+                @if (isItemRateEditMode){
+                    <app-highlight-text (click)="_changeItemRate(item.id)">Изменить</app-highlight-text>
+                    <app-highlight-text (click)="_cancelItemRateEditMode(item.id)">Отменить</app-highlight-text>
+                }
+                @else{
+                    <app-highlight-text (click)="_setItemRateEditMode(item.id, item.rate)">Изменить курс</app-highlight-text>
+                    <app-highlight-text (click)="_showRemoveConfirm(item.id, item.name)">Удалить</app-highlight-text>
+                }
+            </app-table-cell>
+        </app-table-row>
+    }
+</app-table>
