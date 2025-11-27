@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="input-container">
+        <div class="text">С валюты</div>
+        <app-select-control (selected)="_selectItem($event, 'from')">
+            @for (item of _service.items(); track item.id){
+                <option>{{ item.name }}</option>
+            }
+        </app-select-control>
+    </div>
+
+    <div class="input-container">
+        <div class="text">В валюту</div>
+        <app-select-control (selected)="_selectItem($event, 'to')">
+            @for (item of _service.items(); track item.id){
+                <option>{{ item.name }}</option>
+            }
+        </app-select-control>
+    </div>
+
+    <div class="input-container">
+        <div class="text">Сумма</div>
+        <app-number-control (inputed)="_sum.set($event)"></app-number-control>
+    </div>
+</div>
+<div class="container">
+    <span>{{ _sum() }}</span>
+    <img [src]="_getItemIconSrc('from')">
+    
+    <span class="equal">=</span>
+
+    <span>{{ _result() }}</span>
+    <img [src]="_getItemIconSrc('to')">
+</div>

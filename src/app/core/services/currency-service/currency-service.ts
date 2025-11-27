@@ -17,6 +17,10 @@ export class CurrencyService {
 
 	private _projectId = -1;
 
+	public get items() {
+		return this._items.asReadonly();
+	}
+
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
 			sendRequest: async () =>
