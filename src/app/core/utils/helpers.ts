@@ -1,3 +1,4 @@
+import { WritableSignal } from '@angular/core';
 import { AbortFlowError, UtilsError } from './errors';
 
 export function toFixedNumber(value: number, digits: number) {
@@ -10,6 +11,21 @@ export function clamp(value: number, min: number, max: number) {
 
 export function createLookup<K extends string, V extends unknown>(object: Partial<Record<K, V>>, defaultValue: V) {
 	return (name: K | null) => (name === null ? defaultValue : object[name] ?? defaultValue);
+}
+
+export function modifySignalArrayItems<T>(
+	array: WritableSignal<T[]>,
+	callbacks: { condition?: (item: T) => boolean; modify: (item: T) => void }
+) {
+	array.update((items) =>
+		items.map((item) => {
+			if (callbacks.condition === undefined || callbacks.condition(item)) {
+				callbacks.modify(item);
+			}
+
+			return item;
+		})
+	);
 }
 
 export function base64ToBlob(base64: string) {

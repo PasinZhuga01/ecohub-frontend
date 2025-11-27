@@ -1,8 +1,7 @@
 import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
 import { effect, inject, Injectable, signal } from '@angular/core';
-
-import { renameItemInArray } from './project-service.helpers';
+import { modifySignalArrayItems } from '@core/utils';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
@@ -55,7 +54,10 @@ export class ProjectService {
 		return processHttp({
 			sendRequest: () => this._http.send('/projects/rename', 'PATCH', { id, name }),
 			onSuccess: async (response) => {
-				renameItemInArray(this._items, id, response.name);
+				modifySignalArrayItems(this._items, {
+					condition: (item) => item.id === id,
+					modify: (item) => (item.name = name)
+				});
 
 				return response;
 			}
