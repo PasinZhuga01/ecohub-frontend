@@ -1,4 +1,1 @@
-import { CurrenciesApi } from 'ecohub-shared/http/api/projects';
-import { Request } from 'ecohub-shared/http/api';
-
-export type CurrencyCreateArgs = Request<CurrenciesApi, '/create'> & { iconSrc: string };
+export type CurrencyCreateArgs = { name: string; iconSrc: string; rate: number };
