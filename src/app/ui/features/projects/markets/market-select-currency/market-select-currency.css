@@ -1,0 +1,18 @@
+.container {
+	display: flex;
+}
+
+.container > * {
+	width: 30%;
+}
+
+.container > *:first-child {
+	margin-right: 1%;
+	margin-bottom: 1vh;
+}
+
+.container img {
+	width: 1rem;
+	height: 1rem;
+	margin-left: 2vw;
+}

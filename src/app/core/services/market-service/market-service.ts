@@ -3,7 +3,7 @@ import { Response } from 'ecohub-shared/http/api';
 import { MarketsApi } from 'ecohub-shared/http/api/projects/markets';
 
 import { HttpService } from '../http-service/http-service';
-import { processHttpWithoutExtra } from '../helpers';
+import { processHttp, processHttpWithoutExtra } from '../helpers';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,12 +16,26 @@ export class MarketService {
 		return this._items.asReadonly();
 	}
 
+	public async get(id: number) {
+		return processHttp({
+			sendRequest: () => this._http.send('/projects/markets/get', 'GET', { id }),
+			onSuccess: async (response) => ({ name: response.name, currencyId: response.currencyId })
+		});
+	}
+
 	public async create(projectId: number, name: string) {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/markets/create', 'POST', { projectId, name }),
 			onSuccess: async (response) => {
 				this._items.update((items) => [response, ...items]);
 			}
+		});
+	}
+
+	public async setCurrency(marketId: number, currencyId: number) {
+		return processHttp({
+			sendRequest: () => this._http.send('/projects/markets/set_currency', 'PATCH', { marketId, currencyId }),
+			onSuccess: async () => ({ currencyId })
 		});
 	}
 

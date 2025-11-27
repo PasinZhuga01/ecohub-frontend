@@ -1,9 +1,8 @@
 import { effect, inject, signal } from '@angular/core';
 import { ProjectService } from '@core/services';
+import { createParamsSignal } from '@features';
 
 import { projectParamsSchema } from './schemas';
-
-import { createParamsSignal } from '../helpers';
 
 export function createProjectSignal() {
 	const params = createParamsSignal(projectParamsSchema);

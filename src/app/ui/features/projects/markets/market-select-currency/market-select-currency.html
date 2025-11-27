@@ -1,0 +1,16 @@
+@let usedItem = _usedItem();
+
+<div class="container">
+    <app-select-control [selectedIndex]="_selectedIndex()" (selected)="_selectedIndex.set($event)">
+        @for (item of _currencies.items(); track item.id){
+            <option>{{ item.name }}</option>
+        }
+    </app-select-control>
+    <app-button-control value="Выбрать валюту для рассчётов" (click)="_setCurrency()"></app-button-control>
+</div>
+
+@if (usedItem !== null){
+    <div class="container">
+        Для рассчётов используется: <img [src]="usedItem.iconSrc" /> {{ usedItem.name }}
+    </div>
+}

@@ -41,6 +41,7 @@
 			"@ui/features/auth": ["./app/ui/features/auth"],
 			"@ui/features/entities": ["./app/ui/features/entities"],
 			"@ui/features/projects": ["./app/ui/features/projects"],
+			"@ui/features/projects/markets": ["./app/ui/features/projects/markets"],
 
 			"@ui/layout": ["./app/ui/layout"],
 

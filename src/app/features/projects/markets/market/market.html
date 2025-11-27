@@ -1,1 +1,9 @@
-<p>market works!</p>
+@let market = _market();
+
+<app-entity-error-wrapper [isValid]="market.isValid">
+    <h1>{{ market.name }}</h1>
+
+    @if (market.isValid){
+        <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [currencyId]="market.currencyId"></app-market-select-currency>
+    }
+</app-entity-error-wrapper>
