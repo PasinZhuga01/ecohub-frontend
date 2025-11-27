@@ -25,9 +25,15 @@ export const routes: Routes = [
 		loadComponent: () => import('@features/projects').then(({ Currencies }) => Currencies),
 		canActivate: [createAuthGuard('/auth')]
 	},
+
 	{
 		path: 'project/:id/markets',
 		loadComponent: () => import('@features/projects/markets').then(({ Home }) => Home),
+		canActivate: [createAuthGuard('/auth')]
+	},
+	{
+		path: 'project/:projectId/market/:marketId',
+		loadComponent: () => import('@features/projects/markets').then(({ Market }) => Market),
 		canActivate: [createAuthGuard('/auth')]
 	},
 
