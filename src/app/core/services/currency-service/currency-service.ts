@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { CurrenciesApi } from 'ecohub-shared/http/api/projects';
 import { Response } from 'ecohub-shared/http/api';
 
-import { createCurrencyCreateFormData } from './currency-service.helpers';
+import { createCurrencyCreateFormData, shiftItemsRate } from './currency-service.helpers';
 import { CurrencyCreateArgs } from './currency-service.types';
 
 import { HttpService } from '../http-service/http-service';
@@ -23,9 +23,15 @@ export class CurrencyService {
 
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
-			sendRequest: async () =>
-				this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(this._projectId, args)),
+			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(this._projectId, args)),
 			onSuccess: async () => {}
+		});
+	}
+
+	public shiftRate(value: number) {
+		return processHttpWithoutExtra({
+			sendRequest: () => this._http.send('/projects/currencies/shift', 'PATCH', { projectId: this._projectId, value }),
+			onSuccess: async () => shiftItemsRate(this._items, value)
 		});
 	}
 

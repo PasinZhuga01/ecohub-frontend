@@ -1,0 +1,6 @@
+<div class="container">
+    <div class="value-text">Значение</div>
+    <app-number-control (inputed)="_value.set($event)"></app-number-control>
+</div>
+
+<app-button-control class="container" value="Сдвинуть курс" (click)="_service.shiftRate(_value())"></app-button-control>

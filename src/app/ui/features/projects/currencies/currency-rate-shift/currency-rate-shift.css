@@ -1,0 +1,18 @@
+:host {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.container {
+	width: 30%;
+}
+
+.container:first-child {
+	margin-right: 1%;
+}
+
+.value-text {
+	text-align: center;
+	margin-bottom: 1vh;
+}
