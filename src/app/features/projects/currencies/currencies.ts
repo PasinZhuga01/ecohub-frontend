@@ -1,26 +1,27 @@
 import { Component, effect, inject } from '@angular/core';
 import { CurrencyService } from '@core/services';
 import { CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList } from '@ui/features/projects';
-import { createParamsSignal } from '@features';
+import { EntityErrorWrapper } from '@ui/features/entities';
 
-import { currenciesParamsSchema } from './currencies.schemas';
+import { createProjectSignal } from '../helpers';
 
 @Component({
 	selector: 'app-currencies',
-	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList],
+	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList, EntityErrorWrapper],
 	templateUrl: './currencies.html',
 	styleUrl: './currencies.css'
 })
 export class Currencies {
-	private readonly _params = createParamsSignal(currenciesParamsSchema);
+	protected readonly _project = createProjectSignal();
+
 	private readonly _service = inject(CurrencyService);
 
 	public constructor() {
 		effect(() => {
-			const params = this._params();
+			const project = this._project();
 
-			if (params.success) {
-				this._service.setProjectId(params.data.id);
+			if (project.isValid) {
+				this._service.refreshItems(project.id);
 			}
 		});
 	}

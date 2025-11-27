@@ -16,22 +16,20 @@ export class CurrencyService {
 	private readonly _items = signal<Response<CurrenciesApi, '/get'>>([]);
 	private readonly _http: HttpService<CurrenciesApi> = inject(HttpService);
 
-	private _projectId = -1;
-
 	public get items() {
 		return this._items.asReadonly();
 	}
 
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
-			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(this._projectId, args)),
+			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(args)),
 			onSuccess: async (response) => this._items.update((items) => [validateItemIconSrc(response), ...items])
 		});
 	}
 
-	public shiftRate(value: number) {
+	public shiftRate(projectId: number, value: number) {
 		return processHttpWithoutExtra({
-			sendRequest: () => this._http.send('/projects/currencies/shift', 'PATCH', { projectId: this._projectId, value }),
+			sendRequest: () => this._http.send('/projects/currencies/shift', 'PATCH', { projectId, value }),
 			onSuccess: async () =>
 				modifySignalArrayItems(this._items, {
 					modify: (item) => (item.rate += value)
@@ -57,16 +55,8 @@ export class CurrencyService {
 		});
 	}
 
-	public async setProjectId(id: number) {
-		if (this._projectId !== id) {
-			this._projectId = id;
-
-			await this._refreshItems();
-		}
-	}
-
-	private async _refreshItems() {
-		const result = await this._http.send('/projects/currencies/get', 'GET', { projectId: this._projectId });
+	public async refreshItems(projectId: number) {
+		const result = await this._http.send('/projects/currencies/get', 'GET', { projectId });
 		const items = result.success ? result.response.map((item) => validateItemIconSrc(item)) : [];
 
 		this._items.set(items);
