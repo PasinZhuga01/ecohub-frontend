@@ -4,7 +4,7 @@
     <div class="input-container">
         <div class="text">С валюты</div>
         <app-select-control [selectedIndex]="_selectedIndexes.from()" (selected)="_selectedIndexes.from.set($event)">
-            @for (item of _service.items(); track item.id){
+            @for (item of _service.items().array; track item.id){
                 <option>{{ item.name }}</option>
             }
         </app-select-control>
@@ -13,7 +13,7 @@
     <div class="input-container">
         <div class="text">В валюту</div>
         <app-select-control [selectedIndex]="_selectedIndexes.to()" (selected)="_selectedIndexes.to.set($event)">
-            @for (item of _service.items(); track item.id){
+            @for (item of _service.items().array; track item.id){
                 <option>{{ item.name }}</option>
             }
         </app-select-control>

@@ -12,8 +12,8 @@ import { NumberControl, SelectControl } from '@ui/controls';
 export class CurrencyConvert {
 	protected readonly _selectedIndexes = { from: signal(0), to: signal(0) };
 	protected readonly _selectedItems = {
-		from: computed(() => copyObjectIfDefined(this._service.items()[this._selectedIndexes.from()])),
-		to: computed(() => copyObjectIfDefined(this._service.items()[this._selectedIndexes.to()]))
+		from: computed(() => copyObjectIfDefined(this._service.items().array[this._selectedIndexes.from()])),
+		to: computed(() => copyObjectIfDefined(this._service.items().array[this._selectedIndexes.to()]))
 	};
 
 	protected readonly _sum = signal(0);
@@ -30,7 +30,7 @@ export class CurrencyConvert {
 
 	protected readonly _service = inject(CurrencyService);
 
-	private readonly _countItems = computed(() => this._service.items().length);
+	private readonly _countItems = computed(() => this._service.items().array.length);
 
 	public constructor() {
 		effect(() => {

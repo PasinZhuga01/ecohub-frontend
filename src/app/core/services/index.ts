@@ -11,3 +11,6 @@ export * from './project-service/project-service';
 export * from './currency-service/currency-service';
 export * from './currency-service/currency-service.types';
 export * from './market-service/market-service';
+export * from './catalog-item-service/catalog-item-service';
+export * from './catalog-item-service/catalog-item-service.types';
+export * from './cart-item-service/cart-item-service';

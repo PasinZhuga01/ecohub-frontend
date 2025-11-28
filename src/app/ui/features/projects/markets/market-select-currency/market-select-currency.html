@@ -1,16 +1,16 @@
-@let usedItem = _usedItem();
+@let activeItem = _activeItem();
 
 <div class="container">
     <app-select-control [selectedIndex]="_selectedIndex()" (selected)="_selectedIndex.set($event)">
-        @for (item of _currencies.items(); track item.id){
+        @for (item of _currencies.items().array; track item.id){
             <option>{{ item.name }}</option>
         }
     </app-select-control>
     <app-button-control value="Выбрать валюту для рассчётов" (click)="_setCurrency()"></app-button-control>
 </div>
 
-@if (usedItem !== null){
+@if (activeItem !== undefined){
     <div class="container">
-        Для рассчётов используется: <img [src]="usedItem.iconSrc" /> {{ usedItem.name }}
+        Для рассчётов используется: <img [src]="activeItem.iconSrc" /> {{ activeItem.name }}
     </div>
 }

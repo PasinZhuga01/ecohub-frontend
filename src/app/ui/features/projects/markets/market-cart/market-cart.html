@@ -1,0 +1,33 @@
+@let view = _view();
+
+<app-text-control placeholder="Поиск в корзине" [(value)]="_searchName"></app-text-control>
+<app-table>
+    <app-table-row>
+        <app-table-cell [isHeader]="true">Название</app-table-cell>
+        <app-table-cell [isHeader]="true">Количество</app-table-cell>
+        <app-table-cell [isHeader]="true">Цена</app-table-cell>
+        <app-table-cell [isHeader]="true">Действия</app-table-cell>
+    </app-table-row>
+
+    @for (item of view.items; track item.id){
+        <app-table-row>
+            <app-table-cell>{{ item.name }}</app-table-cell>
+            <app-table-cell>
+                <app-number-control [isStepperable]="true" [step]="item.step" [min]="item.step" [value]="item.count" (inputed)="_service.recount(item.id, $event / item.step)"></app-number-control>
+            </app-table-cell>
+            <app-table-cell>{{ item.price }}</app-table-cell>
+            <app-table-cell>
+                <app-highlight-text (click)="_service.remove(item.id)">Удалить</app-highlight-text>
+            </app-table-cell>
+        </app-table-row>
+    }
+
+    <app-table-row>
+        <app-table-cell class="special">Итого</app-table-cell>
+        <app-table-cell>{{ view.total.count }}</app-table-cell>
+        <app-table-cell>{{ view.total.price }}</app-table-cell>
+        <app-table-cell>
+            <app-highlight-text (click)="_showClearConfirm()">Очистить</app-highlight-text>
+        </app-table-cell>
+    </app-table-row>
+</app-table>

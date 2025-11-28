@@ -1,0 +1,22 @@
+:host {
+	display: flex;
+	align-items: flex-end;
+}
+
+.container {
+	width: 24.25%;
+	margin: 0 0.5%;
+}
+
+.container:first-child {
+	margin-left: 0;
+}
+
+.container:last-child {
+	margin-right: 0;
+}
+
+.container div {
+	margin-bottom: 1vh;
+	text-align: center;
+}

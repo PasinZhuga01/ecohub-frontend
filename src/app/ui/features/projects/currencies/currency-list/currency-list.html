@@ -8,7 +8,7 @@
         <app-table-cell [isHeader]="true">Действия</app-table-cell>
     </app-table-row>
     
-    @for (item of _service.items(); track item.id){
+    @for (item of _service.items().array; track item.id){
         @let isItemRateEditMode = rateEditModeItems.has(item.id);
 
         <app-table-row>

@@ -1,10 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { CurrenciesApi } from 'ecohub-shared/http/api/projects';
-import { Response } from 'ecohub-shared/http/api';
-import { modifySignalArrayItems } from '@core/utils';
 
 import { createCurrencyCreateFormData, validateItemIconSrc } from './currency-service.helpers';
-import { CurrencyCreateArgs } from './currency-service.types';
+import { CurrenciesObject, CurrencyCollection, CurrencyCreateArgs } from './currency-service.types';
 
 import { HttpService } from '../http-service/http-service';
 import { processHttpWithoutExtra } from '../helpers';
@@ -13,7 +11,7 @@ import { processHttpWithoutExtra } from '../helpers';
 	providedIn: 'root'
 })
 export class CurrencyService {
-	private readonly _items = signal<Response<CurrenciesApi, '/get'>>([]);
+	private readonly _items = signal<CurrencyCollection>({ array: [], object: {} });
 	private readonly _http: HttpService<CurrenciesApi> = inject(HttpService);
 
 	public get items() {
@@ -23,7 +21,15 @@ export class CurrencyService {
 	public create(args: CurrencyCreateArgs) {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/create', 'POST', createCurrencyCreateFormData(args)),
-			onSuccess: async (response) => this._items.update((items) => [validateItemIconSrc(response), ...items])
+			onSuccess: async (response) =>
+				this._items.update(({ array, object }) => {
+					const item = validateItemIconSrc(response);
+
+					object[item.id] = item;
+					array.push(item);
+
+					return { array, object };
+				})
 		});
 	}
 
@@ -31,8 +37,12 @@ export class CurrencyService {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/shift', 'PATCH', { projectId, value }),
 			onSuccess: async () =>
-				modifySignalArrayItems(this._items, {
-					modify: (item) => (item.rate += value)
+				this._items.update((items) => {
+					for (const item of items.array) {
+						item.rate += value;
+					}
+
+					return { ...items };
 				})
 		});
 	}
@@ -41,9 +51,14 @@ export class CurrencyService {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/rerate', 'PATCH', { id, rate }),
 			onSuccess: async (response) =>
-				modifySignalArrayItems(this._items, {
-					condition: (item) => item.id === id,
-					modify: (item) => (item.rate = response.rate)
+				this._items.update((items) => {
+					const item = items.object[id];
+
+					if (item !== undefined) {
+						item.rate = response.rate;
+					}
+
+					return { ...items };
 				})
 		});
 	}
@@ -51,14 +66,26 @@ export class CurrencyService {
 	public remove(id: number) {
 		return processHttpWithoutExtra({
 			sendRequest: () => this._http.send('/projects/currencies/remove', 'DELETE', { id }),
-			onSuccess: async () => this._items.update((items) => items.filter((item) => item.id !== id))
+			onSuccess: async () =>
+				this._items.update(({ array, object }) => {
+					array = array.filter((item) => item.id !== id);
+					delete object[id];
+
+					return { array, object };
+				})
 		});
 	}
 
 	public async refreshItems(projectId: number) {
 		const result = await this._http.send('/projects/currencies/get', 'GET', { projectId });
-		const items = result.success ? result.response.map((item) => validateItemIconSrc(item)) : [];
 
-		this._items.set(items);
+		const array = result.success ? result.response.map((item) => validateItemIconSrc(item)) : [];
+		const object = array.reduce<CurrenciesObject>((object, item) => {
+			object[item.id] = item;
+
+			return object;
+		}, {});
+
+		this._items.set({ array, object });
 	}
 }

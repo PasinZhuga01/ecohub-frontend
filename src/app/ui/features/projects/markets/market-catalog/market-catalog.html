@@ -1,0 +1,45 @@
+@let isEditMode = this.isEditMode();
+
+<app-text-control placeholder="Поиск в каталоге" [(value)]="_searchName"></app-text-control>
+<app-table>
+    <app-table-row>
+        <app-table-cell [isHeader]="true">Название</app-table-cell>
+        <app-table-cell [isHeader]="true">Количество</app-table-cell>
+        <app-table-cell [isHeader]="true">Цена</app-table-cell>
+        <app-table-cell [isHeader]="true">Действия</app-table-cell>
+    </app-table-row>
+    
+    @for (item of _service.items().array; track item.id){
+        @if (item.name.toLowerCase().includes(_searchName().toLowerCase())){
+            <app-table-row>
+                <app-table-cell>{{ item.name }}</app-table-cell>
+                <app-table-cell>
+                    @if (isEditMode){
+                        <app-number-control [isStepperable]="true" [min]="1" [value]="item.count" (inputed)="_service.recount(item.id, $event)"></app-number-control>
+                    }
+                    @else{
+                        {{ item.count }}
+                    }
+                </app-table-cell>
+                <app-table-cell>
+                    @let price = _service.ratedPrices()[item.id] ?? 1;
+                    
+                    @if (isEditMode){
+                        <app-number-control [isStepperable]="true" [min]="1" [value]="price" (inputed)="_service.reprice(item.id, currencyId(), $event)"></app-number-control>
+                    }
+                    @else{
+                        {{ price }}
+                    }
+                </app-table-cell>
+                <app-table-cell>
+                    @if (isEditMode){
+                        <app-highlight-text (click)="_showRemoveConfirm(item.id, item.name)">Удалить</app-highlight-text>
+                    }
+                    @else{
+                        <app-highlight-text (click)="_cart.add(marketId(), item.id)">Добавить в корзину</app-highlight-text>
+                    }
+                </app-table-cell>
+            </app-table-row>
+        }
+    }
+</app-table>

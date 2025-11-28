@@ -2,10 +2,4 @@
 
 <app-entity-error-wrapper [isValid]="market.isValid">
     <h1>{{ market.name }}</h1>
-
-    @if (market.isValid){
-        <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [currencyId]="market.currencyId"></app-market-select-currency>
-    }
-
-    <div class="separator"></div>
 </app-entity-error-wrapper>

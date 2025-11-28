@@ -14,29 +14,18 @@ export class MarketSelectCurrency {
 
 	public readonly currencyId = model.required<number | null>();
 
-	protected readonly _selectedIndex = signal(-1);
-
-	protected readonly _usedIndex = computed(() => {
-		const currencyId = this.currencyId();
-
-		return currencyId !== null ? this._currencies.items().findIndex(({ id }) => id === currencyId) : null;
-	});
-	protected readonly _usedItem = computed(() => {
-		const usedIndex = this._usedIndex();
-
-		return usedIndex !== null ? this._currencies.items()[usedIndex] ?? null : null;
-	});
+	protected readonly _selectedIndex = signal(0);
+	protected readonly _activeItem = computed(() => this._currencies.items().object[this.currencyId() ?? -1]);
 
 	protected readonly _currencies = inject(CurrencyService);
 	protected readonly _service = inject(MarketService);
 
 	public constructor() {
 		effect(() => this._currencies.refreshItems(this.projectId()));
-		effect(() => this._selectedIndex.set(this._usedIndex() ?? 0));
 	}
 
 	protected async _setCurrency() {
-		const currency = this._currencies.items()[this._selectedIndex()];
+		const currency = this._currencies.items().array[this._selectedIndex()];
 
 		if (currency !== undefined) {
 			const response = await this._service.setCurrency(this.marketId(), currency.id);

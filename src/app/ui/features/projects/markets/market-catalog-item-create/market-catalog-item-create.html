@@ -1,0 +1,12 @@
+<app-text-control class="container" placeholder="Название" [(value)]="_name"></app-text-control>
+
+<div class="container">
+    <div>Количество</div>
+    <app-number-control [min]="1" (inputed)="_count.set($event)"></app-number-control>
+</div>
+<div class="container">
+    <div>Цена</div>
+    <app-number-control [min]="1" (inputed)="_price.set($event)"></app-number-control>
+</div>
+
+<app-button-control class="container" value="Добавить товар" (click)="_create()"></app-button-control>
