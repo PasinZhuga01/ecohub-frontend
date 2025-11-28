@@ -1,11 +1,11 @@
 import { Code } from 'ecohub-shared/http/payloads';
 import { Component, inject, signal } from '@angular/core';
 import { ProjectService, MessageBoxService, RouterService } from '@core/services';
-import { EntityError, EntityNameInput } from '@ui/features/entities';
+import { createLookup } from '@core/utils';
 import { ButtonControl } from '@ui/controls';
+import { EntityError, EntityNameInput } from '@ui/features/entities';
 
 import { createProjectSignal } from '../helpers';
-import { createLookup } from '@core/utils';
 
 @Component({
 	selector: 'app-project-edit',

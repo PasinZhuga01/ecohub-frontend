@@ -2,9 +2,9 @@ import { Component, effect, inject } from '@angular/core';
 import { CurrencyService } from '@core/services';
 import { CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList } from '@ui/features/projects';
 import { EntityError } from '@ui/features/entities';
+import { Separator } from '@ui/widgets';
 
 import { createProjectSignal } from '../helpers';
-import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-currencies',

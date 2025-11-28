@@ -3,6 +3,7 @@ import { CartItemService, CatalogItemService, MessageBoxService } from '@core/se
 import { TextControl, NumberControl } from '@ui/controls';
 import { Table, TableCell, TableRow } from '@ui/widgets/tables';
 import { HighlightText } from '@ui/widgets';
+
 import { MarketCartItem } from './market-cart.types';
 
 @Component({

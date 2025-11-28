@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { ProfileService } from '@core/services';
+import { createLookup, processFlow, AbortFlowError } from '@core/utils';
 import { ProfilesApi, Request } from 'ecohub-shared/http/api';
 import { Code } from 'ecohub-shared/http/payloads';
 
 import { loginSchema, registerSchema } from './auth.schemas';
 import { AuthResult, AuthType } from './auth.types';
-import { createLookup, processFlow, AbortFlowError } from '@core/utils';
 
 @Injectable({
 	providedIn: 'root'

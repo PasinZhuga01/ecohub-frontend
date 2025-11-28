@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { AuthForm } from '@ui/features/auth';
 import { TextControl, ButtonControl } from '@ui/controls';
+import { Separator } from '@ui/widgets';
 
 import { AuthType } from './auth.types';
 import { AuthService } from './auth.service';
-import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-auth',

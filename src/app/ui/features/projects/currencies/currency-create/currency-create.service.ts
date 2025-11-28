@@ -1,7 +1,8 @@
+import { Code } from 'ecohub-shared/http/payloads';
 import { inject, Injectable } from '@angular/core';
 import { CurrencyCreateArgs, CurrencyService } from '@core/services';
 import { AbortFlowError, createLookup, processFlow } from '@core/utils';
-import { Code } from 'ecohub-shared/http/payloads';
+
 import { CurrencyCreateResult } from './currency-create.types';
 
 @Injectable({

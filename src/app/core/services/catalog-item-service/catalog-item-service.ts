@@ -1,10 +1,11 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { CatalogsItemsApi } from 'ecohub-shared/http/api/projects/markets';
 
+import { CatalogItemCollection, CatalogItemCreateArgs, CatalogItemObject } from './catalog-item-service.types';
+
 import { HttpService } from '../http-service/http-service';
 import { CurrencyService } from '../currency-service/currency-service';
 import { processHttpWithoutExtra } from '../helpers';
-import { CatalogItemCollection, CatalogItemCreateArgs, CatalogItemObject } from './catalog-item-service.types';
 
 @Injectable({
 	providedIn: 'root'

@@ -28,11 +28,11 @@
 @if (result !== null){
     <div class="container">
         <span>{{ _sum() }}</span>
-        <img [src]="_selectedItems.from()?.iconSrc">
+        <img [src]="_selectedItems.from()?.iconSrc" alt="Исходная валюта">
         
         <span class="equal">=</span>
 
         <span>{{ _result() }}</span>
-        <img [src]="_selectedItems.to()?.iconSrc">
+        <img [src]="_selectedItems.to()?.iconSrc" alt="Целевая валюта">
     </div>
 }

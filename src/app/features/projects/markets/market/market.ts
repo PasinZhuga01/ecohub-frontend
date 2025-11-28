@@ -1,11 +1,11 @@
 import { Component, effect, inject, signal } from '@angular/core';
+import { MarketService, RouterService } from '@core/services';
 import { MarketSelectCurrency, MarketCart, MarketCatalog } from '@ui/features/projects/markets';
 import { EntityError } from '@ui/features/entities';
 import { ButtonControl } from '@ui/controls';
-import { MarketService, RouterService } from '@core/services';
+import { Separator } from '@ui/widgets';
 
 import { createMarketSignal } from '../helpers';
-import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-market',

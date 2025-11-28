@@ -1,11 +1,11 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { EntityError } from '@ui/features/entities';
 import { RouterService } from '@core/services';
-
-import { createMarketSignal } from '../helpers';
-import { MarketSelectCurrency, MarketRename, MarketCatalogItemCreate, MarketCatalog } from '@ui/features/projects/markets';
+import { EntityError } from '@ui/features/entities';
 import { ButtonControl } from '@ui/controls';
 import { Separator } from '@ui/widgets';
+import { MarketSelectCurrency, MarketRename, MarketCatalogItemCreate, MarketCatalog } from '@ui/features/projects/markets';
+
+import { createMarketSignal } from '../helpers';
 
 @Component({
 	selector: 'app-market-edit',
