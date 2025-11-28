@@ -1,6 +1,6 @@
 @let project = _project();
 
-<app-entity-error-wrapper [isValid]="project.isValid">
+@if (project !== null){
     <h1>Валюты</h1>
     
     <app-currency-create [projectId]="project.id"></app-currency-create>
@@ -16,4 +16,7 @@
     <div class="separator"></div>
     
     <app-currency-list></app-currency-list>
-</app-entity-error-wrapper>
+}
+@else{
+    <app-entity-error type="not-found-or-access-denied"></app-entity-error>
+}

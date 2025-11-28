@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Error } from './error';
+import { EntityError } from './entity-error';
 
-describe('Error', () => {
-  let component: Error;
-  let fixture: ComponentFixture<Error>;
+describe('EntityError', () => {
+  let component: EntityError;
+  let fixture: ComponentFixture<EntityError>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Error]
+      imports: [EntityError]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Error);
+    fixture = TestBed.createComponent(EntityError);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

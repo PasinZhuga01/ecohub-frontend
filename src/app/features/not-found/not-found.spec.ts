@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntityErrorWrapper } from './entity-error-wrapper';
+import { NotFound } from './not-found';
 
-describe('EntityErrorWrapper', () => {
-  let component: EntityErrorWrapper;
-  let fixture: ComponentFixture<EntityErrorWrapper>;
+describe('NotFound', () => {
+  let component: NotFound;
+  let fixture: ComponentFixture<NotFound>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EntityErrorWrapper]
+      imports: [NotFound]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EntityErrorWrapper);
+    fixture = TestBed.createComponent(NotFound);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

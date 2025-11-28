@@ -1,6 +1,6 @@
 @let project = _project();
 
-<app-entity-error-wrapper [isValid]="project.isValid">
+@if (project !== null){
     <app-entity-list
         header="Рынки"
         [items]="_service.items()"
@@ -9,5 +9,7 @@
         (removed)="_showRemoveConfirm($event)"
         [(value)]="_marketName"
     ></app-entity-list>
-</app-entity-error-wrapper>
-
+}
+@else{
+    <app-entity-error type="not-found-or-access-denied"></app-entity-error>
+}

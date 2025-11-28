@@ -1,10 +1,13 @@
 @let project = _project();
 
-<app-entity-error-wrapper [isValid]="project.isValid">
+@if (project !== null){
     <h1>{{ project.name }}</h1>
 
     <div class="edit-container">
         <app-entity-name-input executeText="Переименовать проект" [(value)]="_newName" (executed)="_rename()"></app-entity-name-input>
         <app-button-control value="Завершить изменения" (click)="_router.goto(`/project/${project.id}`)"></app-button-control>
     </div>
-</app-entity-error-wrapper>
+}
+@else{
+    <app-entity-error type="not-found-or-access-denied"></app-entity-error>
+}

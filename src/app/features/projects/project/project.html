@@ -1,6 +1,6 @@
 @let project = _project();
 
-<app-entity-error-wrapper [isValid]="project.isValid">
+@if (project !== null){
     <h1>{{ project.name }}</h1>
 
     <div class="card" (click)="_router.goto(`/project/${project.id}/currencies`)">
@@ -26,4 +26,7 @@
             <div class="card-description">Управляйте проектом и настраивайте его по своему вкусу.</div>
         </div>
     </div>
-</app-entity-error-wrapper>
+}
+@else{
+    <app-entity-error type="not-found-or-access-denied"></app-entity-error>
+}

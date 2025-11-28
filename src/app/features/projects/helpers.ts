@@ -8,7 +8,7 @@ export function createProjectSignal() {
 	const params = createParamsSignal(projectParamsSchema);
 	const service = inject(ProjectService);
 
-	const project = signal<{ id: number; name: string; isValid: boolean }>({ id: -1, name: '', isValid: false });
+	const project = signal<{ id: number; name: string } | null>(null);
 
 	effect(async () => {
 		const paramsObject = params();
@@ -17,11 +17,11 @@ export function createProjectSignal() {
 			const result = await service.get(paramsObject.data.id);
 
 			if (result.success) {
-				return project.set({ id: paramsObject.data.id, name: result.name, isValid: true });
+				return project.set({ id: paramsObject.data.id, name: result.name });
 			}
 		}
 
-		project.update((project) => ({ ...project, isValid: false }));
+		project.set(null);
 	});
 
 	return project;

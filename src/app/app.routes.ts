@@ -42,5 +42,5 @@ export const routes: Routes = [
 		canActivate: [createAuthGuard('/auth')]
 	},
 
-	{ path: '**', loadComponent: () => import('@features').then(({ Error }) => Error) }
+	{ path: '**', loadComponent: () => import('@features').then(({ NotFound }) => NotFound) }
 ];

@@ -1,13 +1,13 @@
 import { Component, effect, inject } from '@angular/core';
 import { CurrencyService } from '@core/services';
 import { CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList } from '@ui/features/projects';
-import { EntityErrorWrapper } from '@ui/features/entities';
+import { EntityError } from '@ui/features/entities';
 
 import { createProjectSignal } from '../helpers';
 
 @Component({
 	selector: 'app-currencies',
-	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList, EntityErrorWrapper],
+	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList, EntityError],
 	templateUrl: './currencies.html',
 	styleUrl: './currencies.css'
 })
@@ -20,7 +20,7 @@ export class Currencies {
 		effect(() => {
 			const project = this._project();
 
-			if (project.isValid) {
+			if (project !== null) {
 				this._service.refreshItems(project.id);
 			}
 		});

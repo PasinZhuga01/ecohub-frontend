@@ -1,6 +1,6 @@
 @let market = _market();
 
-<app-entity-error-wrapper [isValid]="market.isValid">
+@if (market !== null){
     <h1>{{ market.name }}</h1>
     <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [(currencyId)]="_currencyId"></app-market-select-currency>
     
@@ -20,4 +20,7 @@
         <app-button-control value="Изменить рынок" (click)="_router.goto(`/project/${market.projectId}/market/${market.marketId}/edit`)"></app-button-control>
         <app-button-control value="Перейти к корзине" (click)="_scrollToCart()"></app-button-control>
     </div>
-</app-entity-error-wrapper>
+}
+@else{
+    <app-entity-error type="not-found-or-access-denied"></app-entity-error>
+}

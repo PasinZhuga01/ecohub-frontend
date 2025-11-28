@@ -10,13 +10,7 @@ export function createMarketSignal() {
 	const projectService = inject(ProjectService);
 	const marketService = inject(MarketService);
 
-	const market = signal<{ projectId: number; marketId: number; currencyId: number | null; name: string; isValid: boolean }>({
-		projectId: -1,
-		marketId: -1,
-		currencyId: null,
-		name: '',
-		isValid: false
-	});
+	const market = signal<{ projectId: number; marketId: number; currencyId: number | null; name: string } | null>(null);
 
 	effect(async () => {
 		const paramsObject = params();
@@ -28,12 +22,12 @@ export function createMarketSignal() {
 				const marketResult = await marketService.get(paramsObject.data.marketId);
 
 				if (marketResult.success) {
-					return market.set({ ...paramsObject.data, ...marketResult, isValid: true });
+					return market.set({ ...paramsObject.data, ...marketResult });
 				}
 			}
 		}
 
-		market.update((market) => ({ ...market, isValid: false }));
+		market.set(null);
 	});
 
 	return market;

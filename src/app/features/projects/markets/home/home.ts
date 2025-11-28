@@ -1,13 +1,13 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { MarketService, MessageBoxService, RouterService } from '@core/services';
 import { createLookup } from '@core/utils';
-import { EntityList, EntityErrorWrapper } from '@ui/features/entities';
+import { EntityList, EntityError } from '@ui/features/entities';
 import { Code } from 'ecohub-shared/http/payloads';
 import { createProjectSignal } from '@features/projects';
 
 @Component({
 	selector: 'app-home',
-	imports: [EntityList, EntityErrorWrapper],
+	imports: [EntityList, EntityError],
 	templateUrl: './home.html',
 	styleUrl: './home.css'
 })
@@ -31,20 +31,24 @@ export class Home {
 		effect(() => {
 			const project = this._project();
 
-			if (project.isValid) {
+			if (project !== null) {
 				this._service.refreshItems(project.id);
 			}
 		});
 	}
 
 	protected async _create() {
-		const result = await this._service.create(this._project().id, this._marketName());
+		const project = this._project();
 
-		if (!result.success) {
-			return this._messageBox.messageConfig.set({ type: 'error', text: this._getErrorText(result.code) });
+		if (project !== null) {
+			const result = await this._service.create(project.id, this._marketName());
+
+			if (!result.success) {
+				return this._messageBox.messageConfig.set({ type: 'error', text: this._getErrorText(result.code) });
+			}
+
+			this._marketName.set('');
 		}
-
-		this._marketName.set('');
 	}
 
 	protected _showRemoveConfirm({ id, name }: { id: number; name: string }) {
