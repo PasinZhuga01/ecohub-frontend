@@ -118,15 +118,14 @@ export class CatalogItemService {
 
 	public refreshRatedPrices(currencyId: number) {
 		const currency = this._currencies.items().object[currencyId];
+		const prices: Record<number, number> = {};
 
 		if (currency !== undefined) {
-			const prices: Record<number, number> = {};
-
 			for (const { id, price } of this._items().array) {
 				prices[id] = price / currency.rate;
 			}
-
-			this._ratedPrices.set(prices);
 		}
+
+		this._ratedPrices.set(prices);
 	}
 }

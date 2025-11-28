@@ -26,7 +26,7 @@ export class MarketCart {
 			const catalogItem = this._catalog.items().object[item.catalogItemId];
 
 			if (catalogItem !== undefined && catalogItem.name.toLowerCase().includes(searchName.toLowerCase())) {
-				const price = (this._catalog.ratedPrices()[catalogItem.id] ?? 1) * item.count;
+				const price = (this._catalog.ratedPrices()[catalogItem.id] ?? catalogItem.price) * item.count;
 
 				total.count += catalogItem.count * item.count;
 				total.price += price;
@@ -50,7 +50,7 @@ export class MarketCart {
 	protected _showClearConfirm() {
 		this._messageBox.messageConfig.set({
 			type: 'confirm',
-			text: 'Вы уверены что хотите очистить корзину? Отменить это действие будет невозможно',
+			text: 'Вы уверены что хотите очистить всю корзину? Отменить это действие будет невозможно',
 			onConfirm: () => this._service.clear(this.marketId())
 		});
 	}

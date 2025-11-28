@@ -22,7 +22,7 @@
                     }
                 </app-table-cell>
                 <app-table-cell>
-                    @let price = _service.ratedPrices()[item.id] ?? 1;
+                    @let price = _service.ratedPrices()[item.id] ?? item.price;
                     
                     @if (isEditMode){
                         <app-number-control [isStepperable]="true" [min]="1" [value]="price" (inputed)="_service.reprice(item.id, currencyId(), $event)"></app-number-control>
