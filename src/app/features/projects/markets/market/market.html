@@ -4,13 +4,13 @@
     <h1>{{ market.name }}</h1>
     <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [(currencyId)]="_currencyId"></app-market-select-currency>
     
-    <div class="separator"></div>
+    <app-separator type="horizontal"></app-separator>
 
     <h2 class="cart-fragment">Корзина</h2>
 
     <app-market-cart [marketId]="market.marketId"></app-market-cart>
 
-    <div class="separator"></div>
+    <app-separator type="horizontal"></app-separator>
 
     <h2>Каталог товаров</h2>
 

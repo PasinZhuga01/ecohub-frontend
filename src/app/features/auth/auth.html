@@ -14,7 +14,7 @@
     </app-auth-form>
 </div>
 
-<div class="separator"></div>
+<app-separator type="vertical"></app-separator>
 
 <div class="form-wrapper">
     <app-auth-form header="Регистрация" description="Для создания аккаунта придумайте логин и пароль" [errorText]="_errorTexts.register()" (submited)="_auth('register', $event)">

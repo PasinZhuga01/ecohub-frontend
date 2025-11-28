@@ -14,10 +14,3 @@
 .input-wrapper {
 	margin: 1.5% 0;
 }
-
-.separator {
-	width: 2px;
-	margin: 0 3%;
-	align-self: stretch;
-	background-color: var(--color-secondary-alt);
-}

@@ -1,0 +1,19 @@
+:host {
+	display: block;
+	align-self: stretch;
+	background-color: var(--color-secondary-alt);
+}
+
+:host.vertical {
+	width: 1px;
+	margin: 0 3vw;
+}
+
+:host.horizontal {
+	height: 1px;
+	margin: 3vh 0;
+}
+
+:host.invisible {
+	visibility: hidden;
+}

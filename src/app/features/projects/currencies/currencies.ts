@@ -4,10 +4,11 @@ import { CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList } from
 import { EntityError } from '@ui/features/entities';
 
 import { createProjectSignal } from '../helpers';
+import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-currencies',
-	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList, EntityError],
+	imports: [CurrencyCreate, CurrencyRateShift, CurrencyConvert, CurrencyList, EntityError, Separator],
 	templateUrl: './currencies.html',
 	styleUrl: './currencies.css'
 })

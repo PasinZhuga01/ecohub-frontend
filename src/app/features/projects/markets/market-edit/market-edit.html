@@ -4,15 +4,15 @@
     <h1>{{ market.name }}</h1>
     <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [(currencyId)]="_currencyId"></app-market-select-currency>
     
-    <div class="separator"></div>
+    <app-separator type="horizontal"></app-separator>
 
     <app-market-rename [marketId]="market.marketId" (renamed)="_updateName($event)"></app-market-rename>
 
-    <div class="separator"></div>
+    <app-separator type="horizontal"></app-separator>
 
     <app-market-catalog-item-create [marketId]="market.marketId" [currencyId]="_currencyId()"></app-market-catalog-item-create>
 
-    <div class="separator invisible"></div>
+    <app-separator type="horizontal" [isInvisible]="true"></app-separator>
 
     <app-market-catalog [isEditMode]="true" [marketId]="market.marketId" [currencyId]="_currencyId()"></app-market-catalog>
 

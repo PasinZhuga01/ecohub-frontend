@@ -5,10 +5,11 @@ import { RouterService } from '@core/services';
 import { createMarketSignal } from '../helpers';
 import { MarketSelectCurrency, MarketRename, MarketCatalogItemCreate, MarketCatalog } from '@ui/features/projects/markets';
 import { ButtonControl } from '@ui/controls';
+import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-market-edit',
-	imports: [EntityError, MarketSelectCurrency, MarketRename, MarketCatalogItemCreate, MarketCatalog, ButtonControl],
+	imports: [EntityError, MarketSelectCurrency, MarketRename, MarketCatalogItemCreate, MarketCatalog, ButtonControl, Separator],
 	templateUrl: './market-edit.html',
 	styleUrl: './market-edit.css'
 })

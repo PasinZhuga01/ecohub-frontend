@@ -4,10 +4,11 @@ import { TextControl, ButtonControl } from '@ui/controls';
 
 import { AuthType } from './auth.types';
 import { AuthService } from './auth.service';
+import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-auth',
-	imports: [AuthForm, TextControl, ButtonControl],
+	imports: [AuthForm, TextControl, ButtonControl, Separator],
 	templateUrl: './auth.html',
 	styleUrl: './auth.css'
 })

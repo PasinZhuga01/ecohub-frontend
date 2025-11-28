@@ -5,10 +5,11 @@ import { ButtonControl } from '@ui/controls';
 import { MarketService, RouterService } from '@core/services';
 
 import { createMarketSignal } from '../helpers';
+import { Separator } from '@ui/widgets';
 
 @Component({
 	selector: 'app-market',
-	imports: [EntityError, MarketSelectCurrency, MarketCart, MarketCatalog, ButtonControl],
+	imports: [EntityError, MarketSelectCurrency, MarketCart, MarketCatalog, ButtonControl, Separator],
 	templateUrl: './market.html',
 	styleUrl: './market.css'
 })
