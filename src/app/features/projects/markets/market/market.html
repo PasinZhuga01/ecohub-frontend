@@ -2,4 +2,22 @@
 
 <app-entity-error-wrapper [isValid]="market.isValid">
     <h1>{{ market.name }}</h1>
+    <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [(currencyId)]="_currencyId"></app-market-select-currency>
+    
+    <div class="separator"></div>
+
+    <h2 class="cart-fragment">Корзина</h2>
+
+    <app-market-cart [marketId]="market.marketId"></app-market-cart>
+
+    <div class="separator"></div>
+
+    <h2>Каталог товаров</h2>
+
+    <app-market-catalog [isEditMode]="false" [marketId]="market.marketId" [currencyId]="_currencyId()"></app-market-catalog>
+    
+    <div class="controls">
+        <app-button-control value="Изменить рынок" (click)="_router.goto(`/project/${market.projectId}/market/${market.marketId}/edit`)"></app-button-control>
+        <app-button-control value="Перейти к корзине" (click)="_scrollToCart()"></app-button-control>
+    </div>
 </app-entity-error-wrapper>

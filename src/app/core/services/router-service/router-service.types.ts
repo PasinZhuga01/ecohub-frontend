@@ -6,4 +6,5 @@ export type Route =
 	| `/project/${number}/edit`
 	| `/project/${number}/currencies`
 	| `/project/${number}/markets`
-	| `/project/${number}/market/${number}`;
+	| `/project/${number}/market/${number}`
+	| `/project/${number}/market/${number}/edit`;
