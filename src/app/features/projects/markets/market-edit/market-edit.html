@@ -1,0 +1,22 @@
+@let market = _market();
+
+<app-entity-error-wrapper [isValid]="market.isValid">
+    <h1>{{ market.name }}</h1>
+    <app-market-select-currency [projectId]="market.projectId" [marketId]="market.marketId" [(currencyId)]="_currencyId"></app-market-select-currency>
+    
+    <div class="separator"></div>
+
+    <app-market-rename [marketId]="market.marketId" (renamed)="_updateName($event)"></app-market-rename>
+
+    <div class="separator"></div>
+
+    <app-market-catalog-item-create [marketId]="market.marketId" [currencyId]="_currencyId()"></app-market-catalog-item-create>
+
+    <div class="separator invisible"></div>
+
+    <app-market-catalog [isEditMode]="true" [marketId]="market.marketId" [currencyId]="_currencyId()"></app-market-catalog>
+
+    <div class="controls">
+        <app-button-control value="Завершить изменения" (click)="_router.goto(`/project/${market.projectId}/market/${market.marketId}`)"></app-button-control>
+    </div>
+</app-entity-error-wrapper>

@@ -13,7 +13,7 @@ import { createMarketSignal } from '../helpers';
 	styleUrl: './market.css'
 })
 export class Market {
-	protected readonly _currencyId = signal<number>(-1);
+	protected readonly _currencyId = signal(-1);
 
 	protected readonly _market = createMarketSignal();
 	protected readonly _router = inject(RouterService);

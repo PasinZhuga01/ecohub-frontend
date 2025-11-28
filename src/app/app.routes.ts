@@ -36,6 +36,11 @@ export const routes: Routes = [
 		loadComponent: () => import('@features/projects/markets').then(({ Market }) => Market),
 		canActivate: [createAuthGuard('/auth')]
 	},
+	{
+		path: 'project/:projectId/market/:marketId/edit',
+		loadComponent: () => import('@features/projects/markets').then(({ MarketEdit }) => MarketEdit),
+		canActivate: [createAuthGuard('/auth')]
+	},
 
 	{ path: '**', loadComponent: () => import('@features').then(({ Error }) => Error) }
 ];
