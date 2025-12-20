@@ -22,6 +22,12 @@ export class MarketSelectCurrency {
 
 	public constructor() {
 		effect(() => this._currencies.refreshItems(this.projectId()));
+
+		effect(() => {
+			const lastIndex = this._currencies.items().array.length - 1;
+
+			this._selectedIndex.update((value) => (value === 0 ? lastIndex : 0));
+		});
 	}
 
 	protected async _setCurrency() {
