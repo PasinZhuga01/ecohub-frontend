@@ -2,6 +2,7 @@ import { Response } from 'ecohub-shared/http/api';
 import { ProjectsApi } from 'ecohub-shared/http/api/projects';
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { modifySignalArrayItems } from '@core/utils';
+import env from '@env';
 
 import { HttpService } from '../http-service/http-service';
 import { StorageService } from '../storage-service/storage-service';
@@ -12,8 +13,6 @@ import { MarketService } from '../market-service/market-service';
 	providedIn: 'root'
 })
 export class ProjectService {
-	private readonly _NAV_MAX_COUNT = 5;
-
 	private readonly _items = signal<Response<ProjectsApi, '/get_page'>>([]);
 	private readonly _navItems = signal<Response<ProjectsApi, '/get_nav'>>([]);
 
@@ -97,7 +96,7 @@ export class ProjectService {
 			return this._navItems.set([]);
 		}
 
-		const result = await this._http.send('/projects/get_nav', 'GET', { maxCount: this._NAV_MAX_COUNT });
+		const result = await this._http.send('/projects/get_nav', 'GET', { maxCount: env.maxCountNavItems });
 		const navItems = result.success ? result.response : [];
 
 		this._navItems.set(navItems);

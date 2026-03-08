@@ -11,10 +11,24 @@ export class StorageService implements StorageItems {
 	public readonly isNavVisible = this._createSignal('isNavVisible', false);
 
 	private _getStorageItem<K extends keyof StorageSchemas>(name: K, defaultValue: StorageItemValue<K>) {
-		const value = JSON.parse(localStorage.getItem(name) ?? '{}');
-		const { success, data } = schemas[name].safeParse(value);
+		try {
+			const stringifyValue = localStorage.getItem(name);
 
-		return success ? data : defaultValue;
+			if (stringifyValue === null) {
+				return defaultValue;
+			}
+
+			const value = JSON.parse(stringifyValue);
+			const { success, data } = schemas[name].safeParse(value);
+
+			return success ? data : defaultValue;
+		} catch (error) {
+			if (error instanceof SyntaxError) {
+				return defaultValue;
+			}
+
+			throw error;
+		}
 	}
 
 	private _setStorageItem<K extends keyof StorageSchemas>(name: K, value: StorageItemValue<K>) {

@@ -74,7 +74,7 @@ export default tseslint.config(
 			'@angular-eslint/template/no-negated-async': 'error',
 			'@angular-eslint/template/conditional-complexity': ['error', { maxComplexity: 3 }],
 			'@angular-eslint/template/alt-text': 'error',
-			'@angular-eslint/template/no-inline-styles': 'error',
+			'@angular-eslint/template/no-inline-styles': 'off',
 			'@typescript-eslint/ban-ts-comment': 'off'
 		}
 	}

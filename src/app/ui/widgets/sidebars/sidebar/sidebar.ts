@@ -1,9 +1,8 @@
 import { Component, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-sidebar',
-	imports: [CommonModule],
+	imports: [],
 	templateUrl: './sidebar.html',
 	styleUrl: './sidebar.css'
 })
